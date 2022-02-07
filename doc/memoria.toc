@@ -1,0 +1,7 @@
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Contents}{iii}{section*.1}%
+\contentsline {chapter}{List of Figures}{iv}{section*.2}%
+\contentsline {chapter}{List of Tables}{v}{section*.3}%
+\contentsline {part}{Memory}{1}{section*.3}%
+\contentsline {part}{Appendix}{3}{section*.5}%
