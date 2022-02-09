@@ -1,48 +1,58 @@
 \babel@toc {english}{}
 \babel@toc {english}{}
 \contentsline {chapter}{Contents}{iii}{section*.1}%
-\contentsline {chapter}{List of Figures}{v}{section*.2}%
-\contentsline {chapter}{List of Tables}{vi}{section*.3}%
+\contentsline {chapter}{List of Figures}{vi}{section*.2}%
+\contentsline {chapter}{List of Tables}{vii}{section*.3}%
 \contentsline {part}{Memory}{1}{section*.3}%
 \contentsline {chapter}{1. Introduction}{3}{chapter*.6}%
 \contentsline {chapter}{2. Project objectives}{5}{chapter*.7}%
-\contentsline {chapter}{3. Theorical concepts}{7}{chapter*.8}%
-\contentsline {section}{\numberline {3.1}Sections}{7}{section.3.1}%
-\contentsline {subsection}{Subsection}{7}{section*.9}%
-\contentsline {subsubsection}{Subsubsection}{7}{section*.10}%
-\contentsline {section}{\numberline {3.2}References}{7}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Images}{7}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Lists}{8}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Tables}{9}{section.3.5}%
-\contentsline {chapter}{4. Techniques and tools}{11}{chapter*.11}%
-\contentsline {chapter}{5. Relevant aspects of the project}{13}{chapter*.12}%
-\contentsline {chapter}{6. Related works}{15}{chapter*.13}%
-\contentsline {chapter}{7. Conclusions and future work lines}{17}{chapter*.14}%
-\contentsline {part}{Appendix}{18}{chapter*.14}%
-\contentsline {appendix}{\chapternumberline {A}Project Plan}{21}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Introduction}{21}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Temporary planning}{22}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Feasibility study}{23}{section.A.3}%
-\contentsline {subsection}{Economic feasibility}{24}{section*.17}%
-\contentsline {subsection}{Legal feasibility}{24}{section*.18}%
-\contentsline {appendix}{\chapternumberline {B}Requirements}{25}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Introduction}{25}{section.B.1}%
-\contentsline {section}{\numberline {B.2}General objectives}{25}{section.B.2}%
-\contentsline {section}{\numberline {B.3}Catalog of requirements}{25}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Requirements specification}{25}{section.B.4}%
-\contentsline {appendix}{\chapternumberline {C}Design specification}{27}{appendix.C}%
-\contentsline {section}{\numberline {C.1}Introduction}{27}{section.C.1}%
-\contentsline {section}{\numberline {C.2}Data design}{27}{section.C.2}%
-\contentsline {section}{\numberline {C.3}Procedural design}{27}{section.C.3}%
-\contentsline {section}{\numberline {C.4}Architectural design}{27}{section.C.4}%
-\contentsline {appendix}{\chapternumberline {D}Programming technical documentation}{29}{appendix.D}%
-\contentsline {section}{\numberline {D.1}Introduction}{29}{section.D.1}%
-\contentsline {section}{\numberline {D.2}Directory structure}{29}{section.D.2}%
-\contentsline {section}{\numberline {D.3}Programmer's guide}{29}{section.D.3}%
-\contentsline {section}{\numberline {D.4}Compilation, installation and execution of the project}{29}{section.D.4}%
-\contentsline {section}{\numberline {D.5}System tests}{29}{section.D.5}%
-\contentsline {appendix}{\chapternumberline {E}User documentation}{31}{appendix.E}%
-\contentsline {section}{\numberline {E.1}Introduction}{31}{section.E.1}%
-\contentsline {section}{\numberline {E.2}User requirements}{31}{section.E.2}%
-\contentsline {section}{\numberline {E.3}Installation}{31}{section.E.3}%
-\contentsline {section}{\numberline {E.4}User's manual}{31}{section.E.4}%
+\contentsline {chapter}{3. Theoretical concepts}{7}{chapter*.8}%
+\contentsline {section}{\numberline {3.1}API}{7}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Orchestrator}{7}{section.3.2}%
+\contentsline {section}{\numberline {3.3}NoSQL Databases}{7}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Containers}{7}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Continuous Integration / Continuous Delivery}{7}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Template engines}{8}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Web Server Gateway Interface}{8}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Tables}{8}{section.3.8}%
+\contentsline {chapter}{4. Techniques and tools}{9}{chapter*.9}%
+\contentsline {section}{\numberline {4.1}GitHub}{9}{section.4.1}%
+\contentsline {section}{\numberline {4.2}APIs}{9}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Postman}{9}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Apache Airflow}{9}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Apache Spark}{9}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Cassandra}{10}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Flask}{10}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Bootstrap}{10}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Docker}{10}{section.4.9}%
+\contentsline {chapter}{5. Relevant aspects of the project}{11}{chapter*.10}%
+\contentsline {chapter}{6. Related works}{13}{chapter*.11}%
+\contentsline {chapter}{7. Conclusions and future work lines}{15}{chapter*.12}%
+\contentsline {part}{Appendix}{16}{chapter*.12}%
+\contentsline {appendix}{\chapternumberline {A}Project Plan}{19}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Introduction}{19}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Temporary planning}{20}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Feasibility study}{21}{section.A.3}%
+\contentsline {subsection}{Economic feasibility}{22}{section*.15}%
+\contentsline {subsection}{Legal feasibility}{22}{section*.16}%
+\contentsline {appendix}{\chapternumberline {B}Requirements}{23}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Introduction}{23}{section.B.1}%
+\contentsline {section}{\numberline {B.2}General objectives}{23}{section.B.2}%
+\contentsline {section}{\numberline {B.3}Catalog of requirements}{23}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Requirements specification}{23}{section.B.4}%
+\contentsline {appendix}{\chapternumberline {C}Design specification}{25}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Introduction}{25}{section.C.1}%
+\contentsline {section}{\numberline {C.2}Data design}{25}{section.C.2}%
+\contentsline {section}{\numberline {C.3}Procedural design}{25}{section.C.3}%
+\contentsline {section}{\numberline {C.4}Architectural design}{25}{section.C.4}%
+\contentsline {appendix}{\chapternumberline {D}Programming technical documentation}{27}{appendix.D}%
+\contentsline {section}{\numberline {D.1}Introduction}{27}{section.D.1}%
+\contentsline {section}{\numberline {D.2}Directory structure}{27}{section.D.2}%
+\contentsline {section}{\numberline {D.3}Programmer's guide}{27}{section.D.3}%
+\contentsline {section}{\numberline {D.4}Compilation, installation and execution of the project}{27}{section.D.4}%
+\contentsline {section}{\numberline {D.5}System tests}{27}{section.D.5}%
+\contentsline {appendix}{\chapternumberline {E}User documentation}{29}{appendix.E}%
+\contentsline {section}{\numberline {E.1}Introduction}{29}{section.E.1}%
+\contentsline {section}{\numberline {E.2}User requirements}{29}{section.E.2}%
+\contentsline {section}{\numberline {E.3}Installation}{29}{section.E.3}%
+\contentsline {section}{\numberline {E.4}User's manual}{29}{section.E.4}%
