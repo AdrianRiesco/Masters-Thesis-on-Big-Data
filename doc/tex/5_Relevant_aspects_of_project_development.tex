@@ -14,7 +14,7 @@
 	\item The potential to combine both to get an added value.
 \end{itemize}
 
-Considering the previous points, the author found an interesting option on Twitter and Spotify providers. Both of them provides solid APIs for a fluid development and have the characteristics needed to combine the data collected. Consequently, the author designed the following use case:
+\nonzeroparskip Considering the previous points, the author found an interesting option on Twitter and Spotify providers. Both of them provides solid APIs for a fluid development and have the characteristics needed to combine the data collected. Consequently, the author designed the following use case:
 
 \begin{enumerate}
 	\item The Twitter API is consulted to gather the \textit{tweets} with the hashtag \textit{\#NowPlaying}.
@@ -24,6 +24,30 @@ Considering the previous points, the author found an interesting option on Twitt
 	\item The data is moved to the database, ready to be stored and visualized.
 \end{enumerate}
 
-The design phase...\\
+\nonzeroparskip During the design phase, the author analyzed the output of both APIs using Postman. In the first place, relying on the Twitter documentation, the author inspected the Twitter API by following the next steps:
+\begin{enumerate}
+	\item Get access to the Twitter Developer Portal.
+	\item Get the credentials needed to consult the different endpoints of the API.
+	\item Import the \textit{Twitter API v2} collection on Postman.
+	\item Modify the automatically created environment called \textit{Twitter API v2} to include the following developer keys and tokens:
+	\begin{itemize}
+		\item Consumer key (consumer\_key).
+		\item Consumer secret (consumer\_secret).
+		\item Access token (access\_token).
+		\item Token secret (token\_secret).
+		\item Bearer token (bearer\_token).
+	\end{itemize}
+	\item In the collection tab, select the endpoint \textit{Tweet Lookup} -> \textit{Single Tweet} for the initial exploration.
+	\item Create a fork and configure the following parameters:
+	\begin{itemize}
+		\item[tweet.fields] 
+		\item[expansions]
+		\item[id] - The identifier of a tweet similar to the ones to gather. It can be find in the tweet's URL.
+		\item Token secret (token\_secret).
+		\item Bearer token (bearer\_token).
+	\end{itemize}
+	\item Get access to the Twitter Developer Portal.
+\end{enumerate}
 
-The project development was undertaken following an Agile methodology.\\
+
+\nonzeroparskip The project development was undertaken following an Agile methodology.\\

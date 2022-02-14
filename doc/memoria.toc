@@ -8,14 +8,16 @@
 \contentsline {chapter}{2. Project objectives}{5}{chapter*.7}%
 \contentsline {chapter}{3. Theoretical concepts}{7}{chapter*.8}%
 \contentsline {section}{\numberline {3.1}API}{7}{section.3.1}%
+\contentsline {subsection}{Twitter API}{7}{section*.9}%
+\contentsline {subsection}{Spotify API}{7}{section*.10}%
 \contentsline {section}{\numberline {3.2}Orchestrator}{7}{section.3.2}%
 \contentsline {section}{\numberline {3.3}NoSQL Databases}{7}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Containers}{7}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Continuous Integration / Continuous Delivery}{7}{section.3.5}%
+\contentsline {section}{\numberline {3.4}Containers}{8}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Continuous Integration / Continuous Delivery}{8}{section.3.5}%
 \contentsline {section}{\numberline {3.6}Template engines}{8}{section.3.6}%
 \contentsline {section}{\numberline {3.7}Web Server Gateway Interface}{8}{section.3.7}%
 \contentsline {section}{\numberline {3.8}Tables}{8}{section.3.8}%
-\contentsline {chapter}{4. Techniques and tools}{9}{chapter*.9}%
+\contentsline {chapter}{4. Techniques and tools}{9}{chapter*.11}%
 \contentsline {section}{\numberline {4.1}GitHub}{9}{section.4.1}%
 \contentsline {section}{\numberline {4.2}APIs}{9}{section.4.2}%
 \contentsline {section}{\numberline {4.3}Postman}{9}{section.4.3}%
@@ -25,16 +27,16 @@
 \contentsline {section}{\numberline {4.7}Flask}{10}{section.4.7}%
 \contentsline {section}{\numberline {4.8}Bootstrap}{10}{section.4.8}%
 \contentsline {section}{\numberline {4.9}Docker}{10}{section.4.9}%
-\contentsline {chapter}{5. Relevant aspects of the project}{11}{chapter*.10}%
-\contentsline {chapter}{6. Related works}{13}{chapter*.11}%
-\contentsline {chapter}{7. Conclusions and future work lines}{15}{chapter*.12}%
-\contentsline {part}{Appendix}{16}{chapter*.12}%
+\contentsline {chapter}{5. Relevant aspects of the project}{11}{chapter*.12}%
+\contentsline {chapter}{6. Related works}{13}{chapter*.13}%
+\contentsline {chapter}{7. Conclusions and future work lines}{15}{chapter*.14}%
+\contentsline {part}{Appendix}{16}{chapter*.14}%
 \contentsline {appendix}{\chapternumberline {A}Project Plan}{19}{appendix.A}%
 \contentsline {section}{\numberline {A.1}Introduction}{19}{section.A.1}%
 \contentsline {section}{\numberline {A.2}Temporary planning}{20}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Feasibility study}{21}{section.A.3}%
-\contentsline {subsection}{Economic feasibility}{22}{section*.15}%
-\contentsline {subsection}{Legal feasibility}{22}{section*.16}%
+\contentsline {section}{\numberline {A.3}Feasibility study}{22}{section.A.3}%
+\contentsline {subsection}{Economic feasibility}{22}{section*.17}%
+\contentsline {subsection}{Legal feasibility}{22}{section*.18}%
 \contentsline {appendix}{\chapternumberline {B}Requirements}{23}{appendix.B}%
 \contentsline {section}{\numberline {B.1}Introduction}{23}{section.B.1}%
 \contentsline {section}{\numberline {B.2}General objectives}{23}{section.B.2}%

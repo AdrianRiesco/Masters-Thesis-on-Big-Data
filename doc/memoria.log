@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.6)  9 FEB 2022 00:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2022.2.6)  14 FEB 2022 00:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -964,21 +964,16 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Underfull \hbox (badness 10000) in paragraph at lines 27--28
+) [11
+
+
+
+])
+Underfull \hbox (badness 10000) in paragraph at lines 53--465
 
  []
 
-)
-Underfull \hbox (badness 10000) in paragraph at lines 29--465
-
- []
-
-[11
-
-
-
-] [12]
+[12]
 \openout2 = `tex/6_Related_works.aux'.
 
  (./tex/6_Related_works.tex) [13
@@ -1086,15 +1081,15 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 489.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 489.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 489.
 Package rerunfilecheck Info: File `memoria.out' has not changed.
-(rerunfilecheck)             Checksum: DE6354F5FB89156125326037D49BBB05;3404.
+(rerunfilecheck)             Checksum: 814ED1F508BC8F5861403D2C7EEFFE4E;3414.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 489.
  ) 
 Here is how much of TeX's memory you used:
- 12922 strings out of 483140
- 193939 string characters out of 5965152
- 541755 words of memory out of 5000000
+ 12933 strings out of 483140
+ 194029 string characters out of 5965152
+ 541764 words of memory out of 5000000
  27440 multiletter control sequences out of 15000+600000
- 619150 words of font info for 110 fonts, out of 8000000 for 9000
+ 619279 words of font info for 111 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  39i,12n,42p,840b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
@@ -1105,10 +1100,10 @@ m/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf
 .pfb></usr/share/texmf/fonts/type1/public/lm/lmro12.pfb></usr/share/texmf/fonts
 /type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsso17.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on memoria.pdf (43 pages, 481369 bytes).
+Output written on memoria.pdf (43 pages, 484632 bytes).
 PDF statistics:
- 548 PDF objects out of 1000 (max. 8388607)
- 483 compressed objects within 5 object streams
- 102 named destinations out of 1000 (max. 500000)
+ 560 PDF objects out of 1000 (max. 8388607)
+ 495 compressed objects within 5 object streams
+ 111 named destinations out of 1000 (max. 500000)
  26560 words of extra memory for PDF output out of 29859 (max. 10000000)
 
