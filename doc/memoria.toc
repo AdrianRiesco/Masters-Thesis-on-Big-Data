@@ -45,14 +45,19 @@
 \contentsline {appendix}{\chapternumberline {C}Design specification}{25}{appendix.C}%
 \contentsline {section}{\numberline {C.1}Introduction}{25}{section.C.1}%
 \contentsline {section}{\numberline {C.2}Data design}{25}{section.C.2}%
+\contentsline {subsection}{Twitter data structure}{25}{section*.19}%
+\contentsline {subsection}{Spotify data structure}{25}{section*.20}%
+\contentsline {subsection}{Cleaned data}{25}{section*.21}%
 \contentsline {section}{\numberline {C.3}Procedural design}{25}{section.C.3}%
 \contentsline {section}{\numberline {C.4}Architectural design}{25}{section.C.4}%
 \contentsline {appendix}{\chapternumberline {D}Programming technical documentation}{27}{appendix.D}%
 \contentsline {section}{\numberline {D.1}Introduction}{27}{section.D.1}%
 \contentsline {section}{\numberline {D.2}Directory structure}{27}{section.D.2}%
 \contentsline {section}{\numberline {D.3}Programmer's guide}{27}{section.D.3}%
-\contentsline {section}{\numberline {D.4}Compilation, installation and execution of the project}{27}{section.D.4}%
-\contentsline {section}{\numberline {D.5}System tests}{27}{section.D.5}%
+\contentsline {subsection}{Analysis}{27}{section*.22}%
+\contentsline {subsection}{Development}{28}{section*.23}%
+\contentsline {section}{\numberline {D.4}Compilation, installation and execution of the project}{28}{section.D.4}%
+\contentsline {section}{\numberline {D.5}System tests}{28}{section.D.5}%
 \contentsline {appendix}{\chapternumberline {E}User documentation}{29}{appendix.E}%
 \contentsline {section}{\numberline {E.1}Introduction}{29}{section.E.1}%
 \contentsline {section}{\numberline {E.2}User requirements}{29}{section.E.2}%

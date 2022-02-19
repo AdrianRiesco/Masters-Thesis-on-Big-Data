@@ -14,7 +14,8 @@ Estructura GitHub.
 	\item Get access to the Twitter Developer Portal.
 	\item Get the credentials needed to consult the different endpoints of the API.
 	\item Import the \textit{Twitter API v2} collection on Postman.
-	\item Modify the automatically created environment called \textit{Twitter API v2} to include the following developer keys and tokens:
+	\item Create a fork of the automatically created environment (\textit{Twitter API v2}) and collection \textit{Twitter API v2} to be able to edit the values.
+	\item Modify the environment to include the following developer keys and tokens:
 	\begin{itemize}
 		\item Consumer key (consumer\_key).
 		\item Consumer secret (consumer\_secret).
@@ -22,16 +23,13 @@ Estructura GitHub.
 		\item Token secret (token\_secret).
 		\item Bearer token (bearer\_token).
 	\end{itemize}
-	\item In the collection tab, select the endpoint \textit{Tweet Lookup} -> \textit{Single Tweet} for the initial exploration.
-	\item Create a fork and configure the following parameters:
+	\item In the collection tab, select the endpoint \textit{Search Tweets} -> \textit{Recent search} for the initial exploration. Configure the following parameters:
 	\begin{itemize}
-		\item[tweet.fields] 
-		\item[expansions]
-		\item[id] - The identifier of a tweet similar to the ones to gather. It can be find in the tweet's URL.
-		\item Token secret (token\_secret).
-		\item Bearer token (bearer\_token).
+		\item[query] \char23 NowPlaying
+		\item[tweet.fields] created_at,entities
+		\item[max_results] 10
 	\end{itemize}
-	\item Get access to the Twitter Developer Portal.
+	\item Now, we can send our query \textit{https://api.twitter.com/2/tweets/search/recent?query=\%23NowPlaying&max_results=10&tweet.fields=created_at,entities} to get the 10 most recent tweets with the hashtag \char23 NowPlaying and receive the basic information (id, text) as well as entities (hashtags, urls, annotations...) and creation time stamp.
 \end{enumerate}
 
 \subsection{Development}
