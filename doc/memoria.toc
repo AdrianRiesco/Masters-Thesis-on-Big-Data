@@ -27,6 +27,7 @@
 \contentsline {section}{\numberline {4.7}Flask}{10}{section.4.7}%
 \contentsline {section}{\numberline {4.8}Bootstrap}{10}{section.4.8}%
 \contentsline {section}{\numberline {4.9}Docker}{10}{section.4.9}%
+\contentsline {section}{\numberline {4.10}Docker Compose}{10}{section.4.10}%
 \contentsline {chapter}{5. Relevant aspects of the project}{11}{chapter*.12}%
 \contentsline {chapter}{6. Related works}{13}{chapter*.13}%
 \contentsline {chapter}{7. Conclusions and future work lines}{15}{chapter*.14}%
@@ -41,7 +42,7 @@
 \contentsline {section}{\numberline {B.1}Introduction}{23}{section.B.1}%
 \contentsline {section}{\numberline {B.2}General objectives}{23}{section.B.2}%
 \contentsline {section}{\numberline {B.3}Catalog of requirements}{23}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Requirements specification}{23}{section.B.4}%
+\contentsline {section}{\numberline {B.4}Requirements specification}{24}{section.B.4}%
 \contentsline {appendix}{\chapternumberline {C}Design specification}{25}{appendix.C}%
 \contentsline {section}{\numberline {C.1}Introduction}{25}{section.C.1}%
 \contentsline {section}{\numberline {C.2}Data design}{25}{section.C.2}%
@@ -55,11 +56,11 @@
 \contentsline {section}{\numberline {D.2}Directory structure}{27}{section.D.2}%
 \contentsline {section}{\numberline {D.3}Programmer's guide}{27}{section.D.3}%
 \contentsline {subsection}{Analysis}{27}{section*.22}%
-\contentsline {subsection}{Development}{28}{section*.23}%
-\contentsline {section}{\numberline {D.4}Compilation, installation and execution of the project}{28}{section.D.4}%
-\contentsline {section}{\numberline {D.5}System tests}{28}{section.D.5}%
-\contentsline {appendix}{\chapternumberline {E}User documentation}{29}{appendix.E}%
-\contentsline {section}{\numberline {E.1}Introduction}{29}{section.E.1}%
-\contentsline {section}{\numberline {E.2}User requirements}{29}{section.E.2}%
-\contentsline {section}{\numberline {E.3}Installation}{29}{section.E.3}%
-\contentsline {section}{\numberline {E.4}User's manual}{29}{section.E.4}%
+\contentsline {subsection}{Development}{29}{section*.23}%
+\contentsline {section}{\numberline {D.4}Compilation, installation and execution of the project}{29}{section.D.4}%
+\contentsline {section}{\numberline {D.5}System tests}{29}{section.D.5}%
+\contentsline {appendix}{\chapternumberline {E}User documentation}{31}{appendix.E}%
+\contentsline {section}{\numberline {E.1}Introduction}{31}{section.E.1}%
+\contentsline {section}{\numberline {E.2}User requirements}{31}{section.E.2}%
+\contentsline {section}{\numberline {E.3}Installation}{31}{section.E.3}%
+\contentsline {section}{\numberline {E.4}User's manual}{31}{section.E.4}%

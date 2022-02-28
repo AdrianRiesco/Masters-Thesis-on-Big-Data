@@ -1,3 +1,25 @@
 \capitulo{2}{Project objectives}
 
-\nonzeroparskip This section explains precisely and concisely what are the objectives pursued with the completion of the project. It is possible to distinguish between the objectives set by the requirements of the software to be built and the technical objectives that it poses when putting the project into practice.
+%\nonzeroparskip This section explains precisely and concisely what are the objectives pursued with the completion of the project. It is possible to distinguish between the objectives set by the requirements of the software to be built and the technical objectives that it poses when putting the project into practice.
+
+\nonzeroparskip The initial objectives through which the use case was built consisted in the following points:
+\begin{itemize}
+	\item Ability to obtain data in real time.
+	\item Combine at least two different data sources.
+	\item Potential to scale in both technology and data volume.
+	\item Involve various technologies from the world of Big Data.
+	\item Use of open source tools.
+\end{itemize}
+
+\nonzeroparskip After a research, the author designed the use case and built the objectives of the projects:
+\begin{itemize}
+	\item Build a pipeline to gather information about last songs listened from the Twitter API. The endpoint's name is \textit{recent search}.
+	\item Find information about the songs (name, artist, audio features) through the Spotify API. The endpoints' names are \textit{search for item} and \textit{get tracks' audio features}.
+	\item Execute all the ETL process in Apache Spark.
+	\item Store all the data in a data warehouse under a known technology, Cassandra.
+	\item Visualize the information in a custom front-end and back-end created with Bootstrap and Flask.
+	\item Orchestrate all the data flow with Apache Airflow.
+	\item Develop the project with Docker to ensure deployment through heterogeneous environments.
+\end{itemize}
+
+\nonzeroparskip Through these global objectives, the low-level functional and technical requirements were specified. More information about these requirements is included in the annex.
