@@ -12,15 +12,45 @@
 %Description.
 %\begin{description}
 
-\nonzeroparskip In this section are covered the theoretical concepts in which the project has been based. All concepts are described in a detailed an simple way since this master's degree can be aimed at technical and non-technical students.
+\nonzeroparskip In this section are covered the theoretical concepts in which the project has been based. All concepts are described in a detailed and simple way since this master's degree can be aimed at technical and non-technical students.
 
 \section{API}
 
-\nonzeroparskip An Aplication Interface or API is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested to the system, the way to authenticate to it and to send a request, and the format of the returned data.
+\nonzeroparskip An Aplication Interface or API is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested and sent to the system, the way to authenticate to it and the format of the returned data.
+
+\nonzeroparskip In relation to web development, most of the APIs work according to Hypertext Transfer Protocol (HTTP), a communication protocol that allows information transfers through files on the World Wide Web.
+
+\nonzeroparskip In relation to web development, most of the APIs work according to Hypertext Transfer Protocol (HTTP), a communication protocol that allows information transfers through files on the World Wide Web. Additionally and not exclusive, a large number of APIs are developed according to the REST architectural style, defined by Roy Fielding in the year 2000 and which is based on a series of principles that seek to facilitate development:
+\begin{enumerate}
+	\item Uniform interface for all resources, forcing all queries made to the same resource (each with a specific Uniform Resource Identifier or URI) to have the same form regardless of the origin of the request.
+	\item Decoupling between the client and the server, making the only information that the client must know about the server is its identifier (URI) and that the only action to be carried out by the server is to return the data required in the request.
+	\item Stateless queries, meaning that each request must contain all the information necessary to be processed without requiring an additional request or storing any type of state.
+	\item Allow, whenever possible, both client-side and server-side caching to reduce the load of the former and increase the scalability of the latter.
+	\item Layer system, allowing multiple intermediaries between the client and the server and preventing them from knowing in any case if they are communicating with the other party or with an intermediary.
+	\item Although the resources exchanged are usually static, a REST architecture can optionally have responses that contain snippets of executable code.
+\end{enumerate}
+
+\nonzeroparskip In general terms, an API based on a REST architecture serves to make it easier for developers to develop applications that interact with the resources published by it.
 
 \subsection{Twitter API}
-\nonzeroparskip Section explaining Twitter.
-\nonzeroparskip Section explaining Twitter API.
+\nonzeroparskip Twitter is an American social network founded in 2006 that allows users to share short posts (280 characters since 2017), known as tweets, and interact with those of other users through replies, likes, retweets or quotes. Although it has recently incorporated additional payment functions, this social network is free to use and is accessible on multiple platforms. Currently, the social network has 217 million active users daily.
+
+\nonzeroparskip On the other hand, Twitter is also known for giving certain facilities to developers to make their products interact with the platform. The company has a Twitter Developer portal where a multitude of resources and useful documentation are posted. This portal contains a description of the API that Twitter offers, how to authenticate, the different endpoints to which queries can be launched, and the associated usage limits.
+
+\nonzeroparskip The Twitter API allows the user to 
+
+\nonzeroparskip Depending on the query launched, the user can receive a series of different objects, among which are:
+\begin{itemize}
+	\item[Tweets] It represents the basic block of communication between Twitter users.
+	\item[Users] It represents a user account and its metadata.
+	\item[Spaces] It represents a space (virtual places in Twitter where users can interact in live conversations) and its metadata.
+	\item[Lists] It represents a Twitter list (used to configure information visualized in the timeline) and its metadata.
+	\item[Media] It represents any image, video or GIF attached to a tweet and can be obtained by expanding the Tweet object.
+	\item[Polls] It represents a poll (choices, duration, end-time and results) and can be obtained by expanding the Tweet object.
+	\item[Places] It represents a place identified in a tweet and can be obtained by expanding the Tweet object.
+\end{itemize}
+
+\nonzeroparskip Each of these objects has its own fields and parameters.
 
 \subsection{Spotify API}
 \nonzeroparskip Section explaining Spotify.
