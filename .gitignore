@@ -4,3 +4,4 @@
 *.log
 *.synctex.gz
 *.env
+*.dvi
