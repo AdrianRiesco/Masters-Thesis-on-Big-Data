@@ -115,7 +115,7 @@ for features in response['audio_features']:
 # Merge the dataframes from both queries
 spotifyDF = tracksDF.join(featuresDF.set_index('id'), on='id')
 
-# *** Twitter API - Load *** #
+# *** Spotify API - Load *** #
 
 # Append the result to a CSV file or create if it does not exist
 spotifyDF.to_csv('spotify.csv', mode='a', index = False, header = None)

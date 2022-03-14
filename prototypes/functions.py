@@ -12,9 +12,9 @@ def get_bearer_token_spotify(client_id, client_secret):
     endpoint_url = "https://accounts.spotify.com/api/token"
     data = {"grant_type": "client_credentials", "client_id": client_id, "client_secret": client_secret}
     response = rq.request("POST", endpoint_url, data = data)
-    if response.status_code != 200:
-        print("Endpoint Response Code: " + str(response.status_code))
-        raise Exception(response.status_code, response.text)
+    #if response.status_code != 200:
+        #print("Endpoint Response Code: " + str(response.status_code))
+        #raise Exception(response.status_code, response.text)
     return response.json()
 
 # Create the authentication header for the query	
@@ -49,7 +49,7 @@ def url_spotify_get_several_artists(ids):
 # Initial connection to the endpoint
 def send_get_request(url, headers, params):
     response = rq.request("GET", url, headers = headers, params = params)
-    if response.status_code != 200:
-        print("Endpoint Error Response Code: " + str(response.status_code))
-        raise Exception(response.status_code, response.text)
-    return response.json()
+    #if response.status_code != 200:
+        #print("Endpoint Error Response Code: " + str(response.status_code))
+        #raise Exception(response.status_code, response.text)
+    return response.json(), response.status_code
