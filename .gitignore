@@ -5,3 +5,8 @@
 *.synctex.gz
 *.env
 *.dvi
+*.bbl
+*.blg
+*.lof
+*.lot
+*.toc
