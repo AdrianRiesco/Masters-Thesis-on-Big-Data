@@ -12,13 +12,11 @@
 %Description.
 %\begin{description}
 
-\nonzeroparskip In this section are covered the theoretical concepts in which the project has been based. All concepts are described in a detailed and simple way since this master's degree can be aimed at technical and non-technical students.
+\nonzeroparskip In this section are covered the theoretical concepts in which the project has been based. All concepts are described in a detailed and simple way since this master's thesis can be aimed at technical and non-technical students.
 
 \section{API}
 
-\nonzeroparskip An Aplication Interface or API is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested and sent to the system, the way to authenticate to it and the format of the returned data.
-
-\nonzeroparskip In relation to web development, most of the APIs work according to Hypertext Transfer Protocol (HTTP), a communication protocol that allows information transfers through files on the World Wide Web.
+\nonzeroparskip An Aplication Interface or API is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested and sent to the system, the way to authenticate to it and the format of the returned data~\cite{ibm_restapi}.
 
 \nonzeroparskip In relation to web development, most of the APIs work according to Hypertext Transfer Protocol (HTTP), a communication protocol that allows information transfers through files on the World Wide Web. Additionally and not exclusive, a large number of APIs are developed according to the REST architectural style, defined by Roy Fielding in the year 2000 and which is based on a series of principles that seek to facilitate development:
 \begin{enumerate}
@@ -33,28 +31,48 @@
 \nonzeroparskip In general terms, an API based on a REST architecture serves to make it easier for developers to develop applications that interact with the resources published by it.
 
 \subsection{Twitter API}
-\nonzeroparskip Twitter is an American social network founded in 2006 that allows users to share short posts (280 characters since 2017), known as tweets, and interact with those of other users through replies, likes, retweets or quotes. Although it has recently incorporated additional payment functions, this social network is free to use and is accessible on multiple platforms. Currently, the social network has 217 million active users daily.
+\nonzeroparskip Twitter is an American social network founded in 2006 that allows users to share short posts (280 characters since 2017), known as tweets, and interact with those of other users through replies, likes, retweets or quotes~\cite{wikipedia_twitter}. Although it has recently incorporated additional payment functions, this social network is free to use and is accessible on multiple platforms. Currently, the social network has 217 million active users daily~\cite{variety_twitterusers}.
 
-\nonzeroparskip On the other hand, Twitter is also known for giving certain facilities to developers to make their products interact with the platform. The company has a Twitter Developer portal where a multitude of resources and useful documentation are posted. This portal contains a description of the API that Twitter offers, how to authenticate, the different endpoints to which queries can be launched, and the associated usage limits.
-¨
-\nonzeroparskip The Twitter API allows the user to 
+\nonzeroparskip On the other hand, Twitter is also known for giving certain facilities to developers to make their products interact with the platform. The company has a Twitter Developer portal where a multitude of resources and useful documentation are posted\cite{twitter_dev}. This portal contains a description of the API that Twitter offers, how to authenticate, the different endpoints to which queries can be launched, and the associated usage limits. 
 
-\nonzeroparskip Depending on the query launched, the user can receive a series of different objects, among which are:
+\nonzeroparskip The Twitter API, currently in its second version, allows the user to request and receive a wide variety of data. Depending on the query launched, the user can receive a series of different objects, each with its own fields and parameters:
 \begin{itemize}
-	\item[Tweets] It represents the basic block of communication between Twitter users.
-	\item[Users] It represents a user account and its metadata.
-	\item[Spaces] It represents a space (virtual places in Twitter where users can interact in live conversations) and its metadata.
-	\item[Lists] It represents a Twitter list (used to configure information visualized in the timeline) and its metadata.
-	\item[Media] It represents any image, video or GIF attached to a tweet and can be obtained by expanding the Tweet object.
-	\item[Polls] It represents a poll (choices, duration, end-time and results) and can be obtained by expanding the Tweet object.
-	\item[Places] It represents a place identified in a tweet and can be obtained by expanding the Tweet object.
+	\item \textbf{Tweets}. It represents the basic block of communication between Twitter users.
+	\item \textbf{Users}. It represents a user account and its metadata.
+	\item \textbf{Spaces}. It represents a space (virtual places in Twitter where users can interact in live conversations) and its metadata.
+	\item \textbf{Lists}. It represents a Twitter list (used to configure information visualized in the timeline) and its metadata.
+	\item \textbf{Media}. It represents any image, video or GIF attached to a tweet and can be obtained by expanding the Tweet object.
+	\item \textbf{Polls}. It represents a poll (choices, duration, end-time and results) and can be obtained by expanding the Tweet object.
+	\item \textbf{Places}. It represents a place identified in a tweet and can be obtained by expanding the Tweet object.
 \end{itemize}
 
-\nonzeroparskip Each of these objects has its own fields and parameters.
+\nonzeroparskip Of all the endpoints available in the API (manage tweets, user lookup, search spaces, full-archive tweet search...), in this thesis only the Recent Search endpoint has been used, which returns a list of the most recent tweets based on the rules entered in the query. Both the number of tweets to receive and the id or date of the oldest tweet to be returned can be specified, and this endpoint allows receiving up to one hundred tweets per query and includes a pagination token to handle larger results~\cite{twitter_dev_searchtweets}.
 
 \subsection{Spotify API}
-\nonzeroparskip Section explaining Spotify.
-\nonzeroparskip Section explaining Spotify API.
+\nonzeroparskip Spotify is a company of Swedish origin founded in 2006 that provides audio streaming services, currently being one of the companies with the largest number of users among all those that have this type of service. Spotify has a catalog made up of music and podcasts, including more than 82 million songs, distributed through a free service (limited control and periodic announcements) with the option of a premium subscription. Its business model is based on advertising and paying users, and it pays royalties to artists based on the proportion of streaming of their songs compared to the total played~\cite{wikipedia_spotify}.
+
+\nonzeroparskip Spotify has a developer portal that provides a wealth of documentation to help design and implement various use cases. Spotify has an API based on a REST architecture with different published endpoints that return metadata of artists, albums and songs from its own catalog, as well as information on users, lists and music saved by them, in JSON format\cite{spotify_dev}.
+
+\nonzeroparskip The Spotify API has several endpoints to which queries can be sent to collect or modify information: Albums, Artists, Shows, Episodes, Search~\cite{spotify_dev_endpoint_searchforitem}, Tracks~\cite{spotify_dev_endpoint_gettracksaudiofeatures}, Users, Playlists, Categories, Genres, Player and Market. During this thesis the following have been used:
+\begin{itemize}
+	\item \textbf{Search}. Search for Item allows to obtain information about the Spotify catalog of artists, songs, albums, playlists, shows or episodes. You can specify the type or types of objects to return, in this case being the type ``tracks''.
+	\item \textbf{Tracks}. Get Tracks' Audio Features allows to obtain the characteristics of a set of songs specified by their id. The characteristics returned are as follows:
+	\begin{itemize}
+		\item \textbf{Acousticness}. Confidence measure from 0.0 to 1.0 about whether the track is acoustic, with 1.0 representing high confidence that it is acoustic.
+		\item \textbf{Danceability}. It describes with a value between 0.0 and 1.0 how suitable a track is for dancing based on a combination of its musical elements, with 1.0 being the greatest danceability.
+		\item \textbf{Duration\_ms}. It represents the duration of the track in milliseconds.
+		\item \textbf{Energy}. It represents with a value between 0.0 and 1.0 the conception of the energy level of the track, being 1.0 the maximum energy value.
+		\item \textbf{Instrumentalness}. It predicts with a value between 0.0 and 1.0 whether or not the track contains vocals. Values above 0.5 usually represent tracks without vocals, and the closer to 1.0 the more likely they are.
+		\item \textbf{Key}. It indicates the key the track is in, with each key having an assigned integer starting with 0. If no key is detected, the value is -1.
+		\item \textbf{Liveness}. It represents audience presence with a value between 0.0 and 1.0. Values greater than 0.8 indicate a high probability that the track was recorded live.
+		\item \textbf{Loudness}. Indicates the average volume of a track in decibels, with values generally contained between -60dB and 0dB.
+		\item \textbf{Mode}. Indicates the modality of the track, being the value 1 greater and 0 less.
+		\item \textbf{Speechiness}. Detects the presence of spoken words in a track. Values less than 0.33 typically indicate instrumental tracks without vocals, values between 0.33 and 0.66 songs with music and vocals, and values greater than 0.66 podcasts, audiobooks, and similar formats.
+		\item \textbf{Tempo}. Indicates the tempo or rhythm of a track in beats per minute.
+		\item \textbf{Time\_signature}. Represents the estimated time signature value, with values between 3 and 7 indicating 3/4 and 7/4 time signatures, respectively.
+		\item \textbf{Valence}. Indicates with values between 0.0 and 1.0 the musical positivity transmitted by the track, where high values indicate greater positivity, while low values indicate greater negativity.
+	\end{itemize}
+\end{itemize}
 
 \section{Orchestrator}
 

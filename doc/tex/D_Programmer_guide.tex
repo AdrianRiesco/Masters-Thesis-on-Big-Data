@@ -17,26 +17,26 @@ Estructura GitHub.
 	\item Create a fork of the automatically created environment (\textit{Twitter API v2}) and collection \textit{Twitter API v2} to be able to edit the values.
 	\item Modify the environment to include the following developer keys and tokens:
 	\begin{itemize}
-		\item Consumer key (consumer\_key).
-		\item Consumer secret (consumer\_secret).
-		\item Access token (access\_token).
-		\item Token secret (token\_secret).
-		\item Bearer token (bearer\_token).
+		\item Consumer key (\texttt{consumer\_key}).
+		\item Consumer secret (\texttt{consumer\_secret}).
+		\item Access token (\texttt{access\_token}).
+		\item Token secret (\texttt{token\_secret}).
+		\item Bearer token (\texttt{bearer\_token}).
 	\end{itemize}
-	\item In the collection tab, select the endpoint \textit{Search Tweets} -> \textit{Recent search} for the initial exploration. Configure the following parameters:
+	\item In the collection tab, select the endpoint \textit{Search Tweets} $\longrightarrow$ \textit{Recent search} for the initial exploration. Configure the following parameters:
 	\begin{itemize}
-		\item query = \#NowPlaying
-		\item tweet.fields = created\_at,entities
-		\item max\_results = 10
+		\item \texttt{query} = \texttt{\#NowPlaying}
+		\item \texttt{tweet.fields} = \texttt{created\_at,entities}
+		\item \texttt{max\_results} = \texttt{10}
 	\end{itemize}
-	\item Now, we can send our query \textit{https://api.twitter.com/2/tweets/search/re cent?query=\%23NowPlaying\&max\_results=10\&tweet.fields=created\_a t,entities} to get the 10 most recent tweets with the hashtag \#NowPlaying and receive their basic information (id, text) as well as the entities (hashtags, urls, annotations...) and the creation time stamp.
+	\item Now, we can send our query \url{https://api.twitter.com/2/tweets/search/re cent?query=\%23NowPlaying\&max\_results=10\&tweet.fields=created\_a t,entities} to get the 10 most recent tweets with the hashtag \#NowPlaying and receive their basic information (id, text) as well as the entities (hashtags, urls, annotations...) and the creation time stamp.
 \end{enumerate}
 
-\nonzeroparskip After analyze the data gathered from the Twitter API,  the author inspected the Spotify API, more specifically the endpoint "Search for Item"), following the next steps:
+\nonzeroparskip After analyze the data gathered from the Twitter API,  the author inspected the Spotify API, more specifically the endpoint ``Search for Item''), following the next steps:
 \begin{enumerate}
 	\item Get access to the Spotify Developer Portal.
-	\item Enter in the developers console and select the "Search for Item" endpoint.
-	\item Specify the parameters of the search. We can specify the type "track" and add a limit of 1 to only receive the first song found.
+	\item Enter in the developers console and select the ``Search for Item'' endpoint.
+	\item Specify the parameters of the search. We can specify the type ``track'' and add a limit of one to only receive the first song found.
 	\item After click on get the bearer token, we can use that token by clicking on Try Me or just copy the resulting query in our Linux console to check the output.
 	\item The result of this query is the first result of the search containing information of the artist, the song and the album. With the artist and song ids we can consult other endpoints to get an audio analysis, the audio features and the artist information, between others.
 \end{enumerate}
@@ -52,9 +52,9 @@ Estructura GitHub.
 \nonzeroparskip Steps followed:
 \begin{enumerate}
 	\item Create the dockerfile.
-	\item Build the image:  \textit{docker build -f spark.Dockerfile -t ar/spark-ubuntu .}
-	\item Create a Docker network: textit{docker network create --driver bridge spark-network}
-	\item Run the image: \textit{sudo docker run -d -t --name master --network spark-network ar/spark-ubuntu}
+	\item Build the image:  \texttt{docker build -f spark.Dockerfile -t ar/spark-ubuntu .}
+	\item Create a Docker network: \texttt{docker network create --driver bridge spark-network}
+	\item Run the image: \texttt{sudo docker run -d -t --name master --network spark-network ar/spark-ubuntu}
 \end{enumerate}
 
 \section{Compilation, installation and execution of the project}

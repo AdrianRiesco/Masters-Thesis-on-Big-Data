@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: memoria.aux
+A level-1 auxiliary file: tex/1_Introduction.aux
+A level-1 auxiliary file: tex/2_Project_objetives.aux
+A level-1 auxiliary file: tex/3_Theoretical_concepts.aux
+A level-1 auxiliary file: tex/4_Techniques_and_tools.aux
+A level-1 auxiliary file: tex/5_Relevant_aspects_of_project_development.aux
+A level-1 auxiliary file: tex/6_Related_works.aux
+A level-1 auxiliary file: tex/7_Conclusions_Future_work_lines.aux
+A level-1 auxiliary file: tex/A_Project_Plan.aux
+A level-1 auxiliary file: tex/B_Requirements.aux
+A level-1 auxiliary file: tex/C_Design.aux
+A level-1 auxiliary file: tex/D_Programmer_guide.aux
+A level-1 auxiliary file: tex/E_User_manual.aux
+The style file: plain.bst
+Database file #1: bibliography.bib
+You've used 4 entries,
+            2118 wiz_defined-function locations,
+            527 strings with 4653 characters,
+and the built_in function-call counts, 844 in all, are:
+= -- 76
+> -- 28
+< -- 0
++ -- 12
+- -- 8
+* -- 26
+:= -- 145
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 16
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 28
+empty$ -- 89
+format.name$ -- 8
+if$ -- 181
+int.to.chr$ -- 0
+int.to.str$ -- 4
+missing$ -- 0
+newline$ -- 23
+num.names$ -- 8
+pop$ -- 36
+preamble$ -- 1
+purify$ -- 12
+quote$ -- 0
+skip$ -- 28
+stack$ -- 0
+substring$ -- 20
+swap$ -- 4
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 16
+warning$ -- 0
+while$ -- 8
+width$ -- 5
+write$ -- 42
