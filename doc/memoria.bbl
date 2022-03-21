@@ -1,9 +1,34 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{redhat_orchestrator}
+Red Hat.
+\newblock Orchestrator, 2022.
+\newblock [Internet. March 19th 2022].
 
 \bibitem{ibm_restapi}
 International Business Machines~Corporation (IBM).
 \newblock Ibm - rest apis, 2022.
 \newblock [Internet. February 12th 2022].
+
+\bibitem{spotify_dev}
+Spotify~Technology S.A.
+\newblock Spotify for developers, 2022.
+\newblock [Internet. February 5th 2022].
+
+\bibitem{spotify_dev_endpoint_gettracksaudiofeatures}
+Spotify~Technology S.A.
+\newblock Spotify for developers - get tracks' audio features, 2022.
+\newblock [Internet. February 12th 2022].
+
+\bibitem{spotify_dev_endpoint_searchforitem}
+Spotify~Technology S.A.
+\newblock Spotify for developers - search for item, 2022.
+\newblock [Internet. February 12th 2022].
+
+\bibitem{twitter_dev_searchtweets}
+Inc. Twitter.
+\newblock Recent search, 2022.
+\newblock [Internet. February 19th 2022].
 
 \bibitem{twitter_dev}
 Inc. Twitter.
@@ -14,6 +39,11 @@ Inc. Twitter.
 Variety.
 \newblock Twitter daily users 2021, 2021.
 \newblock [Internet. February 26th 2022].
+
+\bibitem{wikipedia_spotify}
+Wikipedia.
+\newblock Spotify, 2022.
+\newblock [Internet. February 19th 2022].
 
 \bibitem{wikipedia_twitter}
 Wikipedia.

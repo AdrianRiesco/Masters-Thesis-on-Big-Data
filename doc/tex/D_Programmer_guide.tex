@@ -3,7 +3,14 @@
 \section{Introduction}
 
 \section{Directory structure}
-Estructura GitHub.
+\nonzeroparskip The project repository, hosted on GitHub, has the following directory structure:
+\begin{itemize}
+	\item \textbf{airflow}.
+	\item \textbf{doc}. It contains the project report.
+	\item \textbf{docker}. 
+	\item \textbf{spark}. 
+	\item \textbf{README.md}. 
+\end{itemize}
 
 \section{Programmer's guide}
 
@@ -51,14 +58,25 @@ Estructura GitHub.
 
 \nonzeroparskip Steps followed:
 \begin{enumerate}
-	\item Create the dockerfile.
-	\item Build the image:  \texttt{docker build -f spark.Dockerfile -t ar/spark-ubuntu .}
-	\item Create a Docker network: \texttt{docker network create --driver bridge spark-network}
-	\item Run the image: \texttt{sudo docker run -d -t --name master --network spark-network ar/spark-ubuntu}
+	%\item Create the dockerfile.
+	%\item Build the image:  \texttt{docker build -f spark.Dockerfile -t ar/spark-ubuntu .}
+	%\item Create a Docker network: \texttt{docker network create --driver bridge spark-network}
+	%\item Run the image: \texttt{sudo docker run -d -t --name master --network spark-network ar/spark-ubuntu}
+	\item Create the Docker Compose file.
+	\item Launch the environment with \texttt{sudo docker-compose up --remove-orphans}.
 \end{enumerate}
 
 \section{Compilation, installation and execution of the project}
-
+\nonzeroparskip The instructions to execute the project are the following ones:
+\begin{enumerate}
+	\item Create the Docker Compose file.
+	\item Launch the environment with \texttt{sudo docker-compose up --remove-orphans}.
+\end{enumerate}
 
 \section{System tests}
-
+\nonzeroparskip To test that the project is working in a proper way, there are a few tests that can be performed:
+\begin{enumerate}
+	\item Test 1.
+	\item Test 2.
+	\item Test 3.
+\end{enumerate}

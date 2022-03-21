@@ -76,11 +76,63 @@
 
 \section{Orchestrator}
 
-\nonzeroparskip Section explaining Flow Orchestrator -> Airflow.
+\nonzeroparskip The great variety of applications and services that exist in technological environments, where there are workflows with various actors with interdependencies between them, make their management and automation enormously complex. The more complex a system is, the more difficult it is to manage the intervening factors~\cite{redhat_orchestrator}.
+
+\nonzeroparskip System automation usually improves efficiency, simplifies management, and reduces associated costs, both in terms of time spent and personnel required to control it. On the other hand, a distinction is made between automation and orchestration in that the former refers to a single task, while the latter comprises multi-step processes and workflows, being the scope of work of the orchestrators.
+
+\nonzeroparskip Two main orchestrators have been used in this project: Docker Compose, which acts as an orchestrator for the work environment containers, and Apache Airflow, which orchestrates the project's workflow.
 
 \section{NoSQL Databases}
 
-\nonzeroparskip Section explaining NoSQL Databases.
+\nonzeroparskip A database is a set of data belonging to the same context and stored for later use, and can be updated periodically. The best known type of databases are relational databases. In a relational database, the data attributes are stored in the form of columns, previously defined, and the values are stored in the rows of the table for all its columns or attributes. These databases have an associated query language called SQL (Structured Query Language).
+
+\nonzeroparskip Relational database properties are summarized in ACID properties:
+\begin{itemize}
+	\item \textbf{A}tomicity. The process is done completely or it is not done.
+	\item \textbf{C}onsistency. Only valid data is written.
+	\item \textbf{I}solation. The operations are performed one at a time.
+	\item \textbf{D}urability. When an operation is performed, it persists and is not undone even if the system crashes.
+\end{itemize}
+
+\nonzeroparskip However, in the face of the massive volumes of data that are associated with the concept of Big Data, relational databases have a series of limitations:
+\begin{itemize}
+	\item Reading the data is expensive, since the data is represented in tables, queries involve joining large data sets and filtering the results.
+	\item The stored information usually has similar structures, a concept that does not agree well with Big Data, where the variety of data structure is greater.
+	\item Scalability is not their strongest factor, since they were initially designed considering a single server or, at most, having replicas and load balancing.
+\end{itemize}
+
+\nonzeroparskip Distributed databases are limited by the CAP theorem:
+\begin{itemize}
+	\item \textbf{C}onsistency. The information remains coherent and consistent after any operation, with all copies having the same data at all times.
+	\item \textbf{A}vailability. The system continues to function even if any of its nodes or parts of the software or hardware fail, and all reads and writes complete successfully.
+	\item \textbf{P}artition tolerance. The system nodes will continue to function even if the connection between them fails or messages are lost, maintaining their properties.
+\end{itemize}
+
+\nonzeroparskip According to CAP's theorem, any distributed database with shared data among its nodes can have at most two of the three properties at the same time. This theorem resulted in databases with relaxed ACID properties, that is, with BASE properties:
+\begin{itemize}
+	\item \textbf{B}asically \textbf{A}vailable: The store works most of the time, even if failures occur.
+	\item \textbf{S}oft-State: Stores or their replicas do not have to be consistent at all times.
+	\item \textbf{E}ventually Consistent: consistency happens eventually, as it is something that is taken for granted at some point in the future. All copies will gradually become consistent if no further updates are run.
+\end{itemize}
+
+\nonzeroparskip Non-relational databases or NoSQL (Not Only SQL), a term introduced by Carl Strozzi in 1998 that describes all those databases that do not follow the same design patterns as relational databases. Non-relational databases follow the BASE properties and have advantages such as:
+\begin{itemize}
+	\item They do not require a fixed data schema.
+	\item The data is replicated on multiple similar nodes and can be partitioned.
+	\item They are horizontally scalable, that is, by adding new nodes.
+	\item They are relatively inexpensive and simple to implement, with a host of open source alternatives.
+	\item They provide fast read and write speeds, with fast key-value access.
+\end{itemize}
+
+\nonzeroparskip However, the main disadvantages of non-relational databases is that they do not support certain features of relational databases (join, group by, order by...) except within their partitions, they do not have a query language standard such as SQL and its relaxed ACID or BASE properties give lesser guarantees.
+
+\nonzeroparskip Non-relational databases are mainly divided into four groups:
+\begin{itemize}
+	\item \textbf{Key/value}. They are Their data model is very simple, since they only store keys and values. They are very similar to a hash table, they are fast, they have great ease of scaling, eventual consistency and fault tolerance, although they cannot support complex data structures.
+	\item \textbf{Column oriented}. Data is stored in columns instead of rows. The data is semi-structured, easily distributable, provides high reading speed, calculations on attributes are faster (especially aggregations such as averages) and are perfect when you want to do many operations on large data sets, but do not they are the most efficient for writing or when you want to retrieve all records. The data model has columns, super columns, column families, and super column families.
+	\item \textbf{Document oriented}. These are key-value stores in which the value is stored as a document with a defined format, so the final data model is collections of documents with a key-value structure (JSON, PDF, XML...). They are schema-less, highly scalable, programmer-friendly, and support rapid development.
+	\item \textbf{Graph oriented}. They represent information as the nodes of a graph and their relationships as edges, using graph theory to traverse it. Their strength is the analysis of the relationships between their objects and they represent hierarchical information very well, but they are not particularly good for scaling and tend to have a higher learning curve.
+\end{itemize}
 
 \section{Containers}
 
