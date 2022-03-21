@@ -178,7 +178,7 @@ url = url_spotify_get_tracks_audio_features(keyword)
 response, status_code = send_get_request(url[0], headers, url[1])
 
 # Create the dataframe to store the features
-featuresDF = pd.DataFrame(columns = ['id', 'danceability', 'energy', 'key', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'type', 'duration_ms', 'time_signature'])
+featuresDF = pd.DataFrame(columns = ['id', 'danceability', 'energy', 'key', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'time_signature'])
 
 # In case we get any response
 if status_code == 200:
@@ -197,12 +197,11 @@ if status_code == 200:
             track_liveness = features['liveness']
             track_valence = features['valence']
             track_tempo = features['tempo']
-            track_type = features['type']
             track_duration_ms = features['duration_ms']
             track_time_signature = features['time_signature']
 
             # Build the new row to be added (id, name, popularity, artists_id, artists_name)
-            featuresDF_aux = pd.DataFrame({'id': [track_id], 'danceability': [track_danceability], 'energy': [track_energy], 'key': [track_key], 'loudness': [track_loudness], 'mode': [track_mode], 'speechiness': [track_speechiness], 'acousticness': [track_acousticness], 'instrumentalness': [track_instrumentalness], 'liveness': [track_liveness], 'valence': [track_valence], 'tempo': [track_tempo], 'type': [track_type], 'duration_ms': [track_duration_ms], 'time_signature': [track_time_signature]})
+            featuresDF_aux = pd.DataFrame({'id': [track_id], 'danceability': [track_danceability], 'energy': [track_energy], 'key': [track_key], 'loudness': [track_loudness], 'mode': [track_mode], 'speechiness': [track_speechiness], 'acousticness': [track_acousticness], 'instrumentalness': [track_instrumentalness], 'liveness': [track_liveness], 'valence': [track_valence], 'tempo': [track_tempo], 'duration_ms': [track_duration_ms], 'time_signature': [track_time_signature]})
 
             # Append the new row to the existing dataframe
             featuresDF = pd.concat([featuresDF, featuresDF_aux], ignore_index = True, axis = 0)
