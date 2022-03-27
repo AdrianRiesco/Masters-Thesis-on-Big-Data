@@ -13,9 +13,9 @@
 \contentsline {section}{\numberline {3.2}Orchestrator}{11}{section.3.2}%
 \contentsline {section}{\numberline {3.3}NoSQL Databases}{11}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Containers}{14}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Continuous Integration / Continuous Delivery}{14}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Template engines}{14}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Web Server Gateway Interface}{14}{section.3.7}%
+\contentsline {section}{\numberline {3.5}Continuous Integration / Continuous Delivery}{15}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Template engines}{15}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Web Server Gateway Interface}{15}{section.3.7}%
 \contentsline {section}{\numberline {3.8}Tables}{15}{section.3.8}%
 \contentsline {chapter}{4. Techniques and tools}{17}{chapter*.11}%
 \contentsline {section}{\numberline {4.1}GitHub}{17}{section.4.1}%

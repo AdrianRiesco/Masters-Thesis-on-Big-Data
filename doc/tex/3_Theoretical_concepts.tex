@@ -136,7 +136,20 @@
 
 \section{Containers}
 
-\nonzeroparskip Section explaining Containers.
+\nonzeroparskip Containerization is the packaging of code together with its dependencies, configurations and libraries to form a lightweight executable that can be executed in any infrastructure regardless of its system~\cite{ibm_containerization}. In this way, developers can focus on developing applications safely and quickly without worrying about subsequent execution, since the code they develop will be compiled into a package with all its dependencies, abstracting it from the operating system, isolating it and making it portable.
+
+\nonzeroparskip The main advantages of containerization are summarized in:
+\begin{itemize}
+	\item \textbf{Portability}. The container's abstraction from the host operating system allows it to run consistently on any platform.
+	\item \textbf{Agility}. The emergence of open source container engines like Docker has made it easier to integrate with DevOps elements and to run on different operating systems.
+	\item \textbf{Speed}. Containers are light and fast to run due to their lack of an operating system and their limited content.
+	\item \textbf{Fault isolation}. Each container is isolated and runs independently of the rest, so failures do not propagate between them.
+	\item \textbf{Efficiency}. The container software shares the kernel of the operating system of the machine and the application layer can be shared between containers, making better use of system resources.
+	\item \textbf{Ease of management}. Orchestrators make it extremely easy to install, manage, scale, and maintain containers, and the simplicity of containers also works in its favor.
+	\item \textbf{Security}. Isolating containers acts as a security barrier against the spread of malware throughout the container environment.
+	\end{itemize}
+
+\nonzeroparskip A container is considerably lighter than a virtual machine, since it contains only an application and the elements necessary for its execution, while virtualization includes the entire operating system. The container has an engine to be executed and an orchestrator is usually used to manage several containers and their interconnections.
 
 \section{Continuous Integration / Continuous Delivery}
 

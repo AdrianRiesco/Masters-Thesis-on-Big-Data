@@ -5,9 +5,14 @@ Red Hat.
 \newblock Orchestrator, 2022.
 \newblock [Internet. March 19th 2022].
 
+\bibitem{ibm_containerization}
+International Business Machines~Corporation (IBM).
+\newblock Containerization, 2022.
+\newblock [Internet. March 19th 2022].
+
 \bibitem{ibm_restapi}
 International Business Machines~Corporation (IBM).
-\newblock Ibm - rest apis, 2022.
+\newblock Est apis, 2022.
 \newblock [Internet. February 12th 2022].
 
 \bibitem{spotify_dev}
