@@ -37,31 +37,31 @@
 \contentsline {section}{\numberline {A.2}Temporary planning}{27}{section.A.2}%
 \contentsline {section}{\numberline {A.3}Feasibility study}{30}{section.A.3}%
 \contentsline {subsection}{Economic feasibility}{30}{section*.17}%
-\contentsline {subsection}{Legal feasibility}{31}{section*.18}%
-\contentsline {appendix}{\chapternumberline {B}Requirements}{33}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Introduction}{33}{section.B.1}%
-\contentsline {section}{\numberline {B.2}General objectives}{33}{section.B.2}%
-\contentsline {section}{\numberline {B.3}Catalog of requirements}{33}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Requirements specification}{34}{section.B.4}%
-\contentsline {appendix}{\chapternumberline {C}Design specification}{35}{appendix.C}%
-\contentsline {section}{\numberline {C.1}Introduction}{35}{section.C.1}%
-\contentsline {section}{\numberline {C.2}Data design}{35}{section.C.2}%
-\contentsline {subsection}{Twitter data structure}{35}{section*.19}%
-\contentsline {subsection}{Spotify data structure}{35}{section*.20}%
-\contentsline {subsection}{Cleaned data}{35}{section*.21}%
-\contentsline {section}{\numberline {C.3}Procedural design}{35}{section.C.3}%
-\contentsline {section}{\numberline {C.4}Architectural design}{35}{section.C.4}%
-\contentsline {appendix}{\chapternumberline {D}Programming technical documentation}{37}{appendix.D}%
-\contentsline {section}{\numberline {D.1}Introduction}{37}{section.D.1}%
-\contentsline {section}{\numberline {D.2}Directory structure}{37}{section.D.2}%
-\contentsline {section}{\numberline {D.3}Programmer's guide}{37}{section.D.3}%
-\contentsline {subsection}{Analysis}{37}{section*.22}%
-\contentsline {subsection}{Development}{39}{section*.23}%
-\contentsline {section}{\numberline {D.4}Compilation, installation and execution of the project}{39}{section.D.4}%
-\contentsline {section}{\numberline {D.5}System tests}{40}{section.D.5}%
-\contentsline {appendix}{\chapternumberline {E}User documentation}{41}{appendix.E}%
-\contentsline {section}{\numberline {E.1}Introduction}{41}{section.E.1}%
-\contentsline {section}{\numberline {E.2}User requirements}{41}{section.E.2}%
-\contentsline {section}{\numberline {E.3}Installation}{41}{section.E.3}%
-\contentsline {section}{\numberline {E.4}User's manual}{41}{section.E.4}%
-\contentsline {chapter}{Bibliography}{43}{appendix*.24}%
+\contentsline {subsection}{Legal feasibility}{30}{section*.18}%
+\contentsline {appendix}{\chapternumberline {B}Requirements}{31}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Introduction}{31}{section.B.1}%
+\contentsline {section}{\numberline {B.2}General objectives}{31}{section.B.2}%
+\contentsline {section}{\numberline {B.3}Catalog of requirements}{31}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Requirements specification}{32}{section.B.4}%
+\contentsline {appendix}{\chapternumberline {C}Design specification}{33}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Introduction}{33}{section.C.1}%
+\contentsline {section}{\numberline {C.2}Data design}{33}{section.C.2}%
+\contentsline {subsection}{Twitter data structure}{33}{section*.19}%
+\contentsline {subsection}{Spotify data structure}{33}{section*.20}%
+\contentsline {subsection}{Cleaned data}{33}{section*.21}%
+\contentsline {section}{\numberline {C.3}Procedural design}{33}{section.C.3}%
+\contentsline {section}{\numberline {C.4}Architectural design}{33}{section.C.4}%
+\contentsline {appendix}{\chapternumberline {D}Programming technical documentation}{35}{appendix.D}%
+\contentsline {section}{\numberline {D.1}Introduction}{35}{section.D.1}%
+\contentsline {section}{\numberline {D.2}Directory structure}{35}{section.D.2}%
+\contentsline {section}{\numberline {D.3}Programmer's guide}{35}{section.D.3}%
+\contentsline {subsection}{Analysis}{35}{section*.22}%
+\contentsline {subsection}{Development}{37}{section*.23}%
+\contentsline {section}{\numberline {D.4}Compilation, installation and execution of the project}{38}{section.D.4}%
+\contentsline {section}{\numberline {D.5}System tests}{38}{section.D.5}%
+\contentsline {appendix}{\chapternumberline {E}User documentation}{39}{appendix.E}%
+\contentsline {section}{\numberline {E.1}Introduction}{39}{section.E.1}%
+\contentsline {section}{\numberline {E.2}User requirements}{39}{section.E.2}%
+\contentsline {section}{\numberline {E.3}Installation}{39}{section.E.3}%
+\contentsline {section}{\numberline {E.4}User's manual}{39}{section.E.4}%
+\contentsline {chapter}{Bibliography}{41}{appendix*.24}%

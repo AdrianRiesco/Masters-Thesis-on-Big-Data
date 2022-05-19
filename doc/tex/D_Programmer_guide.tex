@@ -36,10 +36,10 @@
 		\item \texttt{tweet.fields} = \texttt{created\_at,entities}
 		\item \texttt{max\_results} = \texttt{10}
 	\end{itemize}
-	\item Now, we can send our query \url{https://api.twitter.com/2/tweets/search/re cent?query=\%23NowPlaying\&max\_results=10\&tweet.fields=created\_a t,entities} to get the 10 most recent tweets with the hashtag \#NowPlaying and receive their basic information (id, text) as well as the entities (hashtags, urls, annotations...) and the creation time stamp.
+	\item Now, we can send our query \url{https://api.twitter.com/2/tweets/search/re cent?query=\%23NowPlaying\&max\_results=10\&tweet.fields=created\_a t,entities} to get the 10 most recent tweets with the hashtag \texttt{\textit{\#NowPlaying}} and receive their basic information (id, text) as well as the entities (hashtags, urls, annotations...) and the creation time stamp.
 \end{enumerate}
 
-\nonzeroparskip After analyze the data gathered from the Twitter API,  the author inspected the Spotify API, more specifically the endpoint ``Search for Item''), following the next steps:
+\nonzeroparskip After analyze the data gathered from the Twitter API,  the author inspected the Spotify API (more specifically the endpoint ``Search for Item''), following the next steps:
 \begin{enumerate}
 	\item Get access to the Spotify Developer Portal.
 	\item Enter in the developers console and select the ``Search for Item'' endpoint.
@@ -64,6 +64,11 @@
 	%\item Run the image: \texttt{sudo docker run -d -t --name master --network spark-network ar/spark-ubuntu}
 	\item Create the Docker Compose file.
 	\item Launch the environment with \texttt{sudo docker-compose up --remove-orphans}.
+	\item ***Build the extended image: sudo docker build . -f Dockerfile --pull --tag extended/airflow:2.3.0.
+	\item ***Build the extended image: sudo docker-compose build
+	\item ***Execute airflow-init: sudo docker-compose up airflow-init"
+	\item ***sudo docker-compose up
+	\item ***In Airflow UI, create Spark connection.
 \end{enumerate}
 
 \section{Compilation, installation and execution of the project}

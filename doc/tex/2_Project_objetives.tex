@@ -14,8 +14,8 @@
 \nonzeroparskip After a research, the author designed the use case and built the objectives of the projects:
 \begin{itemize}
 	\item Build a pipeline to gather information about last songs listened from the Twitter API. The name of the endpoint queried is \textit{recent search}.
-	\item Find information about the songs (name, artist, audio features) through the Spotify API. The names of the endpoints queried are \textit{search for item} and \textit{get tracks' audio features}.
-	\item Execute all the ETL process in \textit{Apache Spark}.
+	\item Find information about the songs (name, artist and audio features) through the Spotify API. The names of the endpoints queried are \textit{search for item} and \textit{get tracks' audio features}.
+	\item Execute all the ETL\footnote{ETL is the acronym for Extract, Transform and Load, the three phases for data processing} process in \textit{Apache Spark}.
 	\item Store all the data in a data warehouse under a known technology, \textit{Cassandra}.
 	\item Visualize the information in a custom front-end and back-end created with \textit{Bootstrap} and \textit{Flask}.
 	\item Orchestrate all the data flow with \textit{Apache Airflow}.
