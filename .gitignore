@@ -10,4 +10,4 @@
 *.lof
 *.lot
 *.toc
-/airflow/logs
+airflow/logs
