@@ -4,10 +4,10 @@ x-airflow-common:
   # In order to add custom dependencies or upgrade provider packages you can use your extended image.
   # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
-  image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.3.0}
+  image: ariesco/airflow:2.3.0
   build:
     context: .
-    dockerfile: Dockerfile_Airflow
+    dockerfile: docker_airflow/Dockerfile_Airflow
   networks:
       - main_net
   environment:
@@ -21,13 +21,15 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
-    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
+    _PIP_ADDITIONAL_REQUIREMENTS: ''
   env_file:
     - .env
   volumes:
     - ../airflow/dags:/opt/airflow/dags
     - ../airflow/logs:/opt/airflow/logs
     - ../airflow/plugins:/opt/airflow/plugins
+    - ../spark/app:/opt/spark/app
+    - ../spark/resources:/opt/spark/resources
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -261,10 +263,10 @@ services:
 
   # Spark with 3 workers
   spark:
-    image: bitnami/spark:3.1.2
+    image: ariesco/spark:3.1.2
     build:
       context: .
-      dockerfile: Dockerfile_Spark
+      dockerfile: docker_spark/Dockerfile_Spark
     container_name: spark_master_container
     hostname: spark
     user: root
@@ -286,7 +288,10 @@ services:
       - "7077:7077"
 
   spark-worker-1:
-    image: bitnami/spark:3.1.2
+    image: ariesco/spark:3.1.2
+    build:
+      context: .
+      dockerfile: docker_spark/Dockerfile_Spark
     container_name: spark_worker_1_container
     user: root
     networks:
@@ -307,7 +312,10 @@ services:
       - ../spark/resources:/usr/local/spark/resources
 
   spark-worker-2:
-    image: bitnami/spark:3.1.2
+    image: ariesco/spark:3.1.2
+    build:
+      context: .
+      dockerfile: docker_spark/Dockerfile_Spark
     container_name: spark_worker_2_container
     user: root
     networks:
@@ -328,7 +336,10 @@ services:
       - ../spark/resources:/usr/local/spark/resources
 
   spark-worker-3:
-    image: bitnami/spark:3.1.2
+    image: ariesco/spark:3.1.2
+    build:
+      context: .
+      dockerfile: docker_spark/Dockerfile_Spark
     container_name: spark_worker_3_container
     user: root
     networks:

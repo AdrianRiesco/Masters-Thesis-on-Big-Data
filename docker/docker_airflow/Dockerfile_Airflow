@@ -10,10 +10,10 @@ RUN apt update && apt-get install -y openjdk-11-jdk && apt-get install -y ant &&
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64/
 RUN export JAVA_HOME
 
-# Change user and set work directory
+# Change user
 USER airflow
-WORKDIR /app
 
 # Install requirements
+COPY requirements_airflow.txt ./requirements_airflow.txt
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir apache-airflow-providers-apache-spark
+RUN pip install --trusted-host pypi.python.org --no-cache-dir -r requirements_airflow.txt
