@@ -9,8 +9,8 @@ from airflow.operators.dummy_operator import DummyOperator
 
 # *** Parameters
 spark_master = "spark://spark:7077"
-spark_app_name = "Spark Data Extraction"
-file_path = "/usr/local/spark/resources/data/airflow.cfg"
+spark_app_name = "Spark_Data_Extraction"
+file_path = "/opt/spark/resources/data.csv"
 
 # *** DAG
 now = datetime.now()
@@ -27,9 +27,9 @@ dag = DAG(
 # *** Spark Submit Operator
 spark_submit = SparkSubmitOperator(
     task_id = "spark_job",
-    application = "/usr/local/spark/app/hello-world.py",
+    application = "/opt/spark/app/main_ETL.py",
     name = spark_app_name,
-    conn_id = "spark_default",
+    conn_id = "spark_conn",
     verbose = 1,
     conf = {"spark.master":spark_master},
     application_args = [file_path],
