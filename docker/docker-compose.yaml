@@ -6,8 +6,8 @@ x-airflow-common:
   # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
   image: ariesco/airflow:2.3.0
   build:
-    context: .
-    dockerfile: docker_airflow/Dockerfile_Airflow
+    context: ./docker_airflow
+    dockerfile: Dockerfile_Airflow
   networks:
       - main_net
   environment:
@@ -21,7 +21,7 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth'
-    _PIP_ADDITIONAL_REQUIREMENTS: ''
+    _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   env_file:
     - .env
   volumes:
@@ -265,8 +265,8 @@ services:
   spark:
     image: ariesco/spark:3.1.2
     build:
-      context: .
-      dockerfile: docker_spark/Dockerfile_Spark
+      context: ./docker_spark
+      dockerfile: Dockerfile_Spark
     container_name: spark_master_container
     hostname: spark
     user: root
@@ -290,8 +290,8 @@ services:
   spark-worker-1:
     image: ariesco/spark:3.1.2
     build:
-      context: .
-      dockerfile: docker_spark/Dockerfile_Spark
+      context: ./docker_spark
+      dockerfile: Dockerfile_Spark
     container_name: spark_worker_1_container
     user: root
     networks:
@@ -314,8 +314,8 @@ services:
   spark-worker-2:
     image: ariesco/spark:3.1.2
     build:
-      context: .
-      dockerfile: docker_spark/Dockerfile_Spark
+      context: ./docker_spark
+      dockerfile: Dockerfile_Spark
     container_name: spark_worker_2_container
     user: root
     networks:
@@ -338,8 +338,8 @@ services:
   spark-worker-3:
     image: ariesco/spark:3.1.2
     build:
-      context: .
-      dockerfile: docker_spark/Dockerfile_Spark
+      context: ./docker_spark
+      dockerfile: Dockerfile_Spark
     container_name: spark_worker_3_container
     user: root
     networks:
