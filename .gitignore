@@ -1,4 +1,4 @@
-## Temporary LaTeX files
+# Temporary LaTeX and logs/cache files
 *.out
 *.aux
 *.log
@@ -11,3 +11,4 @@
 *.lot
 *.toc
 airflow/logs/
+__pycache__/
