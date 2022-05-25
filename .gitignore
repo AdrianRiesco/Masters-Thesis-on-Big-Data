@@ -1,4 +1,4 @@
-# Temporary LaTeX and logs/cache files
+## Temporary LaTeX and logs/cache files
 *.out
 *.aux
 *.log
