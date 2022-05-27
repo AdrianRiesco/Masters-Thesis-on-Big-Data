@@ -76,6 +76,7 @@ x-airflow-common:
 services:
   postgres:
     image: postgres:13
+    container_name: postgres_container
     networks:
       - default_net
     environment:
@@ -92,6 +93,7 @@ services:
 
   redis:
     image: redis:latest
+    container_name: redis_container
     networks:
       - default_net
     expose:
@@ -106,6 +108,7 @@ services:
   airflow-webserver:
     <<: *airflow-common
     command: webserver
+    container_name: airflow_webserver_container
     ports:
       - 8080:8080
     networks:
@@ -124,6 +127,7 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     command: scheduler
+    container_name: airflow_scheduler_container
     networks:
       - default_net
     healthcheck:
@@ -140,6 +144,7 @@ services:
   airflow-worker:
     <<: *airflow-common
     command: celery worker
+    container_name: airflow_worker_container
     networks:
       - default_net
     healthcheck:
@@ -163,6 +168,7 @@ services:
   airflow-triggerer:
     <<: *airflow-common
     command: triggerer
+    container_name: airflow_triggerer_container
     networks:
       - default_net
     healthcheck:
@@ -179,6 +185,7 @@ services:
   airflow-init:
     <<: *airflow-common
     entrypoint: /bin/bash
+    container_name: airflow_init_container
     # yamllint disable rule:line-length
     command:
       - -c
@@ -259,6 +266,7 @@ services:
 
   airflow-cli:
     <<: *airflow-common
+    container_name: airflow_client_container
     profiles:
       - debug
     networks:
@@ -275,6 +283,7 @@ services:
   flower:
     <<: *airflow-common
     command: celery flower
+    container_name: celery_flower_container
     ports:
       - 5555:5555
     networks:
@@ -293,6 +302,7 @@ services:
   # Spark with 3 workers
   spark:
     image: bitnami/spark:3.1.2
+    container_name: spark_master_container
     user: root
     hostname: spark
     networks:
@@ -312,6 +322,7 @@ services:
 
   spark-worker-1:
     image: bitnami/spark:3.1.2
+    container_name: spark_worker_1_container
     user: root
     networks:
       - default_net
@@ -330,6 +341,7 @@ services:
 
   spark-worker-2:
     image: bitnami/spark:3.1.2
+    container_name: spark_worker_2_container
     user: root
     networks:
       - default_net
@@ -348,6 +360,7 @@ services:
 
   spark-worker-3:
     image: bitnami/spark:3.1.2
+    container_name: spark_worker_3_container
     user: root
     networks:
       - default_net
