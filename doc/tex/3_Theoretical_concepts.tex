@@ -14,6 +14,12 @@
 
 \nonzeroparskip In this section are covered the theoretical concepts in which the project has been based. All concepts are described in a detailed and simple way since this master's thesis can be aimed at technical and non-technical students.
 
+\section{Big Data}
+\nonzeroparskip Big Data is...
+
+\section{ETL}
+\nonzeroparskip An ETL process is...
+
 \section{API}
 
 \nonzeroparskip An Aplication Programming Interface or API is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested and sent to the system, the way to authenticate to it and the format of the returned data~\cite{ibm_restapi}.
@@ -33,7 +39,7 @@
 \subsection{Twitter API}
 \nonzeroparskip Twitter is an American social network founded in 2006 that allows users to share short posts (280 characters since 2017), known as tweets, and interact with those of other users through replies, likes, retweets or quotes~\cite{wikipedia_twitter}. Although it has recently incorporated additional payment functions, this social network is free to use and is accessible on multiple platforms. Currently, the social network has 217 million active users daily~\cite{variety_twitterusers}.
 
-\nonzeroparskip On the other hand, Twitter is also known for giving certain facilities to developers to make their products interact with the platform. The company has a Twitter Developer portal where a multitude of resources and useful documentation are posted\cite{twitter_dev}. This portal contains a description of the API that Twitter offers, how to authenticate, the different endpoints to which queries can be launched, and the associated usage limits. 
+\nonzeroparskip On the other hand, Twitter is also known for giving certain facilities to developers to make their products interact with the platform. The company has a Twitter Developer portal where a multitude of resources and useful documentation are posted~\cite{twitter_dev}. This portal contains a description of the API that Twitter offers, how to authenticate, the different endpoints to which queries can be launched, and the associated usage limits. 
 
 \nonzeroparskip The Twitter API, currently in its second version, allows the user to request and receive a wide variety of data. Depending on the query launched, the user can receive a series of different objects, each with its own fields and parameters:
 \begin{itemize}
@@ -51,7 +57,7 @@
 \subsection{Spotify API}
 \nonzeroparskip Spotify is a company of Swedish origin founded in 2006 that provides audio streaming services, currently being one of the companies with the largest number of users among all those that have this type of service. Spotify has a catalog made up of music and podcasts, including more than 82 million songs, distributed through a free service (limited control and periodic announcements) with the option of a premium subscription. Its business model is based on advertising and paying users, and it pays royalties to artists based on the proportion of streaming of their songs compared to the total played~\cite{wikipedia_spotify}.
 
-\nonzeroparskip Spotify has a developer portal that provides a wealth of documentation to help design and implement various use cases. Spotify has an API based on a REST architecture with different published endpoints that return metadata of artists, albums and songs from its own catalog, as well as information on users, lists and music saved by them, in JSON format\cite{spotify_dev}.
+\nonzeroparskip Spotify has a developer portal that provides a wealth of documentation to help design and implement various use cases. Spotify has an API based on a REST architecture with different published endpoints that return metadata of artists, albums and songs from its own catalog, as well as information on users, lists and music saved by them, in JSON format~\cite{spotify_dev}.
 
 \nonzeroparskip The Spotify API has several endpoints to which queries can be sent to collect or modify information: Albums, Artists, Shows, Episodes, Search~\cite{spotify_dev_endpoint_searchforitem}, Tracks~\cite{spotify_dev_endpoint_gettracksaudiofeatures}, Users, Playlists, Categories, Genres, Player and Market. During this thesis the following have been used:
 \begin{itemize}
@@ -153,7 +159,7 @@
 
 \section{Continuous Integration / Continuous Delivery}
 
-\nonzeroparskip Continuous integration / continuous development or CI/CD is a software development and delivery method based on the introduction of automation in the stages of the development process, allowing work on iterables of the project subjected to testing phases. Continuous integration refers to the automation of development processes and building iterations, while continuous development refers to the continuous delivery of software and its deployment to the production environment.\cite{redhat_cicd}
+\nonzeroparskip Continuous integration / continuous development or CI/CD is a software development and delivery method based on the introduction of automation in the stages of the development process, allowing work on iterables of the project subjected to testing phases. Continuous integration refers to the automation of development processes and building iterations, while continuous development refers to the continuous delivery of software and its deployment to the production environment.~\cite{redhat_cicd}
 
 \nonzeroparskip A well-constructed CI/CD cycle helps developers merge new changes with the original project, as well as validate changes to ensure no new deficiencies or bugs are introduced into the product. Each functionality added to the main repository is tested both unitarily and functionally in an automated way, including these tests and allowing a quick analysis of possible conflicts before launching the new iteration of the product.
 
