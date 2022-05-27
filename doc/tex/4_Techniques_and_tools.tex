@@ -12,11 +12,17 @@
 
 \section{Postman}
 
-\nonzeroparskip Postman is a tool that allows the user to send HTTPS request in a simple way.
+\nonzeroparskip Postman is a tool that allows the user to build and use APIs in a simple way. Some of its characteristics are the API repository (easier storage, cataloging and collaboration), the availability of tools to help in the API design, testing and documentation, the workspaces to organize the work, and built-in integrations with tools such as GitHub, Azure DevOps, Jenkins, Splunk, Slack and Microsoft Teams. In addition, Postman is based on open source technologies, which provides the ability to be easily extended~\cite{postman}.
 
 \section{Apache Airflow}
 
-\nonzeroparskip Apache Airflow is a flow orchestrator that allows the user to...
+\nonzeroparskip Apache Airflow is a service orchestrator that allows you to plan, manage, and monitor workflows~\cite{airflow}. It was created in 2014 by Airbnb with the aim of handling the company's huge data flows, and published in 2015 under an open source license. In March 2016 the project joined the Apache Software Foundations incubator and was published as a top level project in 2019.
+
+\nonzeroparskip Airflow is used to automate jobs by breaking them down into smaller tasks. For example, this project uses Airflow to automate the ETL process that consumes data from Twitter and Spotify, processes it, and serves it to the user. Among the main features of Airflow are scalability and ease of integration with other tools.
+
+\nonzeroparskip The main element used by Airflow are the Directed Acyclic Graph or DAGs, which are groups of tasks connected to each other through dependencies like the nodes of a graph. The word direct indicates that the existing relationships in the graph must only have one direction (bidirectional relationships between nodes or tasks are not allowed), while the word acyclic means that cycles cannot exist in the graph (nodes or tasks cannot be executed more than once). Tasks are defined by means of an operator and there is a very extensive library with operators that allow defining a wide variety of services such as BashOperator, to execute Bash commands, or SparkSubmitOperator, to submit a task to Spark. Python is the language in which DAGs are developed.
+
+\nonzeroparskip Airflow allows you to have control of the tasks executed through a record of their executions, the time, current or final status and the generated logs. In addition, it allows certain parameters to be associated with each task, such as, for example, the maximum execution time allowed.
 
 \section{Apache Spark}
 
