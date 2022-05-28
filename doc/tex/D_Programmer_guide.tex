@@ -64,10 +64,10 @@
 	%\item Run the image: \texttt{sudo docker run -d -t --name master --network spark-network ar/spark-ubuntu}
 	\item Create the Docker Compose file.
 	\item Launch the environment with \texttt{sudo docker-compose up --remove-orphans}.
-	\item ***Build the extended image: sudo docker build . -f Dockerfile --pull --tag extended/airflow:2.3.0.
-	\item ***Build the extended image: sudo docker-compose build
-	\item ***Execute airflow-init: sudo docker-compose up airflow-init"
-	\item ***sudo docker-compose up
+	\item ***Build the extended image: \texttt{sudo docker build . -f Dockerfile --pull --tag extended/airflow:2.3.0}.
+	\item ***Build the extended image: \texttt{sudo docker-compose build}.
+	\item ***Execute airflow-init: \texttt{sudo docker-compose up airflow-init}.
+	\item ***\texttt{sudo docker-compose up}.
 	\item ***In Airflow UI, create Spark connection.
 \end{enumerate}
 
