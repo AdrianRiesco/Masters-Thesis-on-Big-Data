@@ -12,3 +12,5 @@
 *.toc
 airflow/logs/
 __pycache__/
+.git
+.github
