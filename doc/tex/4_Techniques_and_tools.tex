@@ -30,7 +30,15 @@
 
 \section{Cassandra}
 
-\nonzeroparskip Cassandra is a NoSQL database that...
+\nonzeroparskip Apache Cassandra is a widely used open source non-relational database that emerged in 2008 as a Google code open source project and in March 2010 as an Apache top level project. It is based on a system that acts as a mix between key-value and column-oriented and introduces Cassandra Query Language or CQL, an alternative query language to SQL with a similar syntax~\cite{cassandra}~\cite{wikipedia_cassandra}.
+
+\nonzeroparskip Among its main features are:
+\begin{itemize}
+	\item \textbf{Scalability}. Its performance increases linearly by adding new nodes, which can be added in real time without affecting system performance.
+	\item \textbf{Fault tolerance}. Due to its distributed system architecture, data is automatically replicated across multiple nodes and enables replication and redundancy to be provided across multiple datacenters. Cassandra works with partitions, where each node owns a set of tokens whose ranges determine what data to send to each node within the cluster.
+	\item \textbf{Decentralization}. All nodes in the cluster are assigned the same role, with no master node that can act as a single point of failure.
+	\item \textbf{Consistency}. Considering the CAP theorem (Consistency-Availability-Partition tolerance), Cassandra is built to be AP, that is, to sacrifice consistency to ensure continuous operation without failures. Cassandra allows you to adjust this level of consistency by selecting the minimum number of nodes that must validate a read or write operation before it is considered successful.
+\end{itemize}
 
 \section{Flask}
 
