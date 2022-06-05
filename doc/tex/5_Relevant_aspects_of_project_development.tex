@@ -20,11 +20,29 @@
 	\item The Twitter API is consulted to gather the \textit{tweets} with the hashtag \texttt{\textit{\#NowPlaying}}.
 	\item The tweet is cleaned, removing the stopwords and the other hashtags and getting the song name and artist as isolated as possible.
 	\item The Spotify API is consulted to gather the information of the song identified.
-	\item The vector values of the cleaned Twitter data and the name of the song returned by Spotify are compared to ensure they are the same.
-	\item The data is moved to the database, ready to be stored and visualized.
+	\item The data is joined and moved to the database, ready to be stored and visualized.
 \end{enumerate}
 
-\nonzeroparskip During the design phase, the author analyzed the output of both APIs using Postman.
+\nonzeroparskip During the design phase, the author performed the following tasks:
+\begin{itemize}
+	\item Parse the output of both APIs using Postman to create the script to extract the data.
+	\item Identify the most appropriate software tools to meet the project requirements. At this point, Apache Airflow was determined for flow orchestration, Apache Spark for data processing, Apache Cassandra for data storage, Flask and Bootstrap for data visualization, and Docker and Docker Compose for container management of the services.
+	\item .
+\end{itemize}
 
+\nonzeroparskip During the development phase, the following tasks were performed:
+\begin{itemize}
+	\item A Python script (PySpark, Python API for Apache Spark) was created to collect, join, transform and store the data from the Twitter and Spotify APIs.
+	\item Containers for each service were defined in Docker Compose and custom images were created in Docker (if needed):
+	\begin{itemize}
+		\item Apache Airflow containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower.
+		\item Apache Spark containers were configured for data processing: master and three workers.
+The Apache Cassandra container was configured for data storage.
+		\item Linux container was configured for data visualization with Flask and Bootstrap.
+	\end{itemize}
+	\item The DAG in Apache Airflow was configured to automate data extraction, transformation, and loading.
+	\item Apache Spark was configured to be able to receive the script sent by Apache Airflow and communicate with Apache Cassandra.
+	\item Apache Cassandra was configured with the database and structure required.
+\end{itemize}
 
-\nonzeroparskip The project development was undertaken following an Agile methodology.
+\nonzeroparskip The project development was undertaken following an Agile methodology, with Sprints of 2 weeks of duration being represented as \textit{Milestones} in Github and the tasks as \textit{Issues}.
