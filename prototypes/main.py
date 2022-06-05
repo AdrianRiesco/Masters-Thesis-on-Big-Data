@@ -43,7 +43,8 @@ if status_code != 200:
 
 # Create the dataframe to store the tweets
 twitterDF = pd.DataFrame(columns = ['id_tweet', 'text', 'created_at'])
-
+print("***** TWITTER *****")
+print(response)
 # Clean the output to obtain a text string without hashtags or urls
 for tweet in response['data']:
     # Get id, text and created timestamp of the tweet
@@ -135,7 +136,8 @@ for i, tweet in enumerate(twitterDF.itertuples(index=False)):
 
     # Launch the query to the endpoint specified and get the result in json format
     response, status_code = send_get_request(url[0], headers, url[1])
-
+    print("***** SPOTIFY SEARCH *****")
+    print(response)
     # Check the status code of the query
     if status_code == 200:
         # Check if response is not empty (no result found)
@@ -179,7 +181,8 @@ response, status_code = send_get_request(url[0], headers, url[1])
 
 # Create the dataframe to store the features
 featuresDF = pd.DataFrame(columns = ['id', 'danceability', 'energy', 'key', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'duration_ms', 'time_signature'])
-
+print("***** SPOTIFY FEATURES *****")
+print(response)
 # In case we get any response
 if status_code == 200:
     if response['audio_features']:
