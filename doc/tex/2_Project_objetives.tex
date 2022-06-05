@@ -1,14 +1,12 @@
 \capitulo{2}{Project objectives}
 
-%\nonzeroparskip This section explains precisely and concisely what are the objectives pursued with the completion of the project. It is possible to distinguish between the objectives set by the requirements of the software to be built and the technical objectives that it poses when putting the project into practice.
-
 \nonzeroparskip The initial objectives through which the use case was built consisted in the following points:
 \begin{itemize}
-	\item Ability to obtain data in real time.
-	\item Combine at least two different data sources.
+	\item Potential ability to obtain data in real time.
+	\item Combination of at least two different data sources.
 	\item Potential to scale in both technology and data volume.
-	\item Involve various technologies from the world of Big Data.
-	\item Use of open source tools.
+	\item Implication of recognized technologies within the world of Big Data.
+	\item Use of open source tools to avoid potential costs.
 \end{itemize}
 
 \nonzeroparskip After a research, the author designed the use case and built the objectives of the projects:
@@ -16,10 +14,10 @@
 	\item Build a pipeline to gather information about last songs listened from the Twitter API. The name of the endpoint queried is \textit{recent search}.
 	\item Find information about the songs (name, artist and audio features) through the Spotify API. The names of the endpoints queried are \textit{search for item} and \textit{get tracks' audio features}.
 	\item Execute all the ETL\footnote{ETL is the acronym for Extract, Transform and Load, the three phases for data processing} process in \textit{Apache Spark}.
-	\item Store all the data in a data warehouse under a known technology, \textit{Cassandra}.
+	\item Store all the data in a data warehouse under a known technology, \textit{Apache Cassandra}.
 	\item Visualize the information in a custom front-end and back-end created with \textit{Bootstrap} and \textit{Flask}.
 	\item Orchestrate all the data flow with \textit{Apache Airflow}.
-	\item Develop the project with \textit{Docker} to ensure deployment through heterogeneous environments.
+	\item Develop the project with \textit{Docker} and \textit{Docker Compose} to ensure deployment through heterogeneous environments.
 \end{itemize}
 
 \nonzeroparskip Through these global objectives, the low-level functional and technical requirements were specified. More information about these requirements is included in the appendix.
