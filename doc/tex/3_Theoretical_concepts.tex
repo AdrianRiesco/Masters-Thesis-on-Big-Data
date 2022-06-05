@@ -15,14 +15,33 @@
 \nonzeroparskip In this section are covered the theoretical concepts in which the project has been based. All concepts are described in a detailed and simple way since this master's thesis can be aimed at technical and non-technical students.
 
 \section{Big Data}
-\nonzeroparskip Big Data is...
+
+\nonzeroparskip The term Big Data is used to refer to data sets whose size exceeds the capabilities of the software systems used to capture, preserve and process the data within an acceptable time window.
+
+\nonzeroparskip The definition of Big Data is usually linked to the three dimensions or Vs defined by Doug Laney in 2001~\cite{bigdata_vs}:
+\begin{itemize}
+	\item \textbf{Volume.} The amount of data to handle.
+	\item \textbf{Velocity.} The rate at which new data is created and consumed.
+	\item \textbf{Variety.} The diversity or form of the captured data.
+\end{itemize}
+
+\nonzeroparskip After the definition of the three Vs, more dimensions have been added: Veracity, Value, Validity, Vagueness, Volatility... Up to a total of 42 different dimensions to define Big Data.
+
+\nonzeroparskip From the moment big data is discovered until it can be used and generate value, it goes through a life cycle made up of the following phases: discovery, raw data ingestion, raw data processing, storage, integration with other data, analysis, and presentation of results.
+
+\nonzeroparskip Due to the complexity of big data, it usually requires a complex and varied technological ecosystem to be managed.
 
 \section{ETL}
-\nonzeroparskip An ETL process is...
+\nonzeroparskip An ETL process refers to the stages that every data processing exercise usually goes through:
+\begin{enumerate}
+	\item \textbf{Extraction.} Raw data is collected from the source and fed into our Data Lake, which preserves it in its original form.
+	\item \textbf{Transformation.} The raw data is cleaned and transformed to be used in our environment.
+	\item \textbf{Load.} Once structured and filtered, the data is entered into our Data Warehouse.
+\end{enumerate}
 
 \section{API}
 
-\nonzeroparskip An Aplication Programming Interface or API is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested and sent to the system, the way to authenticate to it and the format of the returned data~\cite{ibm_restapi}.
+\nonzeroparskip An Application Programming Interface or API is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested and sent to the system, the way to authenticate to it and the format of the returned data~\cite{ibm_restapi}.
 
 \nonzeroparskip In relation to web development, most of the APIs work according to Hypertext Transfer Protocol (HTTP), a communication protocol that allows information transfers through files on the World Wide Web. Additionally and not exclusive, a large number of APIs are developed according to the REST architectural style, defined by Roy Fielding in the year 2000 and which is based on a series of principles that seek to facilitate development:
 \begin{enumerate}
@@ -61,7 +80,7 @@
 
 \nonzeroparskip The Spotify API has several endpoints to which queries can be sent to collect or modify information: Albums, Artists, Shows, Episodes, Search~\cite{spotify_dev_endpoint_searchforitem}, Tracks~\cite{spotify_dev_endpoint_gettracksaudiofeatures}, Users, Playlists, Categories, Genres, Player and Market. During this thesis the following have been used:
 \begin{itemize}
-	\item \textbf{Search}. Search for Item allows to obtain information about the Spotify catalog of artists, songs, albums, playlists, shows or episodes. You can specify the type or types of objects to return, in this case being the type ``tracks''.
+	\item \textbf{Search}. Search for Item allows to obtain information about the Spotify catalog of artists, songs, albums, playlists, shows or episodes. You can specify the type or types of objects to return, in this case being the type ``tracks''. Only one search can be performed per query.
 	\item \textbf{Tracks}. Get Tracks' Audio Features allows to obtain the characteristics of a set of songs specified by their id. The characteristics returned are as follows:
 	\begin{itemize}
 		\item \textbf{Acousticness}. Confidence measure from 0.0 to 1.0 about whether the track is acoustic, with 1.0 representing high confidence that it is acoustic.
@@ -170,17 +189,3 @@
 \section{Web Server Gateway Interface}
 
 \nonzeroparskip Section explaining Web Server Gateway Interface (WSGI).
-
-
-\section{Tables}
-
-\nonzeroparskip TablaSmall.
-
-\tablaSmall{Tools and technologies used}{l c c c c}{herramientasportipodeuso}
-{ \multicolumn{1}{l}{Tools} & App AngularJS & API REST & BD & Memoria \\}{ 
-HTML5 & X & & &\\
-CSS3 & X & & &\\
-BOOTSTRAP & X & & &\\
-\TeX{}Maker & & & & X\\
-Astah & & & & X\\
-} 
