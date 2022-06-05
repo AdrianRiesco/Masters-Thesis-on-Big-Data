@@ -5,13 +5,261 @@
 \section{Data design}
 
 \subsection{Twitter data structure}
-\nonzeroparskip The data received from Twitter queries has the following structure:
+\nonzeroparskip The data received from Twitter queries has the following structure (the data has been obtained from a real query and its output has been reduced by trimming certain elements due to their length):
+
+\begin{lstlisting}[language=json,firstnumber=1]
+{"data":[
+      {
+         "id":"1533311938209382403",
+         "entities":{
+            "annotations":[
+               {
+                  "start":43,
+                  "end":62,
+                  "probability":0.6061,
+                  "type":"Other",
+                  "normalized_text":"Breakfast In America"
+               }
+            ],
+            "urls":[
+               {
+                  "start":84,
+                  "end":107,
+                  "url":"https://t.co/YiXxSepm8x",
+                  "expanded_url":"https://rideshare.airtime.pro",
+                  "display_url":"rideshare.airtime.pro",
+                  "images":[
+                     {
+                        "url":"https://pbs.twimg.com/news_img/1532561096858640397/3mUiSDDN?format=jpg&name=orig",
+                        "width":1920,
+                        "height":1200
+                     },
+                     {
+                        "url":"https://pbs.twimg.com/news_img/1532561096858640397/3mUiSDDN?format=jpg&name=150x150",
+                        "width":150,
+                        "height":150
+                     }
+                  ],
+                  "status":200,
+                  "title":"Rideshare Radio",
+                  "description":"Hits from the 70's 80s 90s 00s 10s 20s, No Talking just back to back Music totally commercials free 24/7",
+                  "unwound_url":"https://rideshare.airtime.pro"
+               }
+            ],
+            "hashtags":[
+               {
+                  "start":0,
+                  "end":11,
+                  "tag":"Nowplaying"
+               },
+               {
+                  "start":129,
+                  "end":139,
+                  "tag":"Rideshare"
+               }
+            ]
+         },
+         "created_at":"2022-06-05T04:57:08.000Z",
+         "text":"#Nowplaying 2010 Remastered - Supertramp - Breakfast In America  - Stream here-&gt; https://t.co/YiXxSepm8x - Non Stop Hits 24/7 #Rideshare #Radio #Hits #Uber #RideshareRadio #Petrol #Parcoursup #PlatinumJubilee #ENGvNZ #PrideMonth"
+      },
+      {
+         Second tweet.      
+      }
+   ],
+   "meta":{
+      "newest_id":"1533311938209382403",
+      "oldest_id":"1533311921256124416",
+      "result_count":10,
+      "next_token":"b26v89c19zqg8o3fpyzltxkhapj3hf1q96mc01w4yl3el"
+   }
+}
+\end{lstlisting}
+
+\nonzeroparskip The fields required for the project are:
+\begin{itemize}
+	\item \textbf{id.} Tweet id, useful uniquely identify the tweet.
+	\item \textbf{text.} Tweet text, useful to identify the song played.
+	\item \textbf{entities.} useful to clean the text and remove hashtasg, cashtags, mentions and urls.
+	\item \textbf{created\_at.} Tweet creation date.
+\end{itemize}
 
 \subsection{Spotify data structure}
-\nonzeroparskip Thhe data received from Spotify queries has the following structure:
+\nonzeroparskip The data received from Spotify queries to Search endpoint (``Search for Item'') has the following structure (the data has been obtained from a real query and its output has been reduced by trimming certain elements due to their length):
+\begin{lstlisting}[language=json,firstnumber=1]
+{"tracks":{
+      "href":"https://api.spotify.com/v1/search?query=Savoy+Brown+Wang+Dang+Doodle+&type=track&offset=0&limit=1",
+      "items":[
+         {
+            "album":{
+               "album_type":"album",
+               "artists":[
+                  {
+                     "external_urls":{
+                        "spotify":"https://open.spotify.com/artist/17obwOahRWI121iMUZznh2"
+                     },
+                     "href":"https://api.spotify.com/v1/artists/17obwOahRWI121iMUZznh2",
+                     "id":"17obwOahRWI121iMUZznh2",
+                     "name":"Savoy Brown",
+                     "type":"artist",
+                     "uri":"spotify:artist:17obwOahRWI121iMUZznh2"
+                  }
+               ],
+               "available_markets":[
+                  "MX",
+                  "US"
+               ],
+               "external_urls":{
+                  "spotify":"https://open.spotify.com/album/5oq20r8iNOO9fpw8R2h3vE"
+               },
+               "href":"https://api.spotify.com/v1/albums/5oq20r8iNOO9fpw8R2h3vE",
+               "id":"5oq20r8iNOO9fpw8R2h3vE",
+               "images":[
+                  {
+                     "height":640,
+                     "url":"https://i.scdn.co/image/ab67616d0000b2735dd44bf0a252e30d4bb2e7c8",
+                     "width":640
+                  },
+                  {
+                     "height":300,
+                     "url":"https://i.scdn.co/image/ab67616d00001e025dd44bf0a252e30d4bb2e7c8",
+                     "width":300
+                  }
+               ],
+               "name":"Street Corner Talking",
+               "release_date":"1971-01-01",
+               "release_date_precision":"day",
+               "total_tracks":8,
+               "type":"album",
+               "uri":"spotify:album:5oq20r8iNOO9fpw8R2h3vE"
+            },
+            "artists":[
+               {
+                  "external_urls":{
+                     "spotify":"https://open.spotify.com/artist/17obwOahRWI121iMUZznh2"
+                  },
+                  "href":"https://api.spotify.com/v1/artists/17obwOahRWI121iMUZznh2",
+                  "id":"17obwOahRWI121iMUZznh2",
+                  "name":"Savoy Brown",
+                  "type":"artist",
+                  "uri":"spotify:artist:17obwOahRWI121iMUZznh2"
+               }
+            ],
+            "available_markets":[
+               "MX",
+               "US"
+            ],
+            "disc_number":1,
+            "duration_ms":440733,
+            "explicit":false,
+            "external_ids":{
+               "isrc":"GBF077120720"
+            },
+            "external_urls":{
+               "spotify":"https://open.spotify.com/track/7p99XDR7dKaIMTYV3zia0V"
+            },
+            "href":"https://api.spotify.com/v1/tracks/7p99XDR7dKaIMTYV3zia0V",
+            "id":"7p99XDR7dKaIMTYV3zia0V",
+            "is_local":false,
+            "name":"Wang Dang Doodle",
+            "popularity":19,
+            "preview_url":"None",
+            "track_number":7,
+            "type":"track",
+            "uri":"spotify:track:7p99XDR7dKaIMTYV3zia0V"
+         }
+      ],
+      "limit":1,
+      "next":"https://api.spotify.com/v1/search?query=Savoy+Brown+Wang+Dang+Doodle+&type=track&offset=1&limit=1",
+      "offset":0,
+      "previous":"None",
+      "total":11
+   }
+}
+\end{lstlisting}
+
+\nonzeroparskip The fields required for the project are:
+\begin{itemize}
+	\item \textbf{id.} Track id, useful uniquely identify the track.
+	\item \textbf{name.} Track name, useful to identify the track.
+	\item \textbf{popularity.} Popularity of the track.
+	\item \textbf{artists' id.} ID of the artists.
+	\item \textbf{artists' name.} Name of the artists.
+\end{itemize}
+
+\nonzeroparskip The data received from Spotify queries to the Tracks endpoint (``Get Tracks' Audio Features'') has the following structure (the data has been obtained from a real query and its output has been reduced by trimming certain elements due to their length):
+\begin{lstlisting}[language=json,firstnumber=1]
+{"audio_features":[
+      {
+         "danceability":0.516,
+         "energy":0.36,
+         "key":7,
+         "loudness":-11.264,
+         "mode":1,
+         "speechiness":0.03,
+         "acousticness":0.83,
+         "instrumentalness":0.885,
+         "liveness":0.116,
+         "valence":0.144,
+         "tempo":127.176,
+         "type":"audio_features",
+         "id":"7dg3XqARw7qOrkt9pZZNRF",
+         "uri":"spotify:track:7dg3XqARw7qOrkt9pZZNRF",
+         "track_href":"https://api.spotify.com/v1/tracks/7dg3XqARw7qOrkt9pZZNRF",
+         "analysis_url":"https://api.spotify.com/v1/audio-analysis/7dg3XqARw7qOrkt9pZZNRF",
+         "duration_ms":233812,
+         "time_signature":4
+      },
+      {
+         Group of features of the second track.
+      }...]
+}
+\end{lstlisting}
+
+\nonzeroparskip The fields required for the project are:
+\begin{itemize}
+	\item id.
+	\item danceability.
+	\item energy.
+	\item key.
+	\item loudness.
+	\item mode.
+	\item speechiness.
+	\item acousticness.
+	\item instrumentalness.
+	\item liveness.
+	\item valence.
+	\item tempo.
+	\item duration\_ms.
+	\item time\_signature.
+\end{itemize}
 
 \subsection{Cleaned data}
-\nonzeroparskip After the cleaning process, the resulting data structure...
+\nonzeroparskip After the cleaning process, the resulting data structure is:
+
+\begin{itemize}
+	\item id\_tweet.
+	\item text.
+	\item created\_at.
+	\item url\_tweet.
+	\item id\_track.
+	\item name.
+	\item popularity.
+	\item artists\_id.
+	\item artists\_name.
+	\item danceability
+	\item energy
+	\item key
+	\item loudness
+	\item mode
+	\item speechiness
+	\item acousticness
+	\item instrumentalness
+	\item liveness
+	\item valence
+	\item tempo
+	\item duration\_ms
+	\item time\_signature
+\end{itemize}
 
 \section{Procedural design}
 \nonzeroparskip Flow diagram.
