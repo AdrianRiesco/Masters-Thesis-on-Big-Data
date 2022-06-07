@@ -51,14 +51,14 @@ services:
       cassandra-1:
         condition: service_healthy
 
-  cassandra-load-keyspace:
+  cassandra-init:
     image: cassandra:4.0
-    container_name: cassandra-load-keyspace
+    container_name: cassandra_init
     depends_on:
       cassandra-2:
         condition: service_healthy
     volumes:
-      - ./src/main/resources/cassandra_schema.cql:/schema.cql 
+      - ./schema.cql:/schema.cql 
     command: /bin/bash -c "sleep 60 && echo loading cassandra keyspace && cqlsh cassandra -f /schema.cql"
 
 networks:
