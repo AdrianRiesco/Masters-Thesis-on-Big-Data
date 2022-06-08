@@ -1,9 +1,9 @@
 version: '3.9'
 
 services:
-  cassandra-1:
+  cassandra:
     image: cassandra:4.0
-    container_name: cassandra_1_container
+    container_name: cassandra
     networks:
       - default_net
     ports:
@@ -32,30 +32,11 @@ services:
       timeout: 20s
       retries: 3
 
-  cassandra-2:
-    image: cassandra:4.0
-    container_name: cassandra_2_container
-    networks:
-      - default_net
-    ports:
-      - 9043:9042
-    volumes:
-      - cassandra-db-volume:/var/lib/cassandra
-    environment: *environment
-    healthcheck:
-      test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
-      interval: 30s
-      timeout: 20s
-      retries: 3
-    depends_on:
-      cassandra-1:
-        condition: service_healthy
-
   cassandra-init:
     image: cassandra:4.0
     container_name: cassandra_init
     depends_on:
-      cassandra-2:
+      cassandra:
         condition: service_healthy
     volumes:
       - ./schema.cql:/schema.cql 
