@@ -1,15 +1,16 @@
 version: '3.9'
 
 services:
-  cassandra:
+  cassandra-1:
     image: cassandra:4.0
-    container_name: cassandra
+    container_name: cassandra_1_container
     networks:
       - default_net
     ports:
       - 9042:9042
     volumes:
       - cassandra-db-volume:/var/lib/cassandra
+      - ./schema.cql:/schema.cql
     environment: &environment
       #CASSANDRA_LISTEN_ADDRESS: 
       #CASSANDRA_BROADCAST_ADDRESS: 
@@ -36,11 +37,11 @@ services:
     image: cassandra:4.0
     container_name: cassandra_init
     depends_on:
-      cassandra:
+      cassandra-1:
         condition: service_healthy
     volumes:
       - ./schema.cql:/schema.cql 
-    command: /bin/bash -c "sleep 60 && echo loading cassandra keyspace && cqlsh cassandra -f /schema.cql"
+    command: /bin/bash -c "sleep 45 && echo loading cassandra keyspace && cqlsh cassandra -u cassandra -p cassandra -f /schema.cql"
 
 networks:
   default_net:
