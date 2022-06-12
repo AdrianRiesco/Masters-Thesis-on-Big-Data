@@ -1,9 +1,6 @@
 version: '3'
 x-airflow-common:
   &airflow-common
-  # In order to add custom dependencies or upgrade provider packages you can use your extended image.
-  # Comment the image line, place your Dockerfile in the directory where you placed the docker-compose.yaml
-  # and uncomment the "build" line below, Then run `docker-compose build` to build the images.
   image: ariesco/airflow:2.3.0
   build:
     context: ./docker_airflow
@@ -364,7 +361,48 @@ services:
       - ../spark/app:/usr/local/spark/app
       - ../spark/resources:/usr/local/spark/resources
 
+  cassandra-1:
+    image: cassandra:4.0
+    container_name: cassandra_1_container
+    networks:
+      - main_net
+    ports:
+      - 9042:9042
+    volumes:
+      - cassandra-db-volume:/var/lib/cassandra
+      - ../spark/resources:/var/lib/cassandra
+    environment: &environment
+      MAX_HEAP_SIZE: 256M
+      HEAP_NEWSIZE: 128M
+      CASSANDRA_USER: cassandra
+      CASSANDRA_HOST: cassandra
+      CASSANDRA_PASSWORD: 
+      CASSANDRA_CLUSTER_NAME: CassandraCluster
+      CASSANDRA_NUM_TOKENS: 128
+      CASSANDRA_DATACENTER: DataCenter1
+      CASSANDRA_RACK: Rack1
+      CASSANDRA_ENDPOINT_SNITCH: GossipingPropertyFileSnitch
+    healthcheck:
+      test: ["CMD", "cqlsh", "-u cassandra", "-p cassandra" ,"-e describe keyspaces"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  cassandra-init:
+    image: cassandra:4.0
+    container_name: cassandra_init
+    networks:
+      - main_net
+    volumes:
+      - ../cassandra/schema.cql:/schema.cql
+    command: /bin/bash -c "sleep 45 && echo loading cassandra keyspace && cqlsh cassandra-1 -u cassandra -p cassandra -f /schema.cql"
+    depends_on:
+      cassandra-1:
+        condition: service_healthy
+
+
 networks:
   main_net:
 volumes:
   postgres-db-volume:
+  cassandra-db-volume:
