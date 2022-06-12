@@ -10,7 +10,7 @@ services:
       - 9042:9042
     volumes:
       - cassandra-db-volume:/var/lib/cassandra
-      - ./schema.cql:/schema.cql
+      - ./data.csv:/var/lib/data/data.csv
     environment: &environment
       #CASSANDRA_LISTEN_ADDRESS: 
       #CASSANDRA_BROADCAST_ADDRESS: 
@@ -36,12 +36,14 @@ services:
   cassandra-init:
     image: cassandra:4.0
     container_name: cassandra_init
+    networks:
+      - default_net
+    volumes:
+      - ./schema.cql:/schema.cql
+    command: /bin/bash -c "sleep 30 && echo loading cassandra keyspace && cqlsh cassandra-1 -u cassandra -p cassandra -f /schema.cql"
     depends_on:
       cassandra-1:
         condition: service_healthy
-    volumes:
-      - ./schema.cql:/schema.cql 
-    command: /bin/bash -c "sleep 45 && echo loading cassandra keyspace && cqlsh cassandra -u cassandra -p cassandra -f /schema.cql"
 
 networks:
   default_net:
