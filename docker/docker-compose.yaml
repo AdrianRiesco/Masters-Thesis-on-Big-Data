@@ -400,7 +400,6 @@ services:
       cassandra-1:
         condition: service_healthy
 
-
 networks:
   main_net:
 volumes:
