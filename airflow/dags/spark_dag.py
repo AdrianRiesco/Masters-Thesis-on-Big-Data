@@ -2,6 +2,7 @@
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.contrib.operators.spark_submit_operator import SparkSubmitOperator
+from airflow.operators.bash_operator import BashOperator
 from airflow.operators.dummy_operator import DummyOperator
 
 # Operators are objects that encapsulate the job
@@ -38,8 +39,14 @@ spark_submit = SparkSubmitOperator(
 
 start = DummyOperator(task_id="start", dag=dag)
 
-cassandra_load = DummyOperator(task_id="cassandra_load", dag=dag)
+cassandra_load = BashOperator(
+    task_id="cassandra_load",
+    bash_command="cqlsh cassandra-1 -u cassandra -p cassandra -k mainkeyspace -e \"COPY TweetsAndTracks(id_tweet, text_tweet, created_at, url_tweet, id_track, name, popularity, artists_id, artists_name, danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration_ms, time_signature, mode) FROM '/opt/spark/resources/data.csv' WITH DELIMITER = ',' AND HEADER = TRUE;\" ",
+    dag = dag
+)
+
+delete_csv = DummyOperator(task_id="delete_csv", dag=dag)
 
 end = DummyOperator(task_id="end", dag=dag)
 
-start >> spark_submit >> cassandra_load >> end
+start >> spark_submit >> cassandra_load >> delete_csv >> end
