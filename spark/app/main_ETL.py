@@ -18,7 +18,7 @@ from functions import get_bearer_token_spotify, create_header, url_twitter_searc
 # Create Spark context
 sc = SparkContext()
 
-# Get the name and path of our csv
+# Get the name and path of our csv specified in the DAG
 filename = sys.argv[1]
 
 # *** Twitter API - Extraction *** #
@@ -221,9 +221,10 @@ mainDF = mainDF.join(featuresDF.set_index('id'), on='id_track')
 
 # Append the result to a CSV file or create it if does not exist
 os.umask(0)
-if not os.path.exists(filename):
+if os.path.exists(filename):
     with open(os.open(filename, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
         f.write(','.join(mainDF.columns) + '\n')
-mainDF.to_csv(filename, mode = 'a', encoding = 'utf-8', index = False, header = False)
+else:
+    mainDF.to_csv(filename, mode = 'a', sep = ',', encoding = 'utf-8', index = False, header = True)
 
 # *** END *** #
