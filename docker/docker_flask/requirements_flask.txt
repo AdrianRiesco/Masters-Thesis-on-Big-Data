@@ -1,0 +1,6 @@
+flask==2.1.2
+redis==4.3.1
+Cmake==3.22.4
+cryptography==37.0.2
+cassandra-driver==3.25.0
+flask-cqlalchemy==2.0.0

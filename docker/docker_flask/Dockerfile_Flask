@@ -1,0 +1,16 @@
+FROM python:3.8-slim-buster
+
+WORKDIR /usr/local/flask
+
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+
+#RUN apk add --no-cache gcc musl-dev linux-headers
+COPY requirements_flask.txt requirements_flask.txt
+RUN pip3 install -r requirements_flask.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD [ "python3", "-u", "-m" , "flask", "run", "--host=0.0.0.0"]
