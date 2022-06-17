@@ -34,7 +34,6 @@ start = DummyOperator(task_id = "start", dag = dag)
 # Spark job to extract the data from Twitter and Spotify, and transform and store it in a .csv file
 spark_submit = SparkSubmitOperator(
     task_id = "spark_job",
-    proxy_user = "airflow",
     application = "/opt/spark/app/main_ETL.py",
     name = spark_app_name,
     conn_id = "spark_conn",
@@ -47,7 +46,6 @@ spark_submit = SparkSubmitOperator(
 # Bash command to load the .csv file to Cassandra
 cassandra_load = BashOperator(
     task_id = "cassandra_load",
-    run_as_user = "airflow",
     bash_command = "cqlsh %s -u %s -p %s -k %s -e \"COPY TweetsAndTracks(id_tweet, text_tweet, created_at, url_tweet, id_track, name, popularity, artists_id, artists_name, danceability, energy, key, loudness, speechiness, acousticness, instrumentalness, liveness, valence, tempo, duration_ms, time_signature, mode) FROM '/opt/spark/resources/data.csv' WITH DELIMITER = ',' AND HEADER = TRUE;\" " % (cassandra_host, cassandra_username, cassandra_password, cassandra_keyspace),
     dag = dag
 )
@@ -55,7 +53,6 @@ cassandra_load = BashOperator(
 # Bash command to rename the .csv file and move it to the history folder
 create_file_history = BashOperator(
     task_id = "create_file_history",
-    run_as_user = "airflow",
     bash_command = "mkdir -p /opt/spark/resources/history && mv /opt/spark/resources/data.csv /opt/spark/resources/history/%s" % history_filename,
     dag = dag
 )
