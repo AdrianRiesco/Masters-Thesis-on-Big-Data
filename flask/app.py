@@ -18,9 +18,9 @@ db = CQLAlchemy(app)
 
 class Tweetsandtracks(db.Model):
 	__keyspace__ = app.config['CASSANDRA_KEYSPACE']
-	id_tweet = db.columns.UUID(primary_key=True, default=uuid.uuid4)
+	id_tweet = db.columns.Integer(primary_key=True)
 	text_tweet = db.columns.Text()
-	created_at = db.columns.TimeUUID()
+	created_at = db.columns.DateTime()
 	url_tweet = db.columns.Text()
 	id_track = db.columns.Text()
 	name = db.columns.Text()
@@ -41,65 +41,26 @@ class Tweetsandtracks(db.Model):
 	time_signature = db.columns.Integer()
 	mode = db.columns.Float()
 
-# Get new Cassandra session
-def get_new_cassandra_session():
-	""" This function returns the connection to the MySQL database
-
-	Returns:
-		MySQLConnection
-
-	"""
-
-	return ""
-
-# Execute a Cassandra query
-def executeQuery(cql, par, option):
-	""" This function execute a query with the cql and parameters sent and option selected
-
-	Args:
-		cql (string): CQL statement for the query
-		par (tuple): arguments to include in the SQL query
-		option (string): type of query to send
-
-	Returns:
-		response (list of tuples) : response from the query (empty if commiting changes to the database)
-
-	"""
-	'''
-	session = get_new_cassandra_session() 
-
-	# Create connection and cursor
-	db = getMysqlCon()
-	my_cursor = db.cursor()
-
-	# Execute query
-	my_cursor.execute(cql, par)
-
-	# Get the response or commit the changes
-	if option == "get_all":
-		response = my_cursor.fetchall()
-	elif option == "get_one":
-		response = my_cursor.fetchone()
-	elif option == "modify":
-		response = []
-		db.commit()
-
-	# Close cursor and connection
-	my_cursor.close()
-	db.close()
-	'''
-
-	return ""
-
 # Home page
 @app.route("/")
 def home():
 	print('Database synchronized', flush = True)
-	for p in Tweetsandtracks.objects().limit(100):
-		print('bucle', flush = True)
-    		print(p, flush = True)
+	#for p in Tweetsandtracks.objects().limit(100):
+    	#	print(p, flush = True)
 
-	return render_template("index.html", tracks = Tweetsandtracks.objects())
+	return render_template("index.html")
+
+# Table page
+@app.route("/table")
+def table():
+	return render_template("table.html", tracks = Tweetsandtracks.objects())
+
+# Graph page
+@app.route("/chart")
+def chart():
+	data_labels = [tat.id_tweet for tat in Tweetsandtracks.objects()]
+	data_values = [tat.energy for tat in Tweetsandtracks.objects()]
+	return render_template("chart.html", data_labels = data_labels, data_values = data_values)
 
 if __name__ == "__main__":
 	db.sync_db()
