@@ -17,31 +17,6 @@
 	</div>
 
 	<div>
-		<h1>List of tracks</h1>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th scope="col">Track name</th>
-					<th scope="col">Artist name</th>
-					<th scope="col">Link to tweet</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for track in tracks %}
-					<tr class="table-light">
-						<th scope="row">{{track.object_name}}</th>
-						<td><img src="{{prefix_public}}/{{track.object_name}}" caption="{{track.object_name}}" class="img-fluid"></td>
-						<td>
-							<form action="{{ url_for('delete_file') }}" method=POST class="row justify-content-md-center">
-							  <input type=hidden value="{{ track.object_name }}" name=filename />
-							  <input type=hidden value="public" name=visibility />
-							  <input type=submit class="btn btn-danger" value="DELETE"/>
-							</form>
-						</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
 
 	</div>
 
