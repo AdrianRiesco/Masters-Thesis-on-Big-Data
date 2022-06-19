@@ -56,11 +56,56 @@ def table():
 	return render_template("table.html", tracks = Tweetsandtracks.objects())
 
 # Graph page
-@app.route("/chart")
+@app.route("/chart", methods = ['GET', 'POST'])
 def chart():
-	data_labels = [tat.id_tweet for tat in Tweetsandtracks.objects()]
-	data_values = [tat.energy for tat in Tweetsandtracks.objects()]
-	return render_template("chart.html", data_labels = data_labels, data_values = data_values)
+	# Get the selected view
+	view = request.args.get('view')
+
+	# Select the data for the selected view
+	if view == "TopListenedTracks":
+		# Data for the top listened tracks
+		title = "Top 10 Listened Tracks"
+		label_name = ["Tweets found (0-100)"]
+
+		data_labels = [tat.name for tat in Tweetsandtracks.objects()]
+		data_values = [data_labels.count(label) for label in data_labels]
+
+		data_labels = [label for _, label in sorted(zip(data_values, data_labels), reverse=True)][:10]
+		data_values = sorted(data_values, reverse=True)[:10]
+	elif view == "TopDanceableTracks":
+		# Data for the top danceable tracks
+		title = "Top 10 Danceable Tracks"
+		label_name = ["Danceability (0-1)"]
+
+		data_labels = [tat.name for tat in Tweetsandtracks.objects()]
+		data_values = [float(round(tat.danceability, 2)) for tat in Tweetsandtracks.objects()]
+
+		data_labels = [label for _, label in sorted(zip(data_values, data_labels), reverse=True)][:10]
+		data_values = sorted(data_values, reverse=True)[:10]
+	else:
+		# Data for the top popular tracks and the default view, in case the "view" variable is None (accesed via navbar)
+		title = "Top 10 Popular Tracks"
+		label_name = ["Popularity (0-100)"]
+
+		data_labels = [tat.name for tat in Tweetsandtracks.objects()]
+		data_values = [float(round(tat.popularity, 2)) for tat in Tweetsandtracks.objects()]
+
+		data_labels = [label for _, label in sorted(zip(data_values, data_labels), reverse=True)][:10]
+		data_values = sorted(data_values, reverse=True)[:10]
+	
+	print(data_labels, flush = True)
+	print(data_values, flush = True)
+
+	#for i in range(len(data_labels)):
+    	#	print(str(i) + ". " + str(data_labels[i]) + " - " + str(data_values[i]), flush = True)
+
+	# Top canciones populares - Y
+	# Top canciones más escuchadas
+	# Top canciones con danceability - Y
+	# Top canciones
+	# Count of songs per range of metric
+
+	return render_template("chart.html", title = title, label_name = label_name, data_labels = data_labels, data_values = data_values)
 
 if __name__ == "__main__":
 	db.sync_db()
