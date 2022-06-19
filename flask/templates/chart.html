@@ -1,43 +1,79 @@
 {% extends "base.html" %}
 
 {% set active_page = "chart" %}
+{% set navbar_title = "Music Trends" %}
 
 {% block title %}Home Page{% endblock %}
 
-<script>
-	new Chart(document.getElementById("mainChart"), {
-		type: 'bar',
-		data: {
-			labels: data_labels,
-			datasets: [{
-				label: "Population (millions)",
-				backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-				data: data_values
-			}]
-		},
-		options: {
-			legend: { display: false },
-			title: {
-				display: true,
-				text: 'Total Confirmed Cases of COVID in May'
-			}
-		}
-	});
-</script>
+
 
 {% block content %}
 
 	<div class="jumbotron" style="margin: auto; text-align: center;">
-		<br>
-		<br>
-		<h1>Trends in music</h1>
-		<br>
-		<p class="text-muted">Chart</p>
+		<p class="text-primary" padding-top="10px">{{title}}</p>
+		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+			<button type="button" class="btn btn-primary">Select View</button>
+			<div class="btn-group" role="group">
+				<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle show" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+				<div class="dropdown-menu show" aria-labelledby="btnGroupDrop1" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 50px);" data-popper-placement="bottom-start">
+					<a class="dropdown-item" href="{{url_for('chart', view='TopPopularTracks')}}">Top 10 Popular Tracks</a>
+					<a class="dropdown-item" href="{{url_for('chart', view='TopListenedTracks')}}">Top 10 Listened Tracks</a>
+					<a class="dropdown-item" href="{{url_for('chart', view='TopDanceableTracks')}}">Top 10 Danceable Tracks</a>
+				</div>
+			</div>
+		</div>
 		<br>
 	</div>
 
 	<div>
-		<canvas id="mainChart" width="800" height="800"></canvas>
+		<canvas id="mainChart" width="400" height="400"></canvas>
+		<script>
+			const ctx = document.getElementById('mainChart').getContext('2d');
+			const myChart = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: {{data_labels | safe}},
+					datasets: [{
+						label: {{label_name | safe}},
+						data: {{data_values | safe}},
+						backgroundColor: [
+						'rgba(255, 99, 132, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+				            ticks: {
+			                	beginAtZero: true
+				            }
+				        }]
+					}
+				}
+			});
+		</script>
 	</div>
 
 {% endblock %}
