@@ -219,12 +219,11 @@ mainDF = mainDF.join(featuresDF.set_index('id'), on='id_track')
 
 # *** Load *** #
 
-# Append the result to a CSV file or create it if does not exist
-os.umask(0)
+# Remove existing file (if exists)
 if os.path.exists(filename):
-    with open(os.open(filename, os.O_CREAT | os.O_WRONLY, 0o777), 'w') as f:
-        f.write(','.join(mainDF.columns) + '\n')
-else:
-    mainDF.to_csv(filename, mode = 'a', sep = ',', encoding = 'utf-8', index = False, header = True)
+    os.remove(filename)
+
+# Create the output file
+mainDF.to_csv(filename, mode = 'a', sep = ',', encoding = 'utf-8', index = False, header = True)
 
 # *** END *** #
