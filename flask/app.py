@@ -1,6 +1,7 @@
 # Import libraries
 from flask import Flask, redirect, url_for, render_template, request, flash, session
 from flask_cqlalchemy import CQLAlchemy
+import datetime
 import uuid
 import sys
 import os
@@ -65,7 +66,7 @@ def chart():
 	if view == "TopListenedTracks":
 		# Data for the top listened tracks
 		title = "Top 10 Listened Tracks"
-		label_name = ["Tweets found (0-100)"]
+		label_name = ["Tweets found"]
 
 		data_labels = [tat.name for tat in Tweetsandtracks.objects()]
 		data_values = [data_labels.count(label) for label in data_labels]
@@ -82,8 +83,8 @@ def chart():
 
 		data_labels = [label for _, label in sorted(zip(data_values, data_labels), reverse=True)][:10]
 		data_values = sorted(data_values, reverse=True)[:10]
-	else:
-		# Data for the top popular tracks and the default view, in case the "view" variable is None (accesed via navbar)
+	elif view == "TopPopularTracks":
+		# Data for the top popular tracks
 		title = "Top 10 Popular Tracks"
 		label_name = ["Popularity (0-100)"]
 
@@ -92,6 +93,17 @@ def chart():
 
 		data_labels = [label for _, label in sorted(zip(data_values, data_labels), reverse=True)][:10]
 		data_values = sorted(data_values, reverse=True)[:10]
+	else:
+		# Data for the duration of the most recent tracks and the default view, in case the "view" variable is None (accesed via navbar)
+		title = "Latest Tracks Duration"
+		label_name = ["Duration (s)"]
+
+		data_labels = [tat.name for tat in Tweetsandtracks.objects()]
+		data_dates = [tat.created_at for tat in Tweetsandtracks.objects()]
+		data_values = [tat.duration_ms/1000 for tat in Tweetsandtracks.objects()]
+
+		data_labels = [label for _, label in sorted(zip(data_dates, data_labels), reverse=True)][:10]
+		data_values = [label for _, label in sorted(zip(data_dates, data_values), reverse=True)][:10]
 	
 	print(data_labels, flush = True)
 	print(data_values, flush = True)

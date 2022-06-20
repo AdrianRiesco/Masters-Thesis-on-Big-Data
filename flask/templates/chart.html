@@ -14,23 +14,137 @@
 		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 			<button type="button" class="btn btn-primary">Select View</button>
 			<div class="btn-group" role="group">
-				<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle show" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-				<div class="dropdown-menu show" aria-labelledby="btnGroupDrop1" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 50px);" data-popper-placement="bottom-start">
+				<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+				<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 50px);" data-popper-placement="bottom-start">
 					<a class="dropdown-item" href="{{url_for('chart', view='TopPopularTracks')}}">Top 10 Popular Tracks</a>
 					<a class="dropdown-item" href="{{url_for('chart', view='TopListenedTracks')}}">Top 10 Listened Tracks</a>
 					<a class="dropdown-item" href="{{url_for('chart', view='TopDanceableTracks')}}">Top 10 Danceable Tracks</a>
+					<a class="dropdown-item" href="{{url_for('chart', view='LatestTracksDuration')}}">10 Latest Tracks Duration</a>
 				</div>
 			</div>
 		</div>
+		<select class="btn btn-info dropdown-toggle" name="chart_type" id="chart_type" onchange="updateChart(this.value)">
+			<option value="chart_bar">Bar</option>
+			<option value="chart_line">Line</option>
+			<option value="chart_radar">Radar</option>
+		</select>
 		<br>
 	</div>
 
 	<div>
-		<canvas id="mainChart" width="400" height="400"></canvas>
+		<canvas id="chart_bar" width="400px" height="400px"></canvas>
+		<canvas id="chart_line" width="400px" height="400px" style="display:none;"></canvas>
+		<canvas id="chart_radar" width="400px" height="400px" style="display:none;"></canvas>
+
 		<script>
-			const ctx = document.getElementById('mainChart').getContext('2d');
-			const myChart = new Chart(ctx, {
+
+			function updateChart(selected_chart) {
+				var chart_ids = ["chart_bar", "chart_line", "chart_radar"];
+
+				for (var i = 0; i < chart_ids.length; i++) {
+					if (chart_ids[i] == selected_chart) {
+						document.getElementById(chart_ids[i]).style.display = "";
+					} else {
+						document.getElementById(chart_ids[i]).style.display = "none";
+					}
+				}
+			}
+
+			const ctx_1 = document.getElementById('chart_bar').getContext('2d');
+			const myChart_1 = new Chart(ctx_1, {
 				type: 'bar',
+				data: {
+					labels: {{data_labels | safe}},
+					datasets: [{
+						label: {{label_name | safe}},
+						data: {{data_values | safe}},
+						backgroundColor: [
+						'rgba(255, 99, 132, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+				            ticks: {
+			                	beginAtZero: true
+				            }
+				        }]
+					}
+				}
+			});
+
+			const ctx_2 = document.getElementById('chart_line').getContext('2d');
+			const myChart_2 = new Chart(ctx_2, {
+				type: 'line',
+				data: {
+					labels: {{data_labels | safe}},
+					datasets: [{
+						label: {{label_name | safe}},
+						data: {{data_values | safe}},
+						backgroundColor: [
+						'rgba(255, 99, 132, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(54, 162, 235, 0.2)',
+						'rgba(255, 206, 86, 0.2)',
+						'rgba(75, 192, 192, 0.2)',
+						'rgba(153, 102, 255, 0.2)',
+						'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+						'rgba(255, 99, 132, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 206, 86, 1)',
+						'rgba(75, 192, 192, 1)',
+						'rgba(153, 102, 255, 1)',
+						'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+				            ticks: {
+			                	beginAtZero: true
+				            }
+				        }]
+					}
+				}
+			});
+
+			const ctx_3 = document.getElementById('chart_radar').getContext('2d');
+			const myChart_3 = new Chart(ctx_3, {
+				type: 'radar',
 				data: {
 					labels: {{data_labels | safe}},
 					datasets: [{
