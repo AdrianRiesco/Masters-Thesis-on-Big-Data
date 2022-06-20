@@ -57,7 +57,7 @@ for tweet in response['data']:
     # Get id, text and created timestamp of the tweet
     tweet_id = tweet['id']
     tweet_text = tweet['text']
-    tweet_created_at = tweet['created_at']
+    tweet_created_at = tweet['created_at'].replace('T', ' ').replace('Z', '')
     
     # Clean the text of the tweet by removing its entities. "Annotations" entity could be used to identify artist name, filtering by person class and probability, but it is not completely reliable
     # Create the list to store positions to remove
