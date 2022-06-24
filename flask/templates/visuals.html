@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% set active_page = "chart" %}
+{% set active_page = "visuals" %}
 {% set navbar_title = "Music Trends" %}
 
 {% block title %}Home Page{% endblock %}
@@ -16,10 +16,10 @@
 			<div class="btn-group" role="group">
 				<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
 				<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 50px);" data-popper-placement="bottom-start">
-					<a class="dropdown-item" href="{{url_for('chart', view='TopPopularTracks')}}">Top 10 Popular Tracks</a>
-					<a class="dropdown-item" href="{{url_for('chart', view='TopListenedTracks')}}">Top 10 Listened Tracks</a>
-					<a class="dropdown-item" href="{{url_for('chart', view='TopDanceableTracks')}}">Top 10 Danceable Tracks</a>
-					<a class="dropdown-item" href="{{url_for('chart', view='LatestTracksDuration')}}">10 Latest Tracks Duration</a>
+					<a class="dropdown-item" href="{{url_for('visuals', view='TopPopularTracks')}}">Top 10 Popular Tracks</a>
+					<a class="dropdown-item" href="{{url_for('visuals', view='TopListenedTracks')}}">Top 10 Listened Tracks</a>
+					<a class="dropdown-item" href="{{url_for('visuals', view='TopDanceableTracks')}}">Top 10 Danceable Tracks</a>
+					<a class="dropdown-item" href="{{url_for('visuals', view='LatestTracksDuration')}}">10 Latest Tracks Duration</a>
 				</div>
 			</div>
 		</div>

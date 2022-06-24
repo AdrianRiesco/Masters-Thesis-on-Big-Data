@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, render_template, request, flash, ses
 from flask_cqlalchemy import CQLAlchemy
 import datetime
 import uuid
+import json
 import sys
 import os
 
@@ -42,23 +43,29 @@ class Tweetsandtracks(db.Model):
 	time_signature = db.columns.Integer()
 	mode = db.columns.Float()
 
+	@property
+	def list(self):
+		return [self.id_tweet, self.created_at.strftime("%m/%d/%Y %H:%M:%S"), self.url_tweet, self.name, self.artists_name.replace("{", "").replace("}", ""),
+		self.popularity, round(self.danceability, 3), round(self.energy, 3), self.key, round(self.loudness, 3), round(self.speechiness, 3), round(self.acousticness, 3),
+		round(self.instrumentalness, 3), round(self.liveness, 3), round(self.valence, 3), self.tempo, round(self.duration_ms/1000, 0), self.time_signature, round(self.mode, 0)]
+
 # Home page
 @app.route("/")
 def home():
 	print('Database synchronized', flush = True)
-	#for p in Tweetsandtracks.objects().limit(100):
-    	#	print(p, flush = True)
 
 	return render_template("index.html")
 
 # Table page
-@app.route("/table")
-def table():
-	return render_template("table.html", tracks = Tweetsandtracks.objects())
+@app.route("/data", methods = ['GET'])
+def data():
+	data_values = [track.list for track in Tweetsandtracks.objects()]
+
+	return render_template("data.html", tracks = data_values)
 
 # Graph page
-@app.route("/chart", methods = ['GET', 'POST'])
-def chart():
+@app.route("/visuals", methods = ['GET', 'POST'])
+def visuals():
 	# Get the selected view
 	view = request.args.get('view')
 
@@ -68,8 +75,9 @@ def chart():
 		title = "Top 10 Listened Tracks"
 		label_name = ["Tweets found"]
 
-		data_labels = [tat.name for tat in Tweetsandtracks.objects()]
-		data_values = [data_labels.count(label) for label in data_labels]
+		data_labels_names = [tat.name for tat in Tweetsandtracks.objects()]
+		data_labels = list({tat.name for tat in Tweetsandtracks.objects()})
+		data_values = [data_labels_names.count(label) for label in data_labels]
 
 		data_labels = [label for _, label in sorted(zip(data_values, data_labels), reverse=True)][:10]
 		data_values = sorted(data_values, reverse=True)[:10]
@@ -117,9 +125,9 @@ def chart():
 	# Top canciones
 	# Count of songs per range of metric
 
-	return render_template("chart.html", title = title, label_name = label_name, data_labels = data_labels, data_values = data_values)
+	return render_template("visuals.html", title = title, label_name = label_name, data_labels = data_labels, data_values = data_values)
 
 if __name__ == "__main__":
 	db.sync_db()
 	db.set_keyspace(app.config['CASSANDRA_KEYSPACE'])
-	app.run()
+	app.run(debug = True)
