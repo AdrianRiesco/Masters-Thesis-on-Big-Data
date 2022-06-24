@@ -47,7 +47,7 @@ class Tweetsandtracks(db.Model):
 	def list(self):
 		return [self.id_tweet, self.created_at.strftime("%m/%d/%Y %H:%M:%S"), self.url_tweet, self.name, self.artists_name.replace("{", "").replace("}", ""),
 		self.popularity, round(self.danceability, 3), round(self.energy, 3), self.key, round(self.loudness, 3), round(self.speechiness, 3), round(self.acousticness, 3),
-		round(self.instrumentalness, 3), round(self.liveness, 3), round(self.valence, 3), self.tempo, round(self.duration_ms/1000, 0), self.time_signature, round(self.mode, 0)]
+		round(self.instrumentalness, 3), round(self.liveness, 3), round(self.valence, 3), round(self.tempo, 3), round(self.duration_ms/1000, 0), self.time_signature, round(self.mode, 0)]
 
 # Home page
 @app.route("/")
