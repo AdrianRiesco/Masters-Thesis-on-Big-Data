@@ -12,75 +12,76 @@
 		<div>
         	Show/hide column: <a class="column-vis text-primary" data-column="5">Popularity</a> - <a class="column-vis text-primary" data-column="6">Danceability</a> - <a class="column-vis text-primary" data-column="7">Energy</a> - <a class="column-vis text-muted" data-column="8">Key</a> - <a class="column-vis text-muted" data-column="9">Loudness</a> - <a class="column-vis text-muted" data-column="10">Speechiness</a> - <a class="column-vis text-muted" data-column="11">Acousticness</a> - <a class="column-vis text-muted" data-column="12">Instrumentalness</a> - <a class="column-vis text-muted" data-column="13">Liveness</a> - <a class="column-vis text-muted" data-column="14">Valence</a> - <a class="column-vis text-muted" data-column="15">Tempo</a> - <a class="column-vis text-primary" data-column="16">Duration (s)</a> - <a class="column-vis text-muted" data-column="17">Time signature</a> - <a class="column-vis text-muted" data-column="18">Mode</a>
     	</div>
-		<table id="datatable" class="display"></table>
-
-		<script>
-			$(document).ready(function () {
-			    var table = $('#datatable').DataTable({
-			        data: {{ tracks | safe }},
-			        scrollX: true,
-			        columns: [
-			            { title: 'Tweet id' },
-			            { title: 'Date' },
-			            {
-			            	title: 'Link',
-
-    				        render: function (data) { 
-		                        return '<a href="' + data + '"><img src="/static/images/twitter.png" width="25" height="25"/></a>';
-			                },
-
-			            },
-			            { title: 'Track name' },
-			            {
-			            	title: 'Artist name',
-
-    				        render: function (data) {
-				        		artists = data.split(","),
-				        		res = ""
-				        		for (let i = 0; i < artists.length; i++) {
-				        			res += artists[i];
-				        			if (i < (artists.length - 1)) {
-				        				res += "<br/>";
-								    }
-				        		}
-
-		                        return res;
-		                    },
-			       		},
-			            { title: 'Popularity' },
-			            { title: 'Danceability' },
-			            { title: 'Energy' },
-			            { title: 'Key', visible: false },
-			            { title: 'Loudness', visible: false },
-			            { title: 'Speechiness', visible: false },
-			            { title: 'Acousticness', visible: false },
-			            { title: 'Instrumentalness', visible: false },
-			            { title: 'Liveness', visible: false },
-			            { title: 'Valence', visible: false },
-			            { title: 'Tempo', visible: false },
-			            { title: 'Duration (s)' },
-			            { title: 'Time signature', visible: false },
-			            { title: 'Mode', visible: false },
-			        ],
-			    });
-
-				$('a.column-vis').on('click', function (e) {
-					e.preventDefault();
-					var column = table.column($(this).attr('data-column'));
-					var classes = $(this).attr("class")
-
-					column.visible(!column.visible());
-
-					if (column.visible() == true) {
-						$(this).prop('class', classes.replace("text-muted", "") + " text-primary");
-					} else {
-						$(this).prop('class', classes.replace("text-primary", "") + " text-muted");
-					}
-				});
-			});
-		</script>
-
-
+		<table id="datatable" class="display" style="width:100%"></table>
 	</div>
+
+	<script>
+		$(document).ready(function () {
+		    var table = $('#datatable').DataTable({
+		        data: {{ data_list | safe }},
+		        scrollX: true,
+		        columns: [
+		            { title: 'Tweet id' },
+		            { title: 'Date' },
+		            {
+		            	title: 'Link',
+
+				        render: function (data) { 
+	                        return '<a href="' + data + '"><img src="/static/images/twitter.png" width="25" height="25"/></a>';
+		                },
+
+		            },
+		            { title: 'Track name' },
+		            {
+		            	title: 'Artist name',
+
+				        render: function (data) {
+			        		artists = data.split(","),
+			        		res = ""
+			        		for (let i = 0; i < artists.length; i++) {
+			        			res += artists[i];
+			        			if (i < (artists.length - 1)) {
+			        				res += "<br/>";
+							    }
+			        		}
+
+	                        return res;
+	                    },
+		       		},
+		            { title: 'Popularity' },
+		            { title: 'Danceability' },
+		            { title: 'Energy' },
+		            { title: 'Key', visible: false },
+		            { title: 'Loudness', visible: false },
+		            { title: 'Speechiness', visible: false },
+		            { title: 'Acousticness', visible: false },
+		            { title: 'Instrumentalness', visible: false },
+		            { title: 'Liveness', visible: false },
+		            { title: 'Valence', visible: false },
+		            { title: 'Tempo', visible: false },
+		            { title: 'Duration (s)' },
+		            { title: 'Time signature', visible: false },
+		            { title: 'Mode', visible: false },
+		        ],
+		    });
+
+		    /*
+		     * Function to hide or show table columns
+		     */
+			$('a.column-vis').on('click', function (e) {
+				e.preventDefault();
+				var column = table.column($(this).attr('data-column'));
+				var classes = $(this).attr("class")
+
+				column.visible(!column.visible());
+
+				if (column.visible() == true) {
+					$(this).prop('class', classes.replace("text-muted", "") + " text-primary");
+				} else {
+					$(this).prop('class', classes.replace("text-primary", "") + " text-muted");
+				}
+			});
+		});
+	</script>
 
 {% endblock %}
