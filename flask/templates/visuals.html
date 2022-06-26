@@ -9,185 +9,487 @@
 
 {% block content %}
 
-	<div class="jumbotron" style="margin: auto; text-align: center;">
-		<p class="text-primary" padding-top="10px">{{title}}</p>
-		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-			<button type="button" class="btn btn-primary">Select View</button>
-			<div class="btn-group" role="group">
-				<button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-				<div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 50px);" data-popper-placement="bottom-start">
-					<a class="dropdown-item" href="{{url_for('visuals', view='TopPopularTracks')}}">Top 10 Popular Tracks</a>
-					<a class="dropdown-item" href="{{url_for('visuals', view='TopListenedTracks')}}">Top 10 Listened Tracks</a>
-					<a class="dropdown-item" href="{{url_for('visuals', view='TopDanceableTracks')}}">Top 10 Danceable Tracks</a>
-					<a class="dropdown-item" href="{{url_for('visuals', view='LatestTracksDuration')}}">10 Latest Tracks Duration</a>
+	<div class="container">
+		<br>
+		<div class="row">
+			<div class="col-2">
+				<div class="row">
+					<div class="form-group">
+						<label for="select-quantity" class="form-label mt-4">Quantity</label>
+						<select id="select-quantity" class="form-select" onchange="updateOrder()">
+							<option value="5">5</option>
+							<option value="10" selected="selected">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+						</select>
+					</div>
+					<label>Current order</label>
+					<select id="select-order-column" class="btn btn-info dropdown-toggle" onchange="updateOrder()">
+						<option value="id_tweet">Date</option>
+						<option value="popularity">Popularity</option>
+						<option value="danceability">Danceability</option>
+						<option value="energy">Energy</option>
+						<option value="loudness">Loudness</option>
+						<option value="speechiness">Speechiness</option>
+						<option value="acousticness">Acousticness</option>
+						<option value="instrumentalness">Instrumentalness</option>
+						<option value="liveness">Liveness</option>
+						<option value="valence">Valence</option>
+						<option value="tempo">Tempo</option>
+						<option value="Duration_ms">Duration</option>
+					</select>
+					<div class="form-check form-switch">
+						<input id="select-order-direction" class="form-check-input" type="checkbox" onchange="updateOrder()">
+						<label id="select-order-direction-label" class="form-check-label" for="flexSwitchCheckChecked">Descending</label>
+					</div>
+				</div>
+				<div class="row">
+					<legend class="mt-4">Columns</legend>
+					<div class="form-check">
+						<input id="checkbox-popularity" class="form-check-input" type="checkbox" value="popularity" id="flexCheckDefault" checked="" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckDefault">Popularity</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-danceability" class="form-check-input" type="checkbox" value="danceability" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Danceability</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-energy" class="form-check-input" type="checkbox" value="energy" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Energy</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-loudness" class="form-check-input" type="checkbox" value="loudness" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Loudness</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-speechiness" class="form-check-input" type="checkbox" value="speechiness" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Speechiness</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-acousticness" class="form-check-input" type="checkbox" value="acousticness" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Acousticness</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-instrumentalness" class="form-check-input" type="checkbox" value="instrumentalness" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Instrumentalness</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-liveness" class="form-check-input" type="checkbox" value="liveness" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Liveness</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-valence" class="form-check-input" type="checkbox" value="valence" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Valence</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-tempo" class="form-check-input" type="checkbox" value="tempo" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Tempo</label>
+					</div>
+					<div class="form-check">
+						<input id="checkbox-duration_ms" class="form-check-input" type="checkbox" value="duration_ms" id="flexCheckChecked" onclick="selectData(this, 'bar')">
+						<label class="form-check-label" for="flexCheckChecked">Duration (s)</label>
+					</div>
+				</div>
+			</div>
+			<div class="col-8">
+				<canvas id="mainChart" width="600px" height="800px"></canvas>
+			</div>
+			<div class="col-2">
+				<legend class="mt-4">Line bar</legend>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-popularity" type="radio" class="form-check-input" name="lineselector" value="popularity" onchange="selectData(this, 'line')">
+          				Popularity
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-danceability" type="radio" class="form-check-input" name="lineselector" value="danceability" onchange="selectData(this, 'line')">
+          				Danceability
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-energy" type="radio" class="form-check-input" name="lineselector" value="energy" onchange="selectData(this, 'line')">
+          				Energy
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-loudness" type="radio" class="form-check-input" name="lineselector" value="loudness" checked="" onchange="selectData(this, 'line')">
+          				Loudness
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-speechiness" type="radio" class="form-check-input" name="lineselector" value="speechiness" checked="" onchange="selectData(this, 'line')">
+          				Speechiness
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-acousticness" type="radio" class="form-check-input" name="lineselector" value="acousticness" checked="" onchange="selectData(this, 'line')">
+          				Acousticness
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-instrumentalness" type="radio" class="form-check-input" name="lineselector" value="instrumentalness" checked="" onchange="selectData(this, 'line')">
+          				Instrumentalness
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-liveness" type="radio" class="form-check-input" name="lineselector" value="liveness" checked="" onchange="selectData(this, 'line')">
+          				Liveness
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-valence" type="radio" class="form-check-input" name="lineselector" value="valence" checked="" onchange="selectData(this, 'line')">
+          				Valence
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-tempo" type="radio" class="form-check-input" name="lineselector" value="tempo" checked="" onchange="selectData(this, 'line')">
+          				Tempo
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-duration_ms" type="radio" class="form-check-input" name="lineselector" value="duration_ms" checked="" onchange="selectData(this, 'line')">
+          				Duration (s)
+        			</label>
+				</div>
+				<div class="form-check">
+					<label class="form-check-label">
+						<input id="radiobutton-none" type="radio" class="form-check-input" name="lineselector" value="none" checked="" onchange="selectData(this, 'line')">
+          				--None--
+        			</label>
 				</div>
 			</div>
 		</div>
-		<select class="btn btn-info dropdown-toggle" name="chart_type" id="chart_type" onchange="updateChart(this.value)">
-			<option value="chart_bar">Bar</option>
-			<option value="chart_line">Line</option>
-			<option value="chart_radar">Radar</option>
-		</select>
-		<br>
 	</div>
 
-	<div>
-		<canvas id="chart_bar" width="400px" height="400px"></canvas>
-		<canvas id="chart_line" width="400px" height="400px" style="display:none;"></canvas>
-		<canvas id="chart_radar" width="400px" height="400px" style="display:none;"></canvas>
+	<script>
+		/* *
+		 * Initial configuration.
+	 	 * Default view: popularity of 10 lastest tracks in chronological order in a bar chart.
+	 	 * *
+		 */
 
-		<script>
+		var data_list = {{data_list | safe}};								// Data in a list of lists
+		var data_columns = {{data_columns | safe}};							// Column names of the data in a list of strings
+		var data = [];														// List of the data to be shown
+		var chart_type = "bar";												// Initial dataset type
+		var selected_column = "popularity";								// Initial column
+		var label = data_columns[data_columns.indexOf(selected_column)];	// Position of the selected column in the data
+		var data_labels = [];												// List of the data labels to be shown
+		var quantity_data_shown = 10;										// Number of rows that will be shown in the graph
 
-			function updateChart(selected_chart) {
-				var chart_ids = ["chart_bar", "chart_line", "chart_radar"];
+		const backgroundColors = {											// Background colors for each column
+			popularity: 'rgba(255, 105, 97, 1)',
+			danceability: 'rgba(119, 221, 119, 1)',
+			energy: 'rgba(253, 253, 150, 1)',
+			loudness: 'rgba(132, 182, 244, 1)',
+			speechiness: 'rgba(253, 202, 225, 1)',
+			acousticness: 'rgba(97, 247, 255, 1)',
+			instrumentalness: 'rgba(221, 119, 221, 1)',
+			liveness: 'rgba(150, 150, 253, 1)',
+			valence: 'rgba(244, 194, 132, 1)',
+			tempo: 'rgba(202, 253, 230, 1)',
+			duration_ms: 'rgba(255, 108, 62, 1)'
+		};
 
-				for (var i = 0; i < chart_ids.length; i++) {
-					if (chart_ids[i] == selected_chart) {
-						document.getElementById(chart_ids[i]).style.display = "";
+		const borderColors = {												// Border colors for each column
+			popularity: 'rgba(0, 0, 0, 1)',
+			danceability: 'rgba(0, 0, 0, 1)',
+			energy: 'rgba(0, 0, 0, 1)',
+			loudness: 'rgba(0, 0, 0, 1)',
+			speechiness: 'rgba(0, 0, 0, 1)',
+			acousticness: 'rgba(0, 0, 0, 1)',
+			instrumentalness: 'rgba(0, 0, 0, 1)',
+			liveness: 'rgba(0, 0, 0, 1)',
+			valence: 'rgba(0, 0, 0, 1)',
+			tempo: 'rgba(0, 0, 0, 1)',
+			duration_ms: 'rgba(0, 0, 0, 1)'
+		};
+
+		// Sort the data based on the "id_tweet" column
+		data_list.sort(function(x,y){return x[data_columns.indexOf("id_tweet")] - y[data_columns.indexOf("id_tweet")];}).reverse();
+
+		// Get the data
+		for (let i = 0; i < quantity_data_shown; ++i){
+			// Get the data labels
+			data_labels.push(data_list[i][data_columns.indexOf("name")]);
+
+			// Get the data
+			data.push(data_list[i][data_columns.indexOf(selected_column)]);
+		}
+
+		// Get chart context and create the default chart
+		var mainCTX = document.getElementById('mainChart').getContext('2d');
+		var mainChart = new Chart(mainCTX, {
+			type: chart_type,
+			data: {
+				labels: data_labels,
+				datasets: [{
+					label: label,
+					data: data,
+					type: 'bar',
+					backgroundColor: backgroundColors[selected_column],
+					borderColor: borderColors[selected_column],
+					borderWidth: 1
+				}]
+			},
+			options: {
+        		maintainAspectRatio: false,
+				scales: {
+			        xAxes: [{
+			            ticks: {
+			            	autoSkip: false,
+	                		beginAtZero: true
+		            	}
+			        }, {
+			            position: 'top',
+			            ticks: {
+			                display: false
+			            },
+			            gridLines: {
+			                display: false,
+			                drawTicks: false
+			            }
+			        }],
+			        yAxes: [{
+			            /* Your yAxes options here */
+			        }, {
+			            position: 'right',
+			            ticks: {
+			                display: false
+			            },
+			            gridLines: {
+			                display: false,
+			                drawTicks: false
+			            }
+			        }]
+				}
+			}
+		});
+
+		/*
+		 * Function that receives the item that called it (checkbox or radiobutton) and the dataset type to add (line or chart)
+		 * This function add the dataset corresponding to the selected column to the mainChart with the order and direction specified
+		 */
+		function selectData(selected_item, chart_type) {
+			// Data collected from Flask
+			var data_list = {{data_list | safe}};						// Data in a list of lists
+			var data_columns = {{data_columns | safe}};					// Column names of the data in a list of strings
+			
+			// Variables used
+			var selected_column = selected_item.value;					// Column to be modified, coming from a checkbox or radiobutton
+			var column_index = data_columns.indexOf(selected_column);	// Position of the selected column in the data
+			var data = [];												// List of the data to be shown
+			var data_labels = [];										// List of the data labels to be shown
+			var dataset_list = [];										// List of the columns already shown in the chart
+			var dataset_type_list = [];									// List of the dataset types
+			var dataset_bar_list = [];									// List of the columns already shown in the chart, excluding the 'line' dataset
+			var order = document.getElementById('select-order-column').value;	// Column selected to be ordered
+			var direction = document.getElementById('select-order-direction');	// Element containing the direction of the sorting
+			var quantity_data_shown = document.getElementById('select-quantity').value;	// Quantity of data to be shown
+			
+			// Populate the lists
+			mainChart.data.datasets.forEach(dataset => {
+				// Add all the labels to the dataset_list
+				dataset_list.push(dataset.label);
+
+				// Add all the types to the dataset_bar_list
+				dataset_type_list.push(dataset.type);
+
+				// Add only the labels of 'bar' datasets to the dataset_bar_list
+				if (dataset.type == 'bar') {
+					dataset_bar_list.push(dataset.label);
+				} else {
+					dataset_bar_list.push('---');
+				}
+			});
+
+			// Indexes considering the current datasets in the chart
+			var datasetIndex = dataset_list.indexOf(selected_column);			// Position of the dataset of the selected column (-1 if not found)
+			var datasetLineIndex = dataset_type_list.indexOf('line');			// Position of the 'line' dataset (-1 if not found)
+			var datasetBarIndex = dataset_bar_list.indexOf(selected_column);	// Position of the dataset of the selected column, excluding the 'line' dataset (-1 if not found)
+
+			// Sort the data based on the selected order and direction
+			if (direction.checked) {
+				data_list.sort(function(x,y){return x[data_columns.indexOf(order)] - y[data_columns.indexOf(order)];});
+			} else {
+				data_list.sort(function(x,y){return x[data_columns.indexOf(order)] - y[data_columns.indexOf(order)];}).reverse();
+			}
+
+			// Get the data labels
+			for (let i = 0; i < quantity_data_shown; ++i){
+				data_labels.push(data_list[i][data_columns.indexOf("name")]);
+			}
+
+			// If the dataset we want to modify comes from the 'line' radiobuttons
+			if (chart_type == 'line'){
+				// If the radiobutton is checked (it will be, but just for a double check)
+				if (selected_item.checked){
+					// In case there is a 'bar' dataset with the same column, remove the dataset and uncheck the checkbox
+					if(datasetIndex >= 0 && datasetIndex != datasetLineIndex) {
+						$('#checkbox-'+selected_column).prop("checked", false);
+						mainChart.data.datasets.splice(datasetIndex, 1);
+						mainChart.update();
+
+						// Adjust the index of the 'line' dataset in case the previous removal affected it
+						if (datasetIndex < datasetLineIndex){
+							datasetLineIndex = datasetLineIndex - 1;
+						}
+					}
+
+					// In case there is a 'line' dataset
+					if(datasetLineIndex >= 0) {
+						// Remove the existing 'line' dataset
+						mainChart.data.datasets.splice(datasetLineIndex, 1);
+						mainChart.update();
+
+						// If value is different than 'none', then add the new dataset
+						if (selected_item.value != "none"){
+							for (let i = 0; i < quantity_data_shown; ++i){
+								data_labels.push(data_list[i][data_columns.indexOf("name")]);
+								data.push(data_list[i][column_index]);
+							}
+
+							eval("var " + selected_column + " = { label: selected_column, data: data, type: 'line', fill: false, borderColor: borderColors[selected_column], borderWidth: 1 };");
+							mainChart.data.datasets.unshift(eval(selected_column));
+							mainChart.update();
+						}
 					} else {
-						document.getElementById(chart_ids[i]).style.display = "none";
+						// if there is no 'line' dataset and the value is no 'none', add the new one
+						if (selected_item.value != "none"){
+							console.log("Step 4")
+							for (let i = 0; i < quantity_data_shown; ++i){
+								data_labels.push(data_list[i][data_columns.indexOf("name")]);
+								data.push(data_list[i][column_index]);
+							}
+
+							eval("var " + selected_column + " = { label: selected_column, data: data, type: 'line', fill: false, borderColor: borderColors[selected_column], borderWidth: 1 };");
+							mainChart.data.datasets.unshift(eval(selected_column));
+							mainChart.update();
+						}
+					}
+				}
+			} else {
+				// If the dataset we want to modify comes from the 'bar' checkboxes
+				// If the item is checked, add the dataset. Otherwise, remove the dataset
+				if (selected_item.checked){
+					
+					// If the selected column is shown in a 'line' dataset, remove it
+					if (datasetIndex == datasetLineIndex && datasetLineIndex >= 0) {
+						$('#radiobutton-'+selected_column).prop("checked", false);
+						$('#radiobutton-none').prop("checked", true);
+						mainChart.data.datasets.splice(datasetIndex, 1);
+						mainChart.update();
+					}
+
+					// If the selected column is now not present in the chart
+					if(datasetBarIndex < 0) {
+						for (let i = 0; i < quantity_data_shown; ++i){
+							data_labels.push(data_list[i][data_columns.indexOf("name")]);
+							data.push(data_list[i][column_index]);
+						}
+
+						eval("var " + selected_column + " = { label: selected_column, data: data, type: 'bar', backgroundColor: backgroundColors[selected_column], borderColor: borderColors[selected_column], borderWidth: 1 };");
+						mainChart.data.datasets.push(eval(selected_column));
+						mainChart.update();
+					}
+				} else {
+					if(datasetBarIndex >= 0) {
+					    mainChart.data.datasets.splice(datasetBarIndex, 1);
+					    mainChart.update();
 					}
 				}
 			}
+		}
 
-			const ctx_1 = document.getElementById('chart_bar').getContext('2d');
-			const myChart_1 = new Chart(ctx_1, {
-				type: 'bar',
-				data: {
-					labels: {{data_labels | safe}},
-					datasets: [{
-						label: {{label_name | safe}},
-						data: {{data_values | safe}},
-						backgroundColor: [
-						'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(255, 159, 64, 0.2)'
-						],
-						borderColor: [
-						'rgba(255, 99, 132, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(255, 159, 64, 1)'
-						],
-						borderWidth: 1
-					}]
-				},
-				options: {
-					scales: {
-						yAxes: [{
-				            ticks: {
-			                	beginAtZero: true
-				            }
-				        }]
-					}
+		/*
+		 * Function that updates the chart with the current order and direction, re-adding the existing datasets to the chart
+		 */
+		function updateOrder() {
+			// Data collected from Flask
+			var data_list = {{data_list | safe}};					// Data in a list of lists
+			var data_columns = {{data_columns | safe}};				// Column names of the data in a list of strings
+
+			// Variables used
+			var data = [];											// List of the data to be shown
+			var data_labels = [];									// List of the data labels to be shown
+			var dataset_list = [];									// List of the columns already shown in the chart
+			var dataset_type_list = [];								// List of the dataset types
+			var dataset_bar_list = [];								// List of the columns already shown in the chart, excluding the 'line' dataset
+			var type = "bar";										// Type of the dataset
+			var order = document.getElementById('select-order-column').value;	// Column selected to be ordered
+			var direction = document.getElementById('select-order-direction');	// Element containing the direction of the sorting
+			var direction_label = document.getElementById('select-order-direction-label');	// "Ascending" or "Descending" label
+			var quantity_data_shown = document.getElementById('select-quantity').value;	// Quantity of data to be shown
+			
+			// Populate the lists
+			mainChart.data.datasets.forEach(dataset => {
+				// Add all the labels to the dataset_list
+				dataset_list.push(dataset.label);
+
+				// Add all the types to the dataset_bar_list
+				dataset_type_list.push(dataset.type);
+
+				// Add only the labels of 'bar' datasets to the dataset_bar_list
+				if (dataset.type == 'bar') {
+					dataset_bar_list.push(dataset.label);
+				} else {
+					dataset_bar_list.push('---');
 				}
 			});
 
-			const ctx_2 = document.getElementById('chart_line').getContext('2d');
-			const myChart_2 = new Chart(ctx_2, {
-				type: 'line',
-				data: {
-					labels: {{data_labels | safe}},
-					datasets: [{
-						label: {{label_name | safe}},
-						data: {{data_values | safe}},
-						backgroundColor: [
-						'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(255, 159, 64, 0.2)'
-						],
-						borderColor: [
-						'rgba(255, 99, 132, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(255, 159, 64, 1)'
-						],
-						borderWidth: 1
-					}]
-				},
-				options: {
-					scales: {
-						yAxes: [{
-				            ticks: {
-			                	beginAtZero: true
-				            }
-				        }]
-					}
-				}
-			});
+			// Sort the data based on the selected order and direction
+			if (direction.checked) {
+				data_list.sort(function(x,y){return x[data_columns.indexOf(order)] - y[data_columns.indexOf(order)];});
+				direction_label.innerHTML = "Ascending";
+			} else {
+				data_list.sort(function(x,y){return x[data_columns.indexOf(order)] - y[data_columns.indexOf(order)];}).reverse();
+				direction_label.innerHTML = "Descending";
+			}
 
-			const ctx_3 = document.getElementById('chart_radar').getContext('2d');
-			const myChart_3 = new Chart(ctx_3, {
-				type: 'radar',
-				data: {
-					labels: {{data_labels | safe}},
-					datasets: [{
-						label: {{label_name | safe}},
-						data: {{data_values | safe}},
-						backgroundColor: [
-						'rgba(255, 99, 132, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(54, 162, 235, 0.2)',
-						'rgba(255, 206, 86, 0.2)',
-						'rgba(75, 192, 192, 0.2)',
-						'rgba(153, 102, 255, 0.2)',
-						'rgba(255, 159, 64, 0.2)'
-						],
-						borderColor: [
-						'rgba(255, 99, 132, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(54, 162, 235, 1)',
-						'rgba(255, 206, 86, 1)',
-						'rgba(75, 192, 192, 1)',
-						'rgba(153, 102, 255, 1)',
-						'rgba(255, 159, 64, 1)'
-						],
-						borderWidth: 1
-					}]
-				},
-				options: {
-					scales: {
-						yAxes: [{
-				            ticks: {
-			                	beginAtZero: true
-				            }
-				        }]
-					}
+			// Get the data labels
+			for (let i = 0; i < quantity_data_shown; ++i){
+				data_labels.push(data_list[i][data_columns.indexOf("name")]);
+			}
+
+			// Remove all datasets to update them with the new order
+			mainChart.data.datasets.splice(0, dataset_list.length);
+			mainChart.update();
+
+			// Change the data_labels of the chart
+			mainChart.data.labels = data_labels;
+
+			// Add the datasets with the previous type and data with the new order
+			for (let i = 0; i < dataset_list.length; i++){
+				data = []
+				type = dataset_type_list[i]
+				selected_column = dataset_list[i]
+
+				// Populate the data
+				for (let j = 0; j < quantity_data_shown; j++){
+					data.push(data_list[j][data_columns.indexOf(selected_column)]);
 				}
-			});
-		</script>
-	</div>
+
+				// Add the dataset (at the start of the list if its type is 'line')
+				eval("var " + selected_column + " = { label: selected_column, data: data, type: type, fill: false, backgroundColor: backgroundColors[selected_column], borderColor: borderColors[selected_column], borderWidth: 1 };");
+				if (type == "bar") {
+					mainChart.data.datasets.push(eval(selected_column));
+				} else {
+					mainChart.data.datasets.unshift(eval(selected_column));
+				}
+				mainChart.update();
+			}
+		}
+	</script>
 
 {% endblock %}
