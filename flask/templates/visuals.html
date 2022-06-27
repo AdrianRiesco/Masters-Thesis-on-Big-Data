@@ -36,7 +36,7 @@
 						<option value="liveness">Liveness</option>
 						<option value="valence">Valence</option>
 						<option value="tempo">Tempo</option>
-						<option value="Duration_ms">Duration</option>
+						<option value="duration_ms">Duration</option>
 					</select>
 					<div class="form-check form-switch">
 						<input id="select-order-direction" class="form-check-input" type="checkbox" onchange="updateOrder()">
@@ -44,7 +44,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<legend class="mt-4">Columns</legend>
+					<legend class="mt-4">Bar selector</legend>
 					<div class="form-check">
 						<input id="checkbox-popularity" class="form-check-input" type="checkbox" value="popularity" id="flexCheckDefault" checked="" onclick="selectData(this, 'bar')">
 						<label class="form-check-label" for="flexCheckDefault">Popularity</label>
@@ -95,7 +95,7 @@
 				<canvas id="mainChart"></canvas>
 			</div>
 			<div class="col-md-2">
-				<legend class="mt-4">Line bar</legend>
+				<legend class="mt-4">Line selector</legend>
 				<div class="form-check">
 					<label class="form-check-label">
 						<input id="radiobutton-popularity" type="radio" class="form-check-input" name="lineselector" value="popularity" onchange="selectData(this, 'line')">
