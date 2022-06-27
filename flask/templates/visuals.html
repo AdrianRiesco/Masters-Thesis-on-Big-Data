@@ -12,7 +12,7 @@
 	<div class="container">
 		<br>
 		<div class="row">
-			<div class="col-2">
+			<div class="col-md-2">
 				<div class="row">
 					<div class="form-group">
 						<label for="select-quantity" class="form-label mt-4">Quantity</label>
@@ -91,10 +91,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-8">
-				<canvas id="mainChart" width="600px" height="800px"></canvas>
+			<div class="col-md-8">
+				<canvas id="mainChart"></canvas>
 			</div>
-			<div class="col-2">
+			<div class="col-md-2">
 				<legend class="mt-4">Line bar</legend>
 				<div class="form-check">
 					<label class="form-check-label">
@@ -244,12 +244,18 @@
 				}]
 			},
 			options: {
+				responsive: true,
         		maintainAspectRatio: false,
 				scales: {
 			        xAxes: [{
 			            ticks: {
 			            	autoSkip: false,
-	                		beginAtZero: true
+	                		beginAtZero: true,
+	                		maxRotation: 45,
+	                		minRotation: 45,
+	                		callback: function(value) {
+			                    return value.substr(0, 10).concat("...");
+			                }
 		            	}
 			        }, {
 			            position: 'top',
@@ -262,7 +268,14 @@
 			            }
 			        }],
 			        yAxes: [{
-			            /* Your yAxes options here */
+			            position: 'left',
+			            ticks: {
+			                display: true
+			            },
+			            gridLines: {
+			                display: true,
+			                drawTicks: true
+			            }
 			        }, {
 			            position: 'right',
 			            ticks: {
@@ -464,7 +477,6 @@
 
 			// Remove all datasets to update them with the new order
 			mainChart.data.datasets.splice(0, dataset_list.length);
-			mainChart.update();
 
 			// Change the data_labels of the chart
 			mainChart.data.labels = data_labels;
@@ -487,8 +499,9 @@
 				} else {
 					mainChart.data.datasets.unshift(eval(selected_column));
 				}
-				mainChart.update();
 			}
+
+			mainChart.update();
 		}
 	</script>
 
