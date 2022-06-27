@@ -220,7 +220,7 @@
 		data_list.sort(function(x,y){return x[data_columns.indexOf("id_tweet")] - y[data_columns.indexOf("id_tweet")];}).reverse();
 
 		// Get the data
-		for (let i = 0; i < quantity_data_shown; ++i){
+		for (let i = 0; i < Math.min(quantity_data_shown, data_list.length); ++i){
 			// Get the data labels
 			data_labels.push(data_list[i][data_columns.indexOf("name")]);
 
@@ -340,7 +340,7 @@
 			}
 
 			// Get the data labels
-			for (let i = 0; i < quantity_data_shown; ++i){
+			for (let i = 0; i < Math.min(quantity_data_shown, data_list.length); ++i){
 				data_labels.push(data_list[i][data_columns.indexOf("name")]);
 			}
 
@@ -368,7 +368,7 @@
 
 						// If value is different than 'none', then add the new dataset
 						if (selected_item.value != "none"){
-							for (let i = 0; i < quantity_data_shown; ++i){
+							for (let i = 0; i < Math.min(quantity_data_shown, data_list.length); ++i){
 								data_labels.push(data_list[i][data_columns.indexOf("name")]);
 								data.push(data_list[i][column_index]);
 							}
@@ -381,7 +381,7 @@
 						// if there is no 'line' dataset and the value is no 'none', add the new one
 						if (selected_item.value != "none"){
 							console.log("Step 4")
-							for (let i = 0; i < quantity_data_shown; ++i){
+							for (let i = 0; i < Math.min(quantity_data_shown, data_list.length); ++i){
 								data_labels.push(data_list[i][data_columns.indexOf("name")]);
 								data.push(data_list[i][column_index]);
 							}
@@ -407,7 +407,7 @@
 
 					// If the selected column is now not present in the chart
 					if(datasetBarIndex < 0) {
-						for (let i = 0; i < quantity_data_shown; ++i){
+						for (let i = 0; i < Math.min(quantity_data_shown, data_list.length); ++i){
 							data_labels.push(data_list[i][data_columns.indexOf("name")]);
 							data.push(data_list[i][column_index]);
 						}
@@ -471,7 +471,7 @@
 			}
 
 			// Get the data labels
-			for (let i = 0; i < quantity_data_shown; ++i){
+			for (let i = 0; i < Math.min(quantity_data_shown, data_list.length); ++i){
 				data_labels.push(data_list[i][data_columns.indexOf("name")]);
 			}
 
@@ -488,7 +488,7 @@
 				selected_column = dataset_list[i]
 
 				// Populate the data
-				for (let j = 0; j < quantity_data_shown; j++){
+				for (let j = 0; j < Math.min(quantity_data_shown, data_list.length); j++){
 					data.push(data_list[j][data_columns.indexOf(selected_column)]);
 				}
 
