@@ -25,7 +25,7 @@ filename = sys.argv[1]
 
 # Values of our query
 keyword = "#NowPlaying" # Hashtag searched
-max_results = 300 # Max results to gather (limit to keep API limit rates low)
+max_results = 100 # Max results to gather (limit to keep API limit rates low)
 since_id = None # Results must have a tweet id greater than this value
 
 # Open the csv with the data and get the last id stored, in case it exists
