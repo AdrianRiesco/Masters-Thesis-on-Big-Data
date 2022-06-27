@@ -58,8 +58,6 @@ class Tweetsandtracks(db.Model):
 # Home page
 @app.route("/")
 def home():
-	print('Database synchronized', flush = True)
-
 	return render_template("index.html")
 
 # Table view
