@@ -4,17 +4,61 @@
 
 \section{GitHub}
 
-\nonzeroparskip GitHub~\footnote{\url{https://github.com/}} is a collaborative development platform created in 2008 and based on the Git version control system. Github has a freemium model and provides the ability to host both public and private projects, focusing primarily on code development~\cite{wikipedia_github}.
+\nonzeroparskip GitHub\footnote{\url{https://github.com/}} is a collaborative development platform created in 2008 and based on the Git version control system. Github has a freemium model and provides the ability to host both public and private projects, focusing primarily on code development~\cite{wikipedia_github}.
 
 \nonzeroparskip GitHub is the repository in which the project has been managed and hosted, and Git is the version control through which the commits have been made from the local environment. For the agile methodology, the Milestones have been used as sprints and the Issues as the tasks to be carried out in each of them.
 
 \section{Postman}
 
-\nonzeroparskip Postman~\footnote{\url{https://www.postman.com/}} is a tool that allows the user to build and use APIs in a simple way. Some of its characteristics are the API repository (easier storage, cataloging and collaboration), the availability of tools to help in the API design, testing and documentation, the workspaces to organize the work, and built-in integrations with tools such as GitHub, Azure DevOps, Jenkins, Splunk, Slack and Microsoft Teams. In addition, Postman is based on open source technologies, which provides the ability to be easily extended~\cite{postman}.
+\nonzeroparskip Postman\footnote{\url{https://www.postman.com/}} is a tool that allows the user to build and use APIs in a simple way. Some of its characteristics are the API repository (easier storage, cataloging and collaboration), the availability of tools to help in the API design, testing and documentation, the workspaces to organize the work, and built-in integrations with tools such as GitHub, Azure DevOps, Jenkins, Splunk, Slack and Microsoft Teams. In addition, Postman is based on open source technologies, which provides the ability to be easily extended~\cite{postman}.
+
+\subsection{Twitter API}
+\nonzeroparskip Twitter is an American social network founded in 2006 that allows users to share short posts (280 characters since 2017), known as tweets, and interact with those of other users through replies, likes, retweets or quotes~\cite{wikipedia_twitter}. Although it has recently incorporated additional payment functions, this social network is free to use and is accessible on multiple platforms. Currently, the social network has 217 million active users daily~\cite{variety_twitterusers}.
+
+\nonzeroparskip On the other hand, Twitter is also known for giving certain facilities to developers to make their products interact with the platform. The company has a Twitter Developer portal where a multitude of resources and useful documentation are posted~\cite{twitter_dev}. This portal contains a description of the API that Twitter offers, how to authenticate, the different endpoints to which queries can be launched, and the associated usage limits. 
+
+\nonzeroparskip The Twitter API, currently in its second version, allows the user to request and receive a wide variety of data. Depending on the query launched, the user can receive a series of different objects, each with its own fields and parameters:
+\begin{itemize}
+	\item \textbf{Tweets}. It represents the basic block of communication between Twitter users.
+	\item \textbf{Users}. It represents a user account and its metadata.
+	\item \textbf{Spaces}. It represents a space (virtual places in Twitter where users can interact in live conversations) and its metadata.
+	\item \textbf{Lists}. It represents a Twitter list (used to configure information visualized in the timeline) and its metadata.
+	\item \textbf{Media}. It represents any image, video or GIF attached to a tweet and can be obtained by expanding the Tweet object.
+	\item \textbf{Polls}. It represents a poll (choices, duration, end-time and results) and can be obtained by expanding the Tweet object.
+	\item \textbf{Places}. It represents a place identified in a tweet and can be obtained by expanding the Tweet object.
+\end{itemize}
+
+\nonzeroparskip Of all the endpoints available in the API (manage tweets, user lookup, search spaces, full-archive tweet search...), in this thesis only the Recent Search endpoint has been used, which returns a list of the most recent tweets based on the rules entered in the query. Both the number of tweets to receive and the id or date of the oldest tweet to be returned can be specified, and this endpoint allows receiving up to one hundred tweets per query and includes a pagination token to handle larger results~\cite{twitter_dev_searchtweets}.
+
+\subsection{Spotify API}
+\nonzeroparskip Spotify is a company of Swedish origin founded in 2006 that provides audio streaming services, currently being one of the companies with the largest number of users among all those that have this type of service. Spotify has a catalog made up of music and podcasts, including more than 82 million songs, distributed through a free service (limited control and periodic announcements) with the option of a premium subscription. Its business model is based on advertising and paying users, and it pays royalties to artists based on the proportion of streaming of their songs compared to the total played~\cite{wikipedia_spotify}.
+
+\nonzeroparskip Spotify has a developer portal that provides a wealth of documentation to help design and implement various use cases. Spotify has an API based on a REST architecture with different published endpoints that return metadata of artists, albums and songs from its own catalog, as well as information on users, lists and music saved by them, in JSON format~\cite{spotify_dev}.
+
+\nonzeroparskip The Spotify API has several endpoints to which queries can be sent to collect or modify information: Albums, Artists, Shows, Episodes, Search~\cite{spotify_dev_endpoint_searchforitem}, Tracks~\cite{spotify_dev_endpoint_gettracksaudiofeatures}, Users, Playlists, Categories, Genres, Player and Market. During this thesis the following have been used:
+\begin{itemize}
+	\item \textbf{Search}. Search for Item allows to obtain information about the Spotify catalog of artists, songs, albums, playlists, shows or episodes. You can specify the type or types of objects to return, in this case being the type ``tracks''. Only one search can be performed per query.
+	\item \textbf{Tracks}. Get Tracks' Audio Features allows to obtain the characteristics of a set of songs specified by their id. The characteristics returned are as follows:
+	\begin{itemize}
+		\item \textbf{Acousticness}. Confidence measure from 0.0 to 1.0 about whether the track is acoustic, with 1.0 representing high confidence that it is acoustic.
+		\item \textbf{Danceability}. It describes with a value between 0.0 and 1.0 how suitable a track is for dancing based on a combination of its musical elements, with 1.0 being the greatest danceability.
+		\item \textbf{Duration\_ms}. It represents the duration of the track in milliseconds.
+		\item \textbf{Energy}. It represents with a value between 0.0 and 1.0 the conception of the energy level of the track, being 1.0 the maximum energy value.
+		\item \textbf{Instrumentalness}. It predicts with a value between 0.0 and 1.0 whether or not the track contains vocals. Values above 0.5 usually represent tracks without vocals, and the closer to 1.0 the more likely they are.
+		\item \textbf{Key}. It indicates the key (in a musical context, the dominant scale) the track is in, with each key having an assigned integer starting with 0. If no key is detected, the value is -1.
+		\item \textbf{Liveness}. It represents audience presence with a value between 0.0 and 1.0. Values greater than 0.8 indicate a high probability that the track was recorded live.
+		\item \textbf{Loudness}. Indicates the average volume of a track in decibels, with values generally contained between -60dB and 0dB.
+		\item \textbf{Mode}. Indicates the modality of the track, being the value 1 greater and 0 less.
+		\item \textbf{Speechiness}. Detects the presence of spoken words in a track. Values less than 0.33 typically indicate instrumental tracks without vocals, values between 0.33 and 0.66 songs with music and vocals, and values greater than 0.66 podcasts, audiobooks, and similar formats.
+		\item \textbf{Tempo}. Indicates the tempo or rhythm of a track in beats per minute.
+		\item \textbf{Time\_signature}. Represents the estimated time signature value, with values between 3 and 7 indicating 3/4 and 7/4 time signatures, respectively.
+		\item \textbf{Valence}. Indicates with values between 0.0 and 1.0 the musical positivity transmitted by the track, where high values indicate greater positivity, while low values indicate greater negativity.
+	\end{itemize}
+\end{itemize}
 
 \section{Apache Airflow}
 
-\nonzeroparskip Apache Airflow~\footnote{\url{https://airflow.apache.org/}} is a service orchestrator that allows you to plan, manage, and monitor workflows~\cite{airflow}. It was created in 2014 by Airbnb with the aim of handling the company's huge data flows, and published in 2015 under an open source license. In March 2016 the project joined the Apache Software Foundations incubator and was published as a top level project in 2019.
+\nonzeroparskip Apache Airflow\footnote{\url{https://airflow.apache.org/}} is a service orchestrator that allows you to plan, manage, and monitor workflows~\cite{airflow}. It was created in 2014 by Airbnb with the aim of handling the company's huge data flows, and published in 2015 under an open source license. In March 2016 the project joined the Apache Software Foundations incubator and was published as a top level project in 2019.
 
 \nonzeroparskip Airflow is used to automate jobs by breaking them down into smaller tasks. For example, this project uses Airflow to automate the ETL process that consumes data from Twitter and Spotify, processes it, and serves it to the user. Among the main features of Airflow are scalability and ease of integration with other tools.
 
@@ -24,7 +68,7 @@
 
 \section{Apache Spark}
 
-\nonzeroparskip Apache Spark~\footnote{\url{https://spark.apache.org/}} is a multi-language engine that emerged in 2009 at the University of California used for data processing and machine learning designed for both simple single-node and distributed architectures~\cite{infoworld_spark}. Apache Spark supports the Python, Scala, SQL, Java and R programming languages and allows to design pipelines for large volumes of data for batch and streaming processing. Currently, Spark is one of the most widely used large-scale data processing frameworks.
+\nonzeroparskip Apache Spark\footnote{\url{https://spark.apache.org/}} is a multi-language engine that emerged in 2009 at the University of California used for data processing and machine learning designed for both simple single-node and distributed architectures~\cite{infoworld_spark}. Apache Spark supports the Python, Scala, SQL, Java and R programming languages and allows to design pipelines for large volumes of data for batch and streaming processing. Currently, Spark is one of the most widely used large-scale data processing frameworks.
 
 \nonzeroparskip Key features of Apache Spark include its ability to scale, its speed, and the multitude of free resources made available by the large Apache community. In addition, Apache Spark has been adapted to the main cloud solutions, such as Databricks, Amazon Web Services, Google Cloud Platform and Microsoft Azure.
 
@@ -38,7 +82,7 @@
 
 \section{Cassandra}
 
-\nonzeroparskip Apache Cassandra~\footnote{\url{https://cassandra.apache.org/_/index.html}} is a widely used open source non-relational database that emerged in 2008 as a Google code open source project and in March 2010 as an Apache top level project. It is based on a system that acts as a mix between key-value and column-oriented and introduces Cassandra Query Language or CQL, an alternative query language to SQL with a similar syntax~\cite{cassandra,wikipedia_cassandra}.
+\nonzeroparskip Apache Cassandra\footnote{\url{https://cassandra.apache.org/_/index.html}} is a widely used open source non-relational database that emerged in 2008 as a Google code open source project and in March 2010 as an Apache top level project. It is based on a system that acts as a mix between key-value and column-oriented and introduces Cassandra Query Language or CQL, an alternative query language to SQL with a similar syntax~\cite{cassandra,wikipedia_cassandra}.
 
 \nonzeroparskip Among its main features are:
 \begin{itemize}
@@ -52,31 +96,31 @@
 
 \section{Flask}
 
-\nonzeroparskip Flask~\footnote{\url{https://flask.palletsprojects.com/en/2.1.x/}} is a Python-based open-source web framework created in 2004 and used to build web applications~\cite{flask}. It is considered a micro web framework because it does not lay on other tools or libraries to work, building a solid core and providing the capability to extend its operation. Flask uses Jinja as its template engine.
+\nonzeroparskip Flask\footnote{\url{https://flask.palletsprojects.com/en/2.1.x/}} is a Python-based open-source web framework created in 2004 and used to build web applications~\cite{flask}. It is considered a micro web framework because it does not lay on other tools or libraries to work, building a solid core and providing the capability to extend its operation. Flask uses Jinja as its template engine.
 
 \nonzeroparskip During development, Flask v2.1.2 has been used to build the backend of the web application, gathering the data from the database and routing the user to the three existing views.
 
 \section{Bootstrap}
 
-\nonzeroparskip Bootstrap~\footnote{\url{https://getbootstrap.com/}} is an open-source CSS (Cascading Style Sheets) framework whose objective is to facilitate the design of responsive web interfaces~\cite{bootstrap}. Bootstrap bases its operation on a grid system with divisions of up to twelve columns, six responsive levels and a multitude of classes and configurations.
+\nonzeroparskip Bootstrap\footnote{\url{https://getbootstrap.com/}} is an open-source CSS (Cascading Style Sheets) framework whose objective is to facilitate the design of responsive web interfaces~\cite{bootstrap}. Bootstrap bases its operation on a grid system with divisions of up to twelve columns, six responsive levels and a multitude of classes and configurations.
 
 \nonzeroparskip During development, Bootstrap v5 has been used to organize the visual appearance of the three views of the web application and control the placement and responsiveness of its elements to screen size variations.
 
 \section{Chart.js}
 
-\nonzeroparskip Chart.js~\footnote{\url{https://www.chartjs.org/}} Chart.js is an open source Javascript library used to make charts using HTML code~\cite{w3schools_chartjs}. The use of this library is very simple, it has a large user community and, although it does not have a wide variety of graph types, they are enough to satisfy basic visualization needs.
+\nonzeroparskip Chart.js\footnote{\url{https://www.chartjs.org/}} Chart.js is an open source Javascript library used to make charts using HTML code~\cite{w3schools_chartjs}. The use of this library is very simple, it has a large user community and, although it does not have a wide variety of graph types, they are enough to satisfy basic visualization needs.
 
 \nonzeroparskip During development, a Chart.js v2.5.0 mixed graph with data in bar and line formats has been used to build the final visualizations.
 
 \section{Datatables}
 
-\nonzeroparskip Datatables~\footnote{\url{https://datatables.net/}} Datatables is an open source plugin for the jQuery javascript library that provides an easy and flexible way to design HTML-based data tables~\cite{datatables}. Among the features that can be added are the selection of the number of rows to display, pagination, multi-column sorting, search and customization of colors and formats.
+\nonzeroparskip Datatables\footnote{\url{https://datatables.net/}} Datatables is an open source plugin for the jQuery javascript library that provides an easy and flexible way to design HTML-based data tables~\cite{datatables}. Among the features that can be added are the selection of the number of rows to display, pagination, multi-column sorting, search and customization of colors and formats.
 
 \nonzeroparskip During development, Datatables v1.12.1 was used to create the final display in table format, complete with the ability to hide and show table columns.
 
 \section{Docker}
 
-\nonzeroparskip Docker~\footnote{\url{https://www.docker.com/}} is an open-source tool that emerged in 2013 that allows you to add an abstraction layer to the deployment of applications by automating them in a container from software~\cite{docker}. Through Docker, software development can be simplified and applications can be executed in different work environments more easily.
+\nonzeroparskip Docker\footnote{\url{https://www.docker.com/}} is an open-source tool that emerged in 2013 that allows you to add an abstraction layer to the deployment of applications by automating them in a container from software~\cite{docker}. Through Docker, software development can be simplified and applications can be executed in different work environments more easily.
 
 \nonzeroparskip The containers raised by Docker are associated with an image. To build an image in Docker, a file called Dockerfile with a specific syntax is used. Once built, the image will contain the Dockerfile along with the libraries and code specified, and any desired containers can be launched from it.
 
@@ -84,7 +128,7 @@
 
 \section{Docker Compose}
 
-\nonzeroparskip Docker Compose~\footnote{\url{https://docs.docker.com/compose/}} is a solution that allows you to manage multiple Docker containers on a single host machine~\cite{docker_compose}.
+\nonzeroparskip Docker Compose\footnote{\url{https://docs.docker.com/compose/}} is a solution that allows you to manage multiple Docker containers on a single host machine~\cite{docker_compose}.
 
 \nonzeroparskip Docker Compose uses a yaml file to indicate the services you want to build along with the images each one should be based on. In this file you can indicate environment variables, dependencies, ports and even commands that must be launched at startup.
 
