@@ -10,39 +10,55 @@
 
 \begin{itemize}
 	\item Real and updated data, preferably related to the social interest.
-	\item The possibility of getting a stream data flow.
-	\item The potential to combine both to get an added value.
+	\item The possibility of getting a stream data flow, avoiding static datasets.
+	\item The potential to combine both sources to get an added value.
 \end{itemize}
 
-\nonzeroparskip Considering the previous points, the author found an interesting option on Twitter and Spotify providers. Both of them provides solid APIs for a fluid development and have the characteristics needed to combine the data collected. Consequently, the author designed the following use case:
+\nonzeroparskip Taking into account the previous aspects, the author found Twitter and Spotify as interesting options. Both provide robust APIs for smooth development and have the necessary features to combine the collected data. Consequently, the author designed the following use case:
 
 \begin{enumerate}
 	\item The Twitter API is consulted to gather the \textit{tweets} with the hashtag \texttt{\textit{\#NowPlaying}}.
-	\item The tweet is cleaned, removing the stopwords and the other hashtags and getting the song name and artist as isolated as possible.
-	\item The Spotify API is consulted to gather the information of the song identified.
-	\item The data is joined and moved to the database, ready to be stored and visualized.
+	\item The tweet is cleaned up, stopwords and other hashtags are removed, and the track name and artist are made as isolated as possible.
+	\item The Spotify API is queried to collect the identified track information.
+	\item The data is formatted and stored in a .csv file.
+	\item The data is uploaded to the database and the .csv is stored as a history file.
+	\item The data served from the database is requested by the back end and served on the front end.
+	\item The data is displayed to the user on the front end.
 \end{enumerate}
+
+\nonzeroparskip The final set of tools and data flow are shown in the flowchart below: \figuraNormalSinMarco{0.19}{img/flowchart}{Project flowchart}{flowchart}{}
 
 \nonzeroparskip During the design phase, the author performed the following tasks:
 \begin{itemize}
-	\item Parse the output of both APIs using Postman to create the script to extract the data.
-	\item Identify the most appropriate software tools to meet the project requirements. At this point, Apache Airflow was determined for flow orchestration, Apache Spark for data processing, Apache Cassandra for data storage, Flask and Bootstrap for data visualization, and Docker and Docker Compose for container management of the services.
+	\item Analyze the output of both APIs using Postman to create the script to extract the data.
+	\item Identify the most appropriate software tools to meet the project requirements. At this point, Apache Airflow was determined for flow orchestration, Apache Spark for data processing, Apache Cassandra for data storage, Flask and Bootstrap for data visualization (along with Chart.js and Datatables), and Docker and Docker Compose for service container management.
 	\item Organize at a high level the Sprints that must be dedicated to each desired functionality and generate an overview of when each of them must be achieved so as not to affect the project timeline.
 \end{itemize}
 
 \nonzeroparskip During the development phase, the following tasks were performed:
 \begin{itemize}
-	\item A Python script (PySpark, Python API for Apache Spark) was created to collect, join, transform and store the data from the Twitter and Spotify APIs.
 	\item Containers for each service were defined in Docker Compose and custom images were created in Docker (if needed):
 	\begin{itemize}
-		\item Apache Airflow containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower.
-		\item Apache Spark containers were configured for data processing: master and three workers.
-The Apache Cassandra container was configured for data storage.
-		\item Linux container was configured for data visualization with Flask and Bootstrap.
+		\item Apache Airflow containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower. Airflow setup required a custom image with the following packages installed via PyPI as additional requirements: ``apache-airflow-providers-apache-spark'', ``requests'', ``pandas'', ``cqlsh''. In addition, in the Airflow Dockerfile, the Java SDK 11 was installed and the JAVA\_HOME variable set. The image used as base image was the official Airflow image (version 2.3.0) found on DockerHub\footnote{\url{https://hub.docker.com/r/apache/airflow}}, as well as the Docker Compose base file\footnote{\url{https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html\#docker-compose-yaml}}.
+		\item Apache Spark containers were configured for data processing: master and three workers. Spark setup required a custom image with the following packages installed via PyPI as additional requirements: ``requests'', ``pandas'', ``cqlsh''. The image used as base image was the Bitnami Spark image (version 3.1.2) obtained from DocherHub\footnote{\url{https://hub.docker.com/r/bitnami/spark}}.
+		\item An Apache Cassandra container was configured for data storage, using an additional container to set up the database configuration. The image used was the official Cassandra (version 4.0) image found on DockerHub \footnote{\url{https://hub.docker.com/_/cassandra}} and no additional requirements were needed.
+		\item A Linux container was configured for the web application. The container required a custom image with the following packages installed via PyPI as additional requirements: flask (version 2.1.2), cassandra-driver(version 3.25.0), flask-cqlalchemy (version 2.0.0), redis, Cmake, cryptography. The image used as base image was the official Python image (version ``3.8-slim-buster'') found on DockerHub\footnote{\url{https://hub.docker.com/_/python}}.
 	\end{itemize}
-	\item The DAG in Apache Airflow was configured to automate data extraction, transformation, and loading.
+	\item A Python script (PySpark, Python API for Apache Spark) was created to collect, join, transform and store the data from the Twitter and Spotify APIs to a .csv file.
+	\item The DAG in Apache Airflow was configured to automate data extraction, transformation, and loading. The process is triggered every 30 minutes and collects 100 tweets in every instance. Within the DAG, there are three tasks (collect data, send data to Cassandra, and create historic file) which involved the operators \textit{SparkSubmitOperator} (installed via PyPI with the package name ``apache-airflow-providers-apache-spark'') and \textit{BashOperator}.
 	\item Apache Spark was configured to be able to receive the script sent by Apache Airflow and communicate with Apache Cassandra.
-	\item Apache Cassandra was configured with the database and structure required.
+	\item Apache Cassandra was configured with the structure required (keyspaces, rows, etc.).
+	\item Flask and Bootstrap were used to build the back and front end of the web application, along with the Chart.js and Datatables resources.
 \end{itemize}
 
-\nonzeroparskip The project development was undertaken following an Agile methodology, with Sprints of 2 weeks of duration being represented as \textit{Milestones} in Github and the tasks as \textit{Issues}.
+\nonzeroparskip The most relevant aspects and issues faced by the author during the development are:
+\begin{itemize}
+	\item \textbf{Developer keys.} Both Twitter and Spotify required to obtain developer keys in order to use their APIs. For obvious reasons, the \textit{.env} file provided in GitHub does not have the developers keys added.
+	\item \textbf{Rate limits of the APIs.} The Twitter API allows the developer to collect up to 500.000 tweets per month, what forced the author to set up a limit for both the development and the production phases.
+	\item \textbf{Airflow operators.} Airflow does not have an operator for Cassandra that manage data loading from a .csv to the database. In addition, the command ``COPY FROM'', usually used to send data from a file to Cassandra, was not designed to be used inside a Python script. The author had to use the \texttt{\textit{BashOperator}} to connect to Cassandra from the Airflow Webserver container and run the ``COPY FROM'' command, instead of the \texttt{\textit{PythonOperator}} or any external Cassandra operator.
+	\item \textbf{Airflow and Spark connection.} To avoid the user having to manually create the connection between Airflow and Spark using the Airflow UI, the author used an environment variable to define the connection so that it can be created during the Docker Compose deployment. As a quirk, according to the Airflow documentation, ``Connections defined in environment variables will not show up in the Airflow UI or using airflow connections list''\footnote{\url{https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html\#storing-a-connection-in-environment-variables}}.
+	\item \textbf{Database schema configuration at launch.} Apache Cassandra required some external resources to build the database schema. Rather than using an script and build a custom image, the author found an interesting solution consisting on the deployment of a temporary container (``cassandra-init'' service in the Docker Compose file) that waits for the Cassandra container to be healthy and then creates the schema via cqlsh command. The solution was found on Stackoverflow\footnote{\url{https://stackoverflow.com/questions/40443617/init-script-for-cassandra-with-docker-compose}} and it referenced one of the Netflix's repositories\footnote{\url{https://github.com/Netflix/osstracker/blob/master/docker-compose.yml}}, where a service named ``cassandra-load-keyspace'' was performing the same task.
+	\item \textbf{Data representation.} Before deciding to use Datatables, the author tried to build a custom implementation for the sort and search capabilities. After spending a large part of a Sprint trying to configure the solution using other frameworks and libraries, the author discovered Datatables and used it to build the final view of the table.
+\end{itemize}
+
+\nonzeroparskip The project development was undertaken following an Agile methodology, with 9 Sprints of 2 weeks of duration being represented as \textit{Milestones} in Github and the tasks as \textit{Issues}.

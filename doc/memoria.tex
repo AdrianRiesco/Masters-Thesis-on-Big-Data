@@ -97,6 +97,18 @@
     \end{center}%
   \end{figure}%
 }
+
+% Comando para incluir imágenes en formato normal (sin marco).
+\newcommand{\figuraNormalSinMarco}[5]{%
+  \begin{figure}%
+    \begin{center}%
+    \includegraphics[angle=0,height=#1\textheight,#5]{#2}%
+    \caption{#3}%
+    \label{#4}%
+    \end{center}%
+  \end{figure}%
+}
+
 % Para las tablas
 \newcommand{\otoprule}{\midrule [\heavyrulewidth]}
 %
