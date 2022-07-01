@@ -2,6 +2,8 @@
 
 \section{Introduction}
 
+\nonzeroparskip This section shows the structure of the data used and the flow and architecture diagrams.
+
 \section{Data design}
 
 \subsection{Twitter data structure}
@@ -77,10 +79,10 @@
 
 \nonzeroparskip The fields required for the project are:
 \begin{itemize}
-	\item \textbf{id.} Tweet id, useful uniquely identify the tweet.
-	\item \textbf{text.} Tweet text, useful to identify the song played.
-	\item \textbf{entities.} useful to clean the text and remove hashtasg, cashtags, mentions and urls.
-	\item \textbf{created\_at.} Tweet creation date.
+	\item \textbf{\texttt{id.}} Tweet id, useful uniquely identify the tweet.
+	\item \textbf{\texttt{text.}} Tweet text, useful to identify the song played.
+	\item \textbf{\texttt{entities.}} useful to clean the text and remove hashtasg, cashtags, mentions and urls.
+	\item \textbf{\texttt{created\_at.}} Tweet creation date.
 \end{itemize}
 
 \subsection{Spotify data structure}
@@ -179,11 +181,11 @@
 
 \nonzeroparskip The fields required for the project are:
 \begin{itemize}
-	\item \textbf{id.} Track id, useful uniquely identify the track.
-	\item \textbf{name.} Track name, useful to identify the track.
-	\item \textbf{popularity.} Popularity of the track.
-	\item \textbf{artists' id.} ID of the artists.
-	\item \textbf{artists' name.} Name of the artists.
+	\item \textbf{\texttt{id.}} Track id, useful uniquely identify the track.
+	\item \textbf{\texttt{name.}} Track name, useful to identify the track.
+	\item \textbf{\texttt{popularity.}} Popularity of the track.
+	\item \textbf{\texttt{artists' id.}} ID of the artists.
+	\item \textbf{\texttt{artists' name.}} Name of the artists.
 \end{itemize}
 
 \nonzeroparskip The data received from Spotify queries to the Tracks endpoint (``Get Tracks' Audio Features'') has the following structure (the data has been obtained from a real query and its output has been reduced by trimming certain elements due to their length):
@@ -261,8 +263,12 @@
 	\item time\_signature
 \end{itemize}
 
-\section{Procedural design}
-\nonzeroparskip Flow diagram.
-
 \section{Architectural design}
-\nonzeroparskip Component diagram.
+\nonzeroparskip The component diagram is shown in the figure~\ref{component-diagram}.
+
+\figuraNormalSinMarco{0.22}{img/component-diagram}{Component diagram}{component-diagram}{}
+
+\section{Procedural design}
+\nonzeroparskip The flow diagram is shown in the figure~\ref{flow-diagram}.
+
+\figuraNormalSinMarco{0.20}{img/flow-diagram}{Flow diagram}{flow-diagram}{}
