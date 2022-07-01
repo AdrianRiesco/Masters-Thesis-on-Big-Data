@@ -264,39 +264,54 @@
 
 %
 % Comando para el texto en formato JSON
-\colorlet{punct}{red!60!black}
+% Source: https://tex.stackexchange.com/questions/83085/how-to-improve-listings-display-of-json-files
+
+% Switch used as state variable
+\makeatletter
+\newif\ifisvalue@json
+
+\newcommand\jsonkey{\color{purple}}
+\newcommand\jsonvalue{\color{cyan}}
+\newcommand\jsonnumber{\color{orange}}
 \definecolor{background}{HTML}{EEEEEE}
-\definecolor{delim}{RGB}{20,105,176}
-\colorlet{numb}{magenta!60!black}
 
 \lstdefinelanguage{json}{
-    basicstyle=\scriptsize\ttfamily,
-    numbers=left,
-    numberstyle=\scriptsize,
-    stepnumber=1,
-    numbersep=8pt,
+    tabsize=4,
     showstringspaces=false,
     breaklines=true,
-    frame=lines,
-    backgroundcolor=\color{background},
-    literate=
-     *{0}{{{\color{numb}0}}}{1}
-      {1}{{{\color{numb}1}}}{1}
-      {2}{{{\color{numb}2}}}{1}
-      {3}{{{\color{numb}3}}}{1}
-      {4}{{{\color{numb}4}}}{1}
-      {5}{{{\color{numb}5}}}{1}
-      {6}{{{\color{numb}6}}}{1}
-      {7}{{{\color{numb}7}}}{1}
-      {8}{{{\color{numb}8}}}{1}
-      {9}{{{\color{numb}9}}}{1}
-      {:}{{{\color{punct}{:}}}}{1}
-      {,}{{{\color{punct}{,}}}}{1}
-      {\{}{{{\color{delim}{\{}}}}{1}
-      {\}}{{{\color{delim}{\}}}}}{1}
-      {[}{{{\color{delim}{[}}}}{1}
-      {]}{{{\color{delim}{]}}}}{1},
+    keywords={false,true},
+    alsoletter=0123456789.,
+    morestring=[s]{"}{"},
+    stringstyle=\jsonkey\ifisvalue@json\jsonvalue\fi,
+    MoreSelectCharTable=\lst@DefSaveDef{`:}\colon@json{\enterMode@json},
+    MoreSelectCharTable=\lst@DefSaveDef{`,}\comma@json{\exitMode@json{\comma@json}},
+    MoreSelectCharTable=\lst@DefSaveDef{`\{}\bracket@json{\exitMode@json{\bracket@json}},
+    basicstyle=\scriptsize\ttfamily,
+    backgroundcolor=\color{background}
 }
+
+% Enter "value" mode after encountering a colon
+\newcommand\enterMode@json{%
+    \colon@json%
+    \ifnum\lst@mode=\lst@Pmode%
+        \global\isvalue@jsontrue%
+    \fi
+}
+
+% Leave "value" mode: either we hit a comma, or the value is a nested object
+\newcommand\exitMode@json[1]{#1\global\isvalue@jsonfalse}
+
+\lst@AddToHook{Output}{%
+    \ifisvalue@json%
+        \ifnum\lst@mode=\lst@Pmode%
+            \def\lst@thestyle{\jsonnumber}%
+        \fi
+    \fi
+    % Override by keyword style if a keyword is detected
+    \lsthk@DetectKeywords% 
+}
+
+\makeatother
 
 %
 % Nuevo comando para tablas grandes sin cabecera.
