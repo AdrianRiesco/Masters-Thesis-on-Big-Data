@@ -1,4 +1,33 @@
 \capitulo{7}{Conclusions and future work lines}
 
-\nonzeroparskip Every project must include the conclusions derived from its development. These can be of a different nature, depending on the type of project, but normally there will be a set of conclusions related to the results of the project and a set of technical conclusions.
-In addition, it is very useful to make a critical report indicating how the project can be improved, or how work can continue along the lines of the completed project.
+% Every project must include the conclusions derived from its development. These can be of a different nature, depending on the type of project, but normally there will be a set of conclusions related to the results of the project and a set of technical conclusions.
+% In addition, it is very useful to make a critical report indicating how the project can be improved, or how work can continue along the lines of the completed project.
+
+% Next steps: clean data, check songs, ask for last id tweet instead of get last n (if no rate limits), add group by, add global metrics, add range of metrics, group by artist, optimize the process (duration), button to load from historic...
+% Create MV, developer keys, change GitHub name, change project name, video demo, add summary, descriptors, add figures.
+
+% Alvar:
+% - ¿Eliminar resumen y descriptores en español?
+% - ¿Título del TFM y del GitHub?
+% Twitter and Spotify data extraction, transformation, loading and visualization using Big Data and development tools.
+% - ¿Claves de desarrollador para la MV?
+
+% - Más problemas? Comprensión inicial de Docker? Configuración inicial de Airflow?
+% - Capturas de UIs -> Explicación breve de los elementos de cada vista.
+% - Captura de Aiflow
+% - Agradecimientos.
+% - ¿?
+
+\nonzeroparskip Given the requirements established in the planning phase, the final result is considered a success. The author has learned how to handle the tools included in the scope and how to interconnect them to achieve a complete ETL flow with a simple but effective visualization layer.
+
+\nonzeroparskip In case of continuing with the presented work, the author has performed an exercise of analysis and identification of the next steps and improvements that could be implemented:
+\begin{enumerate}
+	\item Improve the percentage of correctly identified tracks. This action could be addressed in several ways, including: discarding tweets with characters outside the Latin alphabet (not only specific characters), removing stop words in several languages so as not to have to discard all characters not included in the Latin alphabet, or increasing the number of tracks returned by Spotify and performing a comparative method (bag of words, TI-IDF, etc.) between their titles and the full text of the tweet. This would improve the reliability of the database and give more confidence when building the global metrics.
+	\item Ensure that we capture as much data as possible. In the case of wanting to develop the project on a larger scale, both providers can be contacted to try to obtain an increase in the consumption limit of their APIs. In this way, depending on the new limitation, it could try to divide its catch at a certain time. In the best case, it would be possible to capture all tweets, even if our system captures them periodically, since the identifier of the last tweet captured in the previous iteration can be used as a reference for the endpoint to start the new capture from that point.
+	\item At the front end layer, additional visualizations could be introduced that would allow the user, for example, to group by artist and to obtain global metrics that answer questions such as: ``How popular are this artist's tracks?'' or ``How danceable are this artist's tracks compared to this other artist's tracks?''. Another possible view to develop would be one that allows tracks to be observed by metric ranges and answers questions such as what percentage of the total tracks are between 80-100 of the energy metric.
+	\item Another improvement that would facilitate user interaction with the tool would be the ability to load the file history from the tool itself. In this way, the user could stop the process, select his historical files and be able to load only the desired data.
+	\item At the design level, although Docker Compose fits the requirements for this project, in the case that a large scalability is required, it would be convenient to replace the tool with another one that allows container management across multiple hosts, such as Docker Swarm or Kubernetes.
+	\item Finally, in the event that the process increases in the amount of data captured, it is advisable to perform an analysis of the capture process and a refactoring of the necessary parts to speed up the process, if necessary. With the current data volume, the execution speed of the whole process triggered by Apache Airflow takes an average of 30-35 seconds.
+\end{enumerate}
+
+\nonzeroparskip Most of these steps were considered for inclusion at some point in the development phase, but were discarded to ensure that the project, which for time reasons was conceived from the beginning as a proof-of-concept rather than an end-user oriented application, remained on schedule.
