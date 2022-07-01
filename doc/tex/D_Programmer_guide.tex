@@ -2,15 +2,19 @@
 
 \section{Introduction}
 
+\nonzeroparskip This section contains the directory structure used and the main technical details that a user wishing to reproduce or execute the project should be aware of.
+
 \section{Directory structure}
 \nonzeroparskip The project repository, hosted on GitHub, has the following directory structure:
 \begin{itemize}
-	\item \textbf{\texttt{airflow}}.
-	\item \textbf{\texttt{doc}}. It contains the project report.
-	\item \textbf{\texttt{docker}}. 
-	\item \textbf{\texttt{spark}}. 
-	\item \textbf{\texttt{README.md}}. 
+	\item \textbf{\texttt{airflow}}. It contains the created DAG and the folders that Airflow needs to function properly.
+	\item \textbf{\texttt{cassandra}}. I contains the database schema required.
+	\item \textbf{\texttt{doc}}. It contains the project report and the \LaTeX files used to generate it.
+	\item \textbf{\texttt{docker}}. It contains the Docker Compose file required to deploy the project and the Airflow, Spark and Flask folders used for building custom images.
+	\item \textbf{\texttt{spark}}. It contains the script used to collect the API data, the necessary libraries and the history files.
 \end{itemize}
+
+\nonzeroparskip The directory structure is shown in the figure~\ref{directory}. \figuraNormalSinMarco{0.40}{img/directory}{Directory structure}{directory}{}
 
 \section{Programmer's guide}
 
@@ -36,7 +40,7 @@
 		\item \texttt{tweet.fields} = \texttt{created\_at,entities}
 		\item \texttt{max\_results} = \texttt{10}
 	\end{itemize}
-	\item Now, we can send our query \url{https://api.twitter.com/2/tweets/search/re cent?query=\%23NowPlaying\&max\_results=10\&tweet.fields=created\_a t,entities} to get the 10 most recent tweets with the hashtag \texttt{\textit{\#NowPlaying}} and receive their basic information (id, text) as well as the entities (hashtags, urls, annotations...) and the creation time stamp.
+	\item Now, the query can be sent \url{https://api.twitter.com/2/tweets/search/re cent?query=\%23NowPlaying\&max\_results=10\&tweet.fields=created\_a t,entities} to get the 10 most recent tweets with the hashtag \texttt{\textit{\#NowPlaying}} and receive their basic information (id, text) as well as the entities (hashtags, urls, annotations...) and the creation time stamps.
 \end{enumerate}
 
 \nonzeroparskip After analyze the data gathered from the Twitter API,  the author inspected the Spotify API (more specifically the endpoint ``Search for Item''), following the next steps:
@@ -48,40 +52,41 @@
 	\item The result of this query is the first result of the search containing information of the artist, the song and the album. With the artist and song ids we can consult other endpoints to get an audio analysis, the audio features and the artist information, between others.
 \end{enumerate}
 
+\nonzeroparskip It is important to note that to run or play the project, the user has to modify the \texttt{.env} file located within the \texttt{docker} folder and include the respective developer keys for both Twitter and Spotify.
+
 \subsection{Development}
-\nonzeroparskip During the development phase, the following items were installed in the system:
+\nonzeroparskip To run the project, the following items must be installed in the system:
 \begin{itemize}
-	\item Docker version 20.10.12, build e91ed57.
-	\item docker-compose version 1.29.2, build 5becea4c.
-	\item docker-compose version 1.29.2, build 5becea4c.
+	\item Docker\footnote{\url{https://docs.docker.com/engine/install/ubuntu/}}. The author used the version \texttt{20.10.12}, build \texttt{e91ed57}.
+	\item Docker Compose\footnote{\url{https://docs.docker.com/compose/install/}}. The author used the version \texttt{1.29.2}, build \texttt{5becea4c}.
+	\item Python\footnote{\url{https://docs.python-guide.org/starting/install3/linux/}}. The author used the version \texttt{3.8.10}.
 \end{itemize}
 
-\nonzeroparskip Steps followed:
-\begin{enumerate}
-	%\item Create the dockerfile.
-	%\item Build the image:  \texttt{docker build -f spark.Dockerfile -t ar/spark-ubuntu .}
-	%\item Create a Docker network: \texttt{docker network create --driver bridge spark-network}
-	%\item Run the image: \texttt{sudo docker run -d -t --name master --network spark-network ar/spark-ubuntu}
-	\item Create the Docker Compose file.
-	\item Launch the environment with \texttt{sudo docker-compose up --remove-orphans}.
-	\item ***Build the extended image: \texttt{sudo docker build . -f Dockerfile --pull --tag extended/airflow:2.3.0}.
-	\item ***Build the extended image: \texttt{sudo docker-compose build}.
-	\item ***Execute airflow-init: \texttt{sudo docker-compose up airflow-init}.
-	\item ***\texttt{sudo docker-compose up}.
-	\item ***In Airflow UI, create Spark connection.
-\end{enumerate}
+\nonzeroparskip The above packaged were installed in a ``\texttt{Ubuntu 20.04.4 LTS}'' virtual machine. In case of using a different operating system, please refer to the package documentation.
 
 \section{Compilation, installation and execution of the project}
-\nonzeroparskip The instructions to execute the project are the following ones:
+\nonzeroparskip The steps needed to run the project are:
 \begin{enumerate}
-	\item Create the Docker Compose file.
-	\item Launch the environment with \texttt{sudo docker-compose up --remove-orphans}.
+	\item Open a \texttt{command prompt} and move to the \texttt{docker} folder.
+	\item Launch the environment with ``\texttt{sudo docker-compose up}''. It can be launched in the background by adding the flag \texttt{-b}: ``\texttt{sudo docker-compose up -b}''.
+	\item Wait until all the services have started and are in a healthy state. It usually is achieved when the \texttt{airflow\_webserver\_container} is continuously displaying a status message, if the flag \texttt{-b} was not included. Otherwise, a list of the services can be displayed with the command ``\texttt{sudo docker ps}''.
+	\item Access to the Airflow UI (\url{http://localhost:8080}, user ``\texttt{airflow}'' and password ``\texttt{airflow}'') and start the DAG ``\texttt{spark\_main}'' as shown in the figure~\ref{start-dag}.
+	\item Access to the web application (\url{http://localhost:8000}) and check that the ``\texttt{Data}'' and ``\texttt{Visuals}'' views contain the captured data.
+	\item To stop the containers, the command ``\texttt{sudo docker-compose down}'' can be used. To remove the networks and docker volumes, ``\texttt{sudo docker-compose down -v}'' must be used.
 \end{enumerate}
+
+\figuraNormalSinMarco{0.25}{img/start-dag}{Pause/unpause DAG}{start-dag}{}
+
+\nonzeroparskip The author faced some problems during the development phase that are easily solved:
+\begin{itemize}
+	\item If the DAG fails, the logs can be consulted in the \texttt{airflow/logs/dag\_id =spark\_main} folder. If the ``\texttt{cassandra\_load}'' task is failing, it can be due to the permission of the \texttt{spark/resources/history} folder. To solve that, open a command promt in the \texttt{spark/resources} folder and execute the command ``\texttt{sudo chmod -R 777 history}''. Then, remove the ``\texttt{data.csv}'' file located in the \texttt{spark/resources} folder (or manually create the history file) and execute the DAG again.
+\end{itemize}
 
 \section{System tests}
 \nonzeroparskip To test that the project is working in a proper way, there are a few tests that can be performed:
 \begin{enumerate}
-	\item Test 1.
-	\item Test 2.
-	\item Test 3.
+	\item Access to the Airflow UI and review the status of the last iterations of the ``\texttt{spark\_main}'' DAG.
+	\item Access to the Spark UI (\url{http://localhost:8181}) and check that the worker nodes are executing or have executed the tasks sent from Airflow.
+	\item Access to the \texttt{spark/resources/history} folder and check that the historic file has been created with the format ``\texttt{YYYYMMDDhhmmss}'' (year, month, day, hour, minute, second).
+	\item Access to the ``\texttt{Visuals}'' view in the web application and visualize the metrics sorting the data by different columns. Then, access to the ``\texttt{Data}'' view and check that the data displayed is the same. E.g., sort by \texttt{energy} in descendant order in both views and check that the lists match.
 \end{enumerate}
