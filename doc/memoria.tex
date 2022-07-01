@@ -387,17 +387,17 @@
 \begin{center}%
 	\includegraphics[height=3cm]{img/escudoUBU} \hspace{1cm}
 	\includegraphics[height=3cm]{img/escudoUVA} \hspace{1cm}
-	\includegraphics[height=3cm]{img/escudoULE} \vspace{1cm}%
+	\includegraphics[height=3cm]{img/escudoULE} \vspace{0.1cm}%
 \end{center}%
 
   \vfill
   % Título proyecto y escudo informática ----------------
   \colorbox{cpardoBox}{%
-    \begin{minipage}{.9\textwidth}
-      \vspace{.5cm}\Large
+    \begin{minipage}{0.9\textwidth}
+      \vspace{.5cm}\large
       \begin{center}
-      \textbf{Thesis of the Master's degree in Business Intelligence and Big Data in Cyber-Secure Environments}\vspace{.6cm}\\
-      \textbf{\LARGE\@title{}}
+      \textbf{Thesis of the Master's degree in Business Intelligence and Big Data in Cyber-Secure Environments}\vspace{.5cm}\\
+      \textbf{\Large\@title{}}
       \end{center}
       \vspace{.2cm}
     \end{minipage}
@@ -408,7 +408,7 @@
   % Datos de alumno, curso y tutores ------------------
   \begin{center}%
   {%
-    \noindent\LARGE
+    \noindent\Large
     Presented by \@author{}\\ 
     in University of Burgos --- \@date{}\\
     Supervisor: \@tutor{}\\
@@ -422,7 +422,7 @@
 \newcommand{\nombre}{Adrián Riesco Valbuena} %%% cambio de comando
 
 % Datos de portada
-\title{título del TFM}
+\title{Extraction, transformation, loading and visualization of combined Twitter and Spotify data in a scalable architecture}
 \author{\nombre}
 \tutor{Álvar Arnaiz González}
 \date{\today}
@@ -483,7 +483,7 @@ D. Álvar Arnaiz González
 % Abstract en castellano
 \renewcommand*\abstractname{Resumen}
 \begin{abstract}
-En este primer apartado se hace una \textbf{breve} presentación del tema que se aborda en el proyecto.
+*****¿ELIMINAR ABSTRACT EN ESPAÑOL?*****
 \end{abstract}
 
 \renewcommand*\abstractname{Descriptores}
@@ -496,12 +496,12 @@ Palabras separadas por comas que identifiquen el contenido del proyecto Ej: serv
 % Abstract en inglés
 \renewcommand*\abstractname{Abstract}
 \begin{abstract}
-A \textbf{brief} presentation of the topic addressed in the project.
+This project consists of the development of an \textbf{Extraction, Transformation and Loading} process to capture data from \textbf{Twitter} and \textbf{Spotify} APIs using software tools from the Big Data field, ensuring its scalability. Data from both sources have been combined, processed and stored in a Data Warehouse to be served to the user in a customized front-end. All services have been encapsulated in containers within the same network.
 \end{abstract}
 
 \renewcommand*\abstractname{Keywords}
 \begin{abstract}
-keywords separated by commas.
+Airflow, Apache, BigData, Bootstrap, Cassandra, Chart.js, Datatables, Docker, Docker Compose, ETL, Flask, Spark, Spotify, Twitter.
 \end{abstract}
 
 \clearpage
