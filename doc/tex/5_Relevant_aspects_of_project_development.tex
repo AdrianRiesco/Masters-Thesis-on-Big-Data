@@ -47,9 +47,36 @@
 	\item A Python script (PySpark, Python API for Apache Spark) was created to collect, join, transform and store the data from the Twitter and Spotify APIs to a .csv file.
 	\item The DAG in Apache Airflow was configured to automate data extraction, transformation, and loading. The process is triggered every 30 minutes and collects 100 tweets in every instance. Within the DAG, there are three tasks (collect data, send data to Cassandra, and create historic file) which involved the operators \textit{SparkSubmitOperator} (installed via PyPI with the package name ``apache-airflow-providers-apache-spark'') and \textit{BashOperator}.
 	\item Apache Spark was configured to be able to receive the script sent by Apache Airflow and communicate with Apache Cassandra.
-	\item Apache Cassandra was configured with the structure required (keyspaces, rows, etc.).
+	\item Apache Cassandra was configured with the keyspace structure required.
 	\item Flask and Bootstrap were used to build the back and front end of the web application, along with the Chart.js and Datatables resources.
+	\item The data was normalized to avoid excessively different ranges between metrics. The normalization was made by adding a property (\texttt{@property}) to the data object that returns a list with the normalized data~\ref{tweetsandtracksobject}. The following fields were changed:
+	\begin{itemize}
+		\item Text modifications: ``artists\_name'' was modified to replace the comma with a line break to distinguish between artists collaborating on the same track, and ``created\_at'' was parsed to a MM/DD/YYYY HH:MM:SS format.
+		\item Numerical modifications: ``danceability'', ``energy'', ``speechiness'', ``acousticness'', ``instrumentalness'', ``liveness'' and ``valence'' were moved from a 0-1 range to a 0-100 range and rounded to three decimal places, ``loudness'' and ``tempo'' were also rounded, and ``duration\_ms'' was changed from milliseconds to seconds.
+	\end{itemize}
 \end{itemize}
+
+\figuraNormalSinMarco{0.19}{img/tweetsandtracksobject}{Object representing the Cassandra table}{tweetsandtracksobject}{}
+
+\nonzeroparskip Once the project is deployed, three visual interfaces can be accessed that can help the user to better understand the process:
+\begin{itemize}
+	 \item \textbf{Apache Airflow user interface.} It is accessible through port 8080 (\url{http://localhost:8080}) and allows access, among other things, to the Airflow configuration and the list of configured DAGs, being able to observe their instances and obtain metrics such as execution times.
+	 \item \textbf{Apache Spark user interface.} It is accessible through port 8181 (\url{http://localhost:8181/}) and allows to observe the master node and the three workers, as well as their last tasks performed~\ref{spark-ui}.
+	 \item \textbf{Front end user interface.} It is accessible through port 8000 (\url{http://localhost:8000/}) and contains three views:
+	 \begin{itemize}
+	 	\item \textbf{Home.} Shows a brief introduction of the project and an animated gif to illustrate the implemented data flow~\ref{front-home}.
+	 	\item \textbf{Data.} Displays a table with all the data extracted. This table has been made with Datatables and allows the user to search and sort the data, as well as hide and show columns at will~\ref{front-data}.
+	 	\item \textbf{Visuals.} Displays a chart with two data selectors, a multi-select to add data as a bar and a single-select to add data as a line~\ref{front-visuals}. A script was added that does not allow both selectors to have the same column in their data, so when a column that is present in one of them is selected in the other, it is removed from the previous one. It also has a selector to choose the amount of data to display (values of 5, 10, 15 and 20, to avoid saturating the graph), as well as an order selector that allows the user to sort by any of the columns in ascending or descending order.
+	 \end{itemize}
+\end{itemize}
+
+\figuraNormalSinMarco{0.25}{img/spark-ui}{Spark User Interface}{spark-ui}{}
+
+\figuraNormalSinMarco{0.25}{img/front-home}{Front end home view}{front-home}{}
+
+\figuraNormalSinMarco{0.25}{img/front-data}{Front end data view}{front-data}{}
+
+\figuraNormalSinMarco{0.25}{img/front-visuals}{Front end graph view}{front-visuals}{}
 
 \nonzeroparskip The most relevant aspects and issues faced by the author during the development are:
 \begin{itemize}
@@ -59,6 +86,12 @@
 	\item \textbf{Airflow and Spark connection.} To avoid the user having to manually create the connection between Airflow and Spark using the Airflow UI, the author used an environment variable to define the connection so that it can be created during the Docker Compose deployment. As a quirk, according to the Airflow documentation, ``Connections defined in environment variables will not show up in the Airflow UI or using airflow connections list''\footnote{\url{https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html\#storing-a-connection-in-environment-variables}}.
 	\item \textbf{Database schema configuration at launch.} Apache Cassandra required some external resources to build the database schema. Rather than using an script and build a custom image, the author found an interesting solution consisting on the deployment of a temporary container (``cassandra-init'' service in the Docker Compose file) that waits for the Cassandra container to be healthy and then creates the schema via cqlsh command. The solution was found on Stackoverflow\footnote{\url{https://stackoverflow.com/questions/40443617/init-script-for-cassandra-with-docker-compose}} and it referenced one of the Netflix's repositories\footnote{\url{https://github.com/Netflix/osstracker/blob/master/docker-compose.yml}}, where a service named ``cassandra-load-keyspace'' was performing the same task.
 	\item \textbf{Data representation.} Before deciding to use Datatables, the author tried to build a custom implementation for the sort and search capabilities. After spending a large part of a Sprint trying to configure the solution using other frameworks and libraries, the author discovered Datatables and used it to build the final view of the table.
+	\item \textbf{Canciones erroneas.} Occasionally the text extracted from the tweets is linked to a different tracks than the one that can be read. This is mainly due to two factors:
+	\begin{itemize}
+		\item Although the hashtag used to capture them is an English language expression (NowPlaying), the captured tweets are in several languages. During data cleaning, the author has seen fit to remove characters outside the basic Latin alphabet, i.e., keeping only Unicode characters located in the 0-127 range. This means that when a track contains characters in another alphabet, as it happens in a Korean track, but the user who wrote the tweet enters larger letters in the Latin alphabet (for example, to express his mood about it), the system retains only the latter and uses them to identify the track.
+		\item To simplify and speed up the process, the result collected as valid from Spotify is the first one returned by the endpoint to which the query is launched, which causes deviations when the text resulting from cleaning up the tweet is similar for several different tracks.
+	\end{itemize}
+	However, the author carried out an analysis on a random sample of tracks and, given the project objectives, considered that the erroneous percentage (2 out of 20 tracks) was small enough to be able to continue with the development of the project and build a fairly reliable database.
 \end{itemize}
 
 \nonzeroparskip The project development was undertaken following an Agile methodology, with 9 Sprints of 2 weeks of duration being represented as \textit{Milestones} in Github and the tasks as \textit{Issues}.
