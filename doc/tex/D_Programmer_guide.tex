@@ -67,19 +67,21 @@
 \section{Compilation, installation and execution of the project} \label{programmer_execute}
 \nonzeroparskip The steps needed to run the project are:
 \begin{enumerate}
+	\item Ensure that the folders \texttt{spark/resources/history}, \texttt{airflow/logs} and \texttt{airflow/plugins} have the necessary permissions by executing the command \texttt{sudo chmod -R 777 folder\_to\_set\_permissions}. 
 	\item Open a \texttt{command prompt} and move to the \texttt{docker} folder.
 	\item Launch the environment with ``\texttt{sudo docker-compose up}''. It can be launched in the background by adding the flag \texttt{-b}: ``\texttt{sudo docker-compose up -b}''.
 	\item Wait until all the services have started and are in a healthy state. It usually is achieved when the \texttt{airflow\_webserver\_container} is continuously displaying a status message, if the flag \texttt{-b} was not included. Otherwise, a list of the services can be displayed with the command ``\texttt{sudo docker ps}''.
 	\item Access to the Airflow UI (\url{http://localhost:8080}, user ``\texttt{airflow}'' and password ``\texttt{airflow}'') and start the DAG ``\texttt{spark\_main}'' as shown in the figure~\ref{start-dag}.
 	\item Access to the web application (\url{http://localhost:8000}) and check that the ``\texttt{Data}'' and ``\texttt{Visuals}'' views contain the captured data.
-	\item To stop the containers, the command ``\texttt{sudo docker-compose down}'' can be used. To remove the networks and docker volumes, ``\texttt{sudo docker-compose down -v}'' must be used. The process can also be stopped by pausing the DAG as explained in step 4.
+	\item To stop the containers, the command ``\texttt{sudo docker-compose down}'' can be used. To remove the networks and docker volumes, ``\texttt{sudo docker-compose down -v}'' must be used. The process can also be stopped by pausing the DAG as explained in step 5.
 \end{enumerate}
 
 \figuraNormalSinMarco{0.25}{img/start-dag}{Pause/unpause DAG}{start-dag}{}
 
 \nonzeroparskip The author faced some problems during the development phase that are easily solved:
 \begin{itemize}
-	\item If the DAG fails, the logs can be consulted in the \texttt{airflow/logs/dag\_id =spark\_main} folder. If the ``\texttt{cassandra\_load}'' task is failing, it can be due to the permission of the \texttt{spark/resources/history} folder. To solve that, open a command promt in the \texttt{spark/resources} folder and execute the command ``\texttt{sudo chmod -R 777 history}''. Then, remove the ``\texttt{data.csv}'' file located in the \texttt{spark/resources} folder (or manually create the history file) and execute the DAG again.
+	\item If the build fails for an error in the Airflow container related with the \texttt{/opt/airflow/logs} folder, it will probably be due to the permissions in the \texttt{airflow/logs} folder. To solve it, open a command prompt in the \texttt{airflow} folder and execute the commands ``\texttt{sudo chmod -R 777 logs}'' and ``\texttt{sudo chmod -R 777 plugins}''.
+	\item If the DAG fails, the logs can be consulted in the \texttt{airflow/logs/dag\_id =spark\_main} folder. If the ``\texttt{cassandra\_load}'' task is failing, it can be due to the permissions of the \texttt{spark/resources/history} folder. To solve that, open a command prompt in the \texttt{spark/resources} folder and execute the command ``\texttt{sudo chmod -R 777 history}''. Then, remove the ``\texttt{data.csv}'' file located in the \texttt{spark/resources} folder (or manually create the history file) and execute the DAG again.
 \end{itemize}
 
 \section{System tests}
