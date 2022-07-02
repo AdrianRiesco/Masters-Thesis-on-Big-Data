@@ -52,9 +52,7 @@
 	\item The result of this query is the first result of the search containing information of the artist, the song and the album. With the artist and song ids we can consult other endpoints to get an audio analysis, the audio features and the artist information, between others.
 \end{enumerate}
 
-\nonzeroparskip It is important to note that to run or play the project, the user has to modify the \texttt{.env} file located within the \texttt{docker} folder and include the respective developer keys for both Twitter and Spotify.
-
-\subsection{Development}
+\subsection{Development} \label{programmer_development}
 \nonzeroparskip To run the project, the following items must be installed in the system:
 \begin{itemize}
 	\item Docker\footnote{\url{https://docs.docker.com/engine/install/ubuntu/}}. The author used the version \texttt{20.10.12}, build \texttt{e91ed57}.
@@ -64,7 +62,9 @@
 
 \nonzeroparskip The above packaged were installed in a ``\texttt{Ubuntu 20.04.4 LTS}'' virtual machine. In case of using a different operating system, please refer to the package documentation.
 
-\section{Compilation, installation and execution of the project}
+\nonzeroparskip It is important to note that to run or play the project, the user has to modify the \texttt{.env} file located within the \texttt{docker} folder and include the respective developer keys for both Twitter and Spotify.
+
+\section{Compilation, installation and execution of the project} \label{programmer_execute}
 \nonzeroparskip The steps needed to run the project are:
 \begin{enumerate}
 	\item Open a \texttt{command prompt} and move to the \texttt{docker} folder.
@@ -72,7 +72,7 @@
 	\item Wait until all the services have started and are in a healthy state. It usually is achieved when the \texttt{airflow\_webserver\_container} is continuously displaying a status message, if the flag \texttt{-b} was not included. Otherwise, a list of the services can be displayed with the command ``\texttt{sudo docker ps}''.
 	\item Access to the Airflow UI (\url{http://localhost:8080}, user ``\texttt{airflow}'' and password ``\texttt{airflow}'') and start the DAG ``\texttt{spark\_main}'' as shown in the figure~\ref{start-dag}.
 	\item Access to the web application (\url{http://localhost:8000}) and check that the ``\texttt{Data}'' and ``\texttt{Visuals}'' views contain the captured data.
-	\item To stop the containers, the command ``\texttt{sudo docker-compose down}'' can be used. To remove the networks and docker volumes, ``\texttt{sudo docker-compose down -v}'' must be used.
+	\item To stop the containers, the command ``\texttt{sudo docker-compose down}'' can be used. To remove the networks and docker volumes, ``\texttt{sudo docker-compose down -v}'' must be used. The process can also be stopped by pausing the DAG as explained in step 4.
 \end{enumerate}
 
 \figuraNormalSinMarco{0.25}{img/start-dag}{Pause/unpause DAG}{start-dag}{}

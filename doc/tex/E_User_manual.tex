@@ -4,10 +4,24 @@
 \nonzeroparskip This section summarizes the elements that the user must have and the steps that must be followed to correctly execute the project.
 
 \section{User requirements}
-\nonzeroparskip 
+\nonzeroparskip The technical user requirements to run the project are defined in the section~\ref{programmer_development}. As a summary:
+\begin{enumerate}
+	\item Docker.
+	\item Docker Compose.
+	\item Python 3.
+\end{enumerate}
+
+\nonzeroparskip In addition to the technical requirements, the user must have at least a basic/intermediate knowledge level of the operating system that will be used to run the project.
 
 \section{Installation}
-\nonzeroparskip 
+\nonzeroparskip The steps that need to be followed to install the project are referenced in the section~\ref{programmer_execute}. A simpler summary is shown below:
+\begin{enumerate}
+	\item Open a \texttt{command prompt} and move to the \texttt{docker} folder.
+	\item Launch the environment with ``\texttt{sudo docker-compose up -b}''.
+	\item Wait until all the services have started and are in a healthy state.
+	\item Access to the Airflow UI (\url{http://localhost:8080}, user ``\texttt{airflow}'' and password ``\texttt{airflow}'') and start the DAG ``\texttt{spark\_main}'' as shown in the figure~\ref{start-dag}.
+	\item Use the command ``\texttt{sudo docker-compose down}'' to stop the process.
+\end{enumerate}
 
 \section{User's manual}
-\nonzeroparskip 
+\nonzeroparskip The usage of the project is simple. After installing and running the project, including the activation of the Airflow DAG, all data results are presented to the user in the web application (\url{http://localhost:8000}).
