@@ -7,29 +7,29 @@ The project can be downloaded and executed locally or accessed via [Data Enginee
 > :warning: If you face any kind of problem or the web is running slowly, I encourage you to run the project in your local environment.
 
 ## Description
-This project implements a ETL process to collect data from Twitter. The steps of the process are:
- 1. The Twitter API is consulted to gather the tweets with the hashtag #NowPlaying.
- 2. The tweet is cleaned up, stopwords and other hashtags are removed, and the track name and artist are made as isolated as possible.
- 3. The Spotify API is queried to collect the identified track information.
- 4. The data is formatted and stored in a .csv file.
- 5. The data is uploaded to Cassandra and the .csv is stored as a history file.
- 6. The data served from Cassandra is requested by the back end and served on the front-end.
- 7. The data is displayed to the user on the front-end.
+This project implements a **ETL process** to collect data from Twitter. The steps of the process are:
+ 1. The **Twitter API** is consulted to gather the tweets with the hashtag #NowPlaying.
+ 2. The **tweet** is cleaned up, stopwords and other hashtags are removed, and the track name and artist are made as isolated as possible.
+ 3. The **Spotify API** is queried to collect the identified track information.
+ 4. The data is formatted and stored in a **.csv file**.
+ 5. The data is uploaded to **Cassandra** and the .csv is stored as a history file.
+ 6. The data served from Cassandra is requested by the **back-end** and served on the **front-end**.
+ 7. The data is displayed to the **user** on the front-end.
 
 ![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/flask/static/images/flowchart.gif "Flow chart")
 
 The project has been built using **Docker** and **Docker Compose** to run the following containers:
- - Apache Airflow containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower. Airflow setup required a custom image with the following packages installed via PyPI as additional requirements: "apache-airflow-providers-apache-spark", "requests", "pandas", "cqlsh". In addition, in the Airflow Dockerfile, the Java SDK 11 was installed and the JAVA_HOME variable set. The image used as base image is the official Airflow image (version 2.3.0) found on DockerHub (https://hub.docker.com/r/apache/airflow), as well as the Docker Compose base file (https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html\#docker-compose-yaml).
- - Apache Spark containers were configured for data processing: master and three workers. Spark setup required a custom image with the following packages installed via PyPI as additional requirements: "requests", "pandas", "cqlsh". The image used as base image was the Bitnami Spark image (version 3.1.2) obtained from DocherHub (https://hub.docker.com/r/bitnami/spark).
- - An Apache Cassandra container was configured for data storage, using an additional container to set up the database configuration. The image used was the official Cassandra (version 4.0) image found on DockerHub (https://hub.docker.com/_/cassandra) and no additional requirements were needed.
- - A Linux container was configured for the web application. The container required a custom image with the following packages installed via PyPI as additional requirements: flask (version 2.1.2), cassandra-driver (version 3.25.0), flask-cqlalchemy (version 2.0.0), redis, Cmake, cryptography. The image used as base image was the official Python image (version "3.8-slim-buster") found on DockerHub (https://hub.docker.com/_/python).
+ - **Apache Airflow** containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower. Airflow setup required a custom image with the following packages installed via PyPI as additional requirements: "apache-airflow-providers-apache-spark", "requests", "pandas", "cqlsh". In addition, in the Airflow Dockerfile, the Java SDK 11 was installed and the JAVA_HOME variable set. The image used as base image is the official Airflow image (version 2.3.0) found on DockerHub (https://hub.docker.com/r/apache/airflow), as well as the Docker Compose base file (https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html\#docker-compose-yaml).
+ - **Apache Spark** containers were configured for data processing: master and three workers. Spark setup required a custom image with the following packages installed via PyPI as additional requirements: "requests", "pandas", "cqlsh". The image used as base image was the Bitnami Spark image (version 3.1.2) obtained from DocherHub (https://hub.docker.com/r/bitnami/spark).
+ - An **Apache Cassandra** container was configured for data storage, using an additional container to set up the database configuration. The image used was the official Cassandra (version 4.0) image found on DockerHub (https://hub.docker.com/_/cassandra) and no additional requirements were needed.
+ - A **Linux** container was configured for the web application. The container required a custom image with the following packages installed via PyPI as additional requirements: flask (version 2.1.2), cassandra-driver (version 3.25.0), flask-cqlalchemy (version 2.0.0), redis, Cmake, cryptography. The image used as base image was the official Python image (version "3.8-slim-buster") found on DockerHub (https://hub.docker.com/_/python).
 
 ## Prerequisites
- - Git
- - Docker v20.10.12.
- - Docker-compose v1.29.2.
- - Python v3.8.10.
- - Twitter and Spotify APIs developer keys added in a file .env following the format of the .env.example file
+ - **Git**
+ - **Docker** v20.10.12.
+ - **Docker-compose** v1.29.2.
+ - **Python** v3.8.10.
+ - Twitter and Spotify APIs **developer keys** added in a file **.env** following the format of the .env.example file and located in the same folder.
 
  > The correct operation of the project with different versions is not guaranteed.
 
@@ -56,16 +56,16 @@ Once the project is deployed, three visual interfaces can be accessed that can h
        <kbd>![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/front-visuals.jpg "Visuals view")</kbd>
     
 
-After the services are running, access to the Airflow UI and activate the DAG "spark_main". After all the tasks are executed correctly, the . If not paused, the DAG will be executed every 30 minutes.
+After the services are running, access to the **Airflow UI** and activate the DAG "**spark_main**". After all the tasks are executed correctly, the data will be displayed in the web application views. If not paused, the DAG will be executed every 30 minutes.
 
 <kbd>![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/start-dag.jpg "Start DAG in Airflow UI")</kbd>
 
-To stop the project, run the following command within the docker folder:
+To **stop** the project, run the following command within the docker folder:
 ```
 $ sudo docker-compose down
 ```
 
-Run the following command to completely reset the project:
+To completely **reset** the project, run the following command within the docker folder:
 ```
 $ sudo docker-compose down -v
 ```
