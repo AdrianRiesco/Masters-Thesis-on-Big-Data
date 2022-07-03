@@ -34,7 +34,7 @@ The project has been built using **Docker** and **Docker Compose** to run the fo
  > The correct operation of the project with different versions is not guaranteed.
 
 ## Usage
-Clone the project and execute docker-compose in the command console.
+**Clone** the project and execute **docker-compose up** in the command console:
 ```
 $ git clone https://github.com/AdrianRiesco/Data-Engineer-project.git
 ...
@@ -70,4 +70,4 @@ To completely **reset** the project, run the following command within the docker
 $ sudo docker-compose down -v
 ```
 
- > Hope you like the project. Adrian.
+ > Adrian Riesco Valbuena.
