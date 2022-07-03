@@ -1,4 +1,4 @@
-# Data-Engineer-project
+# Extraction, transformation, loading and visualization of combined Twitter and Spotify data in a scalable architecture
 ## Master's Degree in Business Intelligence and Big Data in Secure Environments
 This project corresponds to the Master's Thesis in Big Data and uses the social network **Twitter** to obtain information about the latest music listened to by users (by searching the #NowPlaying hashtag) and then query the track and artist data involved that **Spotify**, a music-as-a-service based platform, has. The entire process is managed using recognized tools within the field of Big Data.
 
