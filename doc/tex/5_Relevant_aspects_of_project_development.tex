@@ -1,25 +1,25 @@
 \capitulo{5}{Relevant aspects of the project}
 
-\section{Analysis}
+\section{Analysis} \label{analysis}
 
-\nonzeroparskip The first step of the project was to assess the feasibility and viability analysis of the concept devised. The author was looking to use two data sources with:
+\nonzeroparskip The first step of the project was to assess the \textbf{feasibility} and \textbf{viability} analysis of the concept devised. The author was looking to use two data sources with:
 
 \begin{itemize}
-	\item Real and updated data, preferably related to the social interest.
+	\item Actual and updated data, preferably related to the social interest.
 	\item The possibility of getting a stream data flow, avoiding static datasets.
 	\item The potential to combine both sources to get an added value.
 \end{itemize}
 
-\nonzeroparskip Taking into account the previous aspects, the author found Twitter and Spotify as interesting options. Both provide robust APIs for smooth development and have the necessary features to combine the collected data. Consequently, the author designed the following use case:
+\nonzeroparskip Taking into account the previous aspects, the author found \textbf{Twitter} and \textbf{Spotify} as interesting options. Both provide robust APIs for smooth development and have the necessary features to combine the collected data. Consequently, the author designed the following use case:
 
 \begin{enumerate}
-	\item The Twitter API is consulted to gather the \textit{tweets} with the hashtag \texttt{\textit{\#NowPlaying}}.
-	\item The tweet is cleaned up, stopwords and other hashtags are removed, and the track name and artist are made as isolated as possible.
-	\item The Spotify API is queried to collect the identified track information.
-	\item The data is formatted and stored in a .csv file.
-	\item The data is uploaded to the Data Warehouse and the .csv is stored as a history file.
-	\item The data served from the Data Warehouse is requested by the back-end and served on the front-end.
-	\item The data is displayed to the user on the front-end.
+	\item The \textbf{Twitter API} is consulted to gather the \textit{tweets} with the hashtag \texttt{\textit{\#NowPlaying}}. The name of the endpoint queried is \textit{recent search}.
+	\item The \textbf{tweet} is cleaned up, stopwords and other hashtags are removed, and the remaining text (which usually corresponds to the track name and artist) is isolated. The names of the endpoints queried are \textit{search for item} and \textit{get tracks' audio features}.
+	\item The \textbf{Spotify API} is queried to collect the identified track information.
+	\item The data is formatted and stored in a \textbf{.csv} file.
+	\item The data is uploaded to the \textbf{Data Warehouse} and the .csv is stored as a history file.
+	\item The data served from the Data Warehouse is requested by the \textbf{back-end} and served on the \textbf{front-end}.
+	\item The data is displayed to the \textbf{user} on the front-end.
 \end{enumerate}
 
 \nonzeroparskip The final set of tools and data flow are shown in the flowchart~\ref{flowchart}. \figuraNormalSinMarco{0.19}{img/flowchart}{Project flowchart}{flowchart}{}
@@ -28,9 +28,9 @@
 
 \nonzeroparskip During the design phase, the author performed the following tasks:
 \begin{itemize}
-	\item Analyze the output of both APIs using Postman to create the script to extract the data.
-	\item Identify the most appropriate software tools to meet the project requirements. At this point, Apache Airflow was determined for flow orchestration, Apache Spark for data processing, Apache Cassandra for data storage, Flask and Bootstrap for data visualization (along with Chart.js and Datatables), and Docker and Docker Compose for service container management.
-	\item Organize at a high level the Sprints that must be dedicated to each desired functionality and generate an overview of when each of them must be achieved so as not to affect the project timeline.
+	\item \textbf{Analyze the output of both APIs} using Postman to create the script to extract the data.
+	\item \textbf{Identify the most appropriate software tools} to meet the project requirements. At this point, Apache Airflow was determined for flow orchestration, Apache Spark for data processing, Apache Cassandra for data storage, Flask and Bootstrap for data visualization (along with Chart.js and Datatables), and Docker and Docker Compose for service container management.
+	\item \textbf{Organize at a high level the Sprints} that must be dedicated to each desired functionality and generate an overview of when each of them must be achieved so as not to affect the project timeline.
 \end{itemize}
 
 \section{Implementation}
@@ -39,20 +39,20 @@
 \begin{itemize}
 	\item Containers for each service were defined in Docker Compose and custom images were created in Docker (if needed):
 	\begin{itemize}
-		\item Apache Airflow containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower. Airflow setup required a custom image with the following packages installed via PyPI as additional requirements: ``apache-airflow-providers-apache-spark'', ``requests'', ``pandas'', ``cqlsh''. In addition, in the Airflow Dockerfile, the Java SDK 11 was installed and the \texttt{JAVA\_HOME} variable set. The image used as base image was the official Airflow image (version 2.3.0) found on DockerHub\footnote{\url{https://hub.docker.com/r/apache/airflow}}, as well as the Docker Compose base file\footnote{\url{https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html\#docker-compose-yaml}}.
-		\item Apache Spark containers were configured for data processing: master and three workers. Spark setup required a custom image with the following packages installed via PyPI as additional requirements: ``requests'', ``pandas'', ``cqlsh''. The image used as base image was the Bitnami Spark image (version 3.1.2) obtained from DocherHub\footnote{\url{https://hub.docker.com/r/bitnami/spark}}.
-		\item An Apache Cassandra container was configured for data storage, using an additional container to set up the database configuration. The image used was the official Cassandra (version 4.0) image found on DockerHub\footnote{\url{https://hub.docker.com/_/cassandra}} and no additional requirements were needed.
-		\item A Linux container was configured for the web application. The container required a custom image with the following packages installed via PyPI as additional requirements: ``flask'' (version 2.1.2), ``cassandra-driver'' (version 3.25.0), ``flask-cqlalchemy'' (version 2.0.0), redis'', ``Cmake'', ``cryptography''. The image used as base image was the official Python image (version ``3.8-slim-buster'') found on DockerHub\footnote{\url{https://hub.docker.com/_/python}}.
+		\item \textbf{Apache Airflow} containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower. Airflow setup required a custom image with the following packages installed via PyPI as additional requirements: ``apache-airflow-providers-apache-spark'', ``requests'', ``pandas'', ``cqlsh''. In addition, in the Airflow Dockerfile, the Java SDK 11 was installed and the \texttt{JAVA\_HOME} variable set. The image used as base image was the official Airflow image (version 2.3.0) found on DockerHub\footnote{\url{https://hub.docker.com/r/apache/airflow}}, as well as the Docker Compose base file\footnote{\url{https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html\#docker-compose-yaml}}.
+		\item \textbf{Apache Spark} containers were configured for data processing: master and three workers. Spark setup required a custom image with the following packages installed via PyPI as additional requirements: ``requests'', ``pandas'', ``cqlsh''. The image used as base image was the Bitnami Spark image (version 3.1.2) obtained from DocherHub\footnote{\url{https://hub.docker.com/r/bitnami/spark}}.
+		\item An \textbf{Apache Cassandra} container was configured for data storage, using an additional container to set up the database configuration. The image used was the official Cassandra (version 4.0) image found on DockerHub\footnote{\url{https://hub.docker.com/_/cassandra}} and no additional requirements were needed.
+		\item A \textbf{Linux} container was configured for the web application. The container required a custom image with the following packages installed via PyPI as additional requirements: ``flask'' (version 2.1.2), ``cassandra-driver'' (version 3.25.0), ``flask-cqlalchemy'' (version 2.0.0), redis'', ``Cmake'', ``cryptography''. The image used as base image was the official Python image (version ``3.8-slim-buster'') found on DockerHub\footnote{\url{https://hub.docker.com/_/python}}.
 	\end{itemize}
-	\item A Python script (PySpark, Python API for Apache Spark) was created to collect, join, transform and store the data from the Twitter and Spotify APIs to a .csv file.
-	\item The DAG in Apache Airflow was configured to automate data extraction, transformation, and loading. The process is triggered every 30 minutes and collects 100 tweets in every instance. Within the DAG, there are three tasks (collect data, send data to Cassandra, and create historic file) which involved the operators \textit{SparkSubmitOperator} (installed via PyPI with the package name ``apache-airflow-providers-apache-spark'') and \textit{BashOperator}.
-	\item Apache Spark was configured to be able to receive the script sent by Apache Airflow and communicate with Apache Cassandra.
-	\item Apache Cassandra was configured with the keyspace structure required.
-	\item Flask and Bootstrap were used to build the back and front-end of the web application, along with the Chart.js and Datatables resources.
-	\item The data was normalized to avoid excessively different ranges between metrics. The normalization was made by adding a property (\texttt{@property}) to the data object that returns a list with the normalized data~\ref{tweetsandtracksobject}. The following fields were changed:
+	\item A \textbf{Python script} (PySpark, Python API for Apache Spark) was created to collect, join, transform and store the data from the Twitter and Spotify APIs to a .csv file.
+	\item The \textbf{DAG} in Apache Airflow was configured to automate data extraction, transformation, and loading. The process is triggered every 30 minutes and collects 100 tweets in every instance. Within the DAG, there are three tasks (collect data, send data to Cassandra, and create historic file) which involved the operators \textit{SparkSubmitOperator} (installed via PyPI with the package name ``apache-airflow-providers-apache-spark'') and \textit{BashOperator}.
+	\item \textbf{Apache Spark} was configured to be able to receive the script sent by Apache Airflow and communicate with Apache Cassandra.
+	\item \textbf{Apache Cassandra} was configured with the keyspace structure required.
+	\item \textbf{Flask and Bootstrap} were used to build the back and front-end of the web application, along with the \textbf{Chart.js} and \textbf{Datatables} resources.
+	\item The \textbf{data were normalized} to avoid excessively different ranges between metrics. The normalization was made by adding a property (\texttt{@property}) to the data object that returns a list with the normalized data~\ref{tweetsandtracksobject}. The following fields were changed:
 	\begin{itemize}
-		\item Text modifications: ``artists\_name'' was modified to replace the comma with a line break to distinguish between artists collaborating on the same track, and ``created\_at'' was parsed to a MM/DD/YYYY HH:MM:SS format.
-		\item Numerical modifications: ``danceability'', ``energy'', ``speechiness'', ``acousticness'', ``instrumentalness'', ``liveness'' and ``valence'' were moved from a 0-1 range to a 0-100 range and rounded to three decimal places, ``loudness'' and ``tempo'' were also rounded, and ``duration\_ms'' was changed from milliseconds to seconds.
+		\item \textbf{Text modifications}: ``artists\_name'' was modified to replace the comma with a line break to distinguish between artists collaborating on the same track, and ``created\_at'' was parsed to a MM/DD/YYYY HH:MM:SS format.
+		\item \textbf{Numerical modifications}: ``danceability'', ``energy'', ``speechiness'', ``acousticness'', ``instrumentalness'', ``liveness'' and ``valence'' were moved from a 0-1 range to a 0-100 range and rounded to three decimal places, ``loudness'' and ``tempo'' were also rounded, and ``duration\_ms'' was changed from milliseconds to seconds.
 	\end{itemize}
 \end{itemize}
 

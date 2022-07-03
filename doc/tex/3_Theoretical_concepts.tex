@@ -4,7 +4,7 @@
 
 \section{Big Data}
 
-\nonzeroparskip The term Big Data is used to refer to data sets whose size exceeds the capabilities of the software systems used to capture, preserve and process the data within an acceptable time window.
+\nonzeroparskip The term \textbf{Big Data} is used to refer to data sets whose size exceeds the capabilities of the software systems used to capture, preserve and process the data within an acceptable time window.
 
 \nonzeroparskip The definition of Big Data is usually linked to the three dimensions or Vs defined by Doug Laney in 2001~\cite{bigdata_vs}:
 \begin{itemize}
@@ -15,12 +15,12 @@
 
 \nonzeroparskip After the definition of the three Vs, more dimensions have been added: Veracity, Value, Validity, Vagueness, Volatility... The author even found an article where 42 different dimensions of Big Data were defined~\cite{bigdata_vs}.
 
-\nonzeroparskip From the moment big data is discovered until it can be used and generate value, it goes through a life cycle made up of the following phases: discovery, raw data ingestion, raw data processing, storage, integration with other data, analysis, and presentation of results.
+\nonzeroparskip From the moment Big Data is discovered until it can be used and generate value, it goes through a life cycle made up of the following phases: discovery, raw data ingestion, raw data processing, storage, integration with other data, analysis, and presentation of results.
 
 \nonzeroparskip Due to the complexity of big data, it usually requires a complex and varied technological ecosystem to be managed.
 
 \section{ETL}
-\nonzeroparskip An ETL process refers to the stages that every data processing exercise usually goes through:
+\nonzeroparskip An \textbf{ETL} process refers to the stages that every data processing exercise usually goes through:
 \begin{enumerate}
 	\item \textbf{Extract.} Raw data is collected from the source and fed into our Data Lake, which preserves it in its original form.
 	\item \textbf{Transform.} The raw data is cleaned and transformed to be used in our environment.
@@ -29,33 +29,33 @@
 
 \section{API}
 
-\nonzeroparskip An Application Programming Interface or API is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested and sent to the system, the way to authenticate to it and the format of the returned data~\cite{ibm_restapi}.
+\nonzeroparskip An \textbf{Application Programming Interface} or \textbf{API} is an interface that defines the interactions that can be made with a software system. The APIs generally define the data that can be requested and sent to the system, the way to authenticate to it and the format of the returned data~\cite{ibm_restapi}.
 
 \nonzeroparskip In relation to web development, most of the APIs work according to Hypertext Transfer Protocol (HTTP), a communication protocol that allows information transfers through files on the World Wide Web. Additionally and not exclusive, a large number of APIs are developed according to the REST architectural style, defined by Roy Fielding in the year 2000 and which is based on a series of principles that seek to facilitate development:
 \begin{enumerate}
-	\item Uniform interface for all resources, forcing all queries made to the same resource (each with a specific Uniform Resource Identifier or URI) to have the same form regardless of the origin of the request.
-	\item Decoupling between the client and the server, making the only information that the client must know about the server is its identifier (URI) and that the only action to be carried out by the server is to return the data required in the request.
-	\item Stateless queries, meaning that each request must contain all the information necessary to be processed without requiring an additional request or storing any type of state.
-	\item Allow, whenever possible, both client-side and server-side caching to reduce the load of the former and increase the scalability of the latter.
-	\item Layer system, allowing multiple intermediaries between the client and the server and preventing them from knowing in any case if they are communicating with the other party or with an intermediary.
-	\item Although the resources exchanged are usually static, a REST architecture can optionally have responses that contain snippets of executable code.
+	\item \textbf{Uniform interface} for all resources, forcing all queries made to the same resource (each with a specific Uniform Resource Identifier or URI) to have the same form regardless of the origin of the request.
+	\item \textbf{Decoupling between the client and the server}, making the only information that the client must know about the server is its identifier (URI) and that the only action to be carried out by the server is to return the data required in the request.
+	\item \textbf{Stateless queries}, meaning that each request must contain all the information necessary to be processed without requiring an additional request or storing any type of state.
+	\item \textbf{Allow}, whenever possible, both \textbf{client-side and server-side caching} to reduce the load of the former and increase the scalability of the latter.
+	\item \textbf{Layer system}, allowing multiple intermediaries between the client and the server and preventing them from knowing in any case if they are communicating with the other party or with an intermediary.
+	\item Although the resources exchanged are usually static, a REST architecture can optionally have \textbf{responses that contain snippets of executable code}.
 \end{enumerate}
 
 \nonzeroparskip In general terms, an API based on a REST architecture serves to make it easier for developers to develop applications that interact with the resources published by it.
 
 \section{Orchestrator}
 
-\nonzeroparskip The great variety of applications and services that exist in technological environments, where there are workflows with various actors with interdependencies between them, make their management and automation enormously complex. The more complex a system is, the more difficult it is to manage the intervening factors~\cite{redhat_orchestrator}.
+\nonzeroparskip The great variety of applications and services that exist in technological environments, where there are workflows with various actors with interdependencies between them, make their management and automation enormously complex~\cite{redhat_orchestrator}. The more complex a system is, the more difficult it is to manage the intervening factors.
 
-\nonzeroparskip System automation usually improves efficiency, simplifies management, and reduces associated costs, both in terms of time spent and personnel required to control it. On the other hand, a distinction is made between automation and orchestration in that the former refers to a single task, while the latter comprises multi-step processes and workflows, being the scope of work of the orchestrators.
+\nonzeroparskip System automation usually improves efficiency, simplifies management and reduces associated costs, both in terms of time spent and personnel required to control it. Related to automation is orchestration, which, while the scope of the former is limited to a single task, the latter comprises multi-step processes and workflows.
 
-\nonzeroparskip Two main orchestrators have been used in this project: Docker Compose, which acts as an orchestrator for the work environment containers, and Apache Airflow, which orchestrates the project's workflow.
+\nonzeroparskip \textbf{Orchestrators} are software systems that focus precisely on the orchestration of a multitude of processes, workflows and tasks. Two main orchestrators have been used in this project: \textbf{Docker Compose}, which acts as an orchestrator for the work environment containers, and \textbf{Apache Airflow}, which orchestrates the project's workflow.
 
 \section{NoSQL Databases}
 
-\nonzeroparskip A database is a set of data belonging to the same context and stored for later use, and can be updated periodically. The best known type of databases are relational databases. In a relational database, the data attributes are stored in the form of columns, previously defined, and the values are stored in the rows of the table for all its columns or attributes. These databases have an associated query language called SQL (Structured Query Language).
+\nonzeroparskip A \textbf{database} is a set of data belonging to the same context and stored for later use, and can be updated periodically. The best known type of databases are relational databases. In a relational database, the data attributes are stored in the form of columns, previously defined, and the values are stored in the rows of the table for all its columns or attributes. These databases have an associated query language called SQL (Structured Query Language).
 
-\nonzeroparskip Relational database properties are summarized in ACID properties:
+\nonzeroparskip Relational database properties are summarized in \textbf{ACID} properties:
 \begin{itemize}
 	\item \textbf{A}tomicity. The process is done completely or it is not done.
 	\item \textbf{C}onsistency. Only valid data is written.
@@ -65,9 +65,9 @@
 
 \nonzeroparskip However, in the face of the massive volumes of data that are associated with the concept of Big Data, relational databases have a series of limitations:
 \begin{itemize}
-	\item Reading the data is expensive, since the data is represented in tables, queries involve joining large data sets and filtering the results.
-	\item The stored information usually has similar structures, a concept that does not agree well with Big Data, where the variety of data structure is greater.
-	\item Scalability is not their strongest factor, since they were initially designed considering a single server or, at most, having replicas and load balancing.
+	\item Reading the data is \textbf{costly}, as data is represented in tables, queries involve joining large data sets and filtering the results.
+	\item The stored information usually has \textbf{similar structures}, a concept that does not agree well with Big Data, where the variety of data structure is greater.
+	\item \textbf{Scalability} is not their strongest factor, since they were initially designed with a single server in mind or, at most, with replicas and load balancing.
 \end{itemize}
 
 \nonzeroparskip Distributed databases are limited by the CAP theorem:
@@ -84,7 +84,7 @@
 	\item \textbf{E}ventually Consistent: consistency happens eventually, as it is something that is taken for granted at some point in the future. All copies will gradually become consistent if no further updates are run.
 \end{itemize}
 
-\nonzeroparskip Non-relational databases or NoSQL (Not Only SQL), a term introduced by Carl Strozzi in 1998 that describes all those databases that do not follow the same design patterns as relational databases. Non-relational databases follow the BASE properties and have advantages such as:
+\nonzeroparskip \textbf{Non-relational databases} or \textbf{NoSQL} (Not Only SQL) is a term introduced by Carl Strozzi in 1998 that describes all those databases that do not follow the same design patterns as relational databases. Non-relational databases follow the \textbf{BASE} properties and have advantages such as:
 \begin{itemize}
 	\item They do not require a fixed data schema.
 	\item The data is replicated on multiple similar nodes and can be partitioned.
@@ -105,7 +105,7 @@
 
 \section{Containers}
 
-\nonzeroparskip Containerization is the packaging of code together with its dependencies, configurations and libraries to form a lightweight executable that can be executed in any infrastructure regardless of its system~\cite{ibm_containerization}. In this way, developers can focus on developing applications safely and quickly without worrying about subsequent execution, since the code they develop will be compiled into a package with all its dependencies, abstracting it from the operating system, isolating it and making it portable.
+\nonzeroparskip \textbf{Containerization} is the packaging of code together with its dependencies, configurations and libraries to form a lightweight executable that can be executed in any infrastructure regardless of its system~\cite{ibm_containerization}. In this way, developers can focus on developing applications safely and quickly without worrying about subsequent execution, since the code they develop will be compiled into a package with all its dependencies, abstracting it from the operating system, isolating it and making it portable.
 
 \nonzeroparskip The main advantages of containerization are summarized in:
 \begin{itemize}
@@ -122,10 +122,10 @@
 
 \section{Continuous Integration / Continuous Delivery}
 
-\nonzeroparskip Continuous integration / continuous development or CI/CD is a software development and delivery method based on the introduction of automation in the stages of the development process, allowing work on iterables of the project subjected to testing phases. Continuous integration refers to the automation of development processes and building iterations, while continuous development refers to the continuous delivery of software and its deployment to the production environment~\cite{redhat_cicd}.
+\nonzeroparskip \textbf{Continuous integration / continuous development} or \textbf{CI/CD} is a software development and delivery method based on the introduction of automation in the stages of the development process, allowing work on iterables of the project subjected to testing phases. Continuous integration refers to the automation of development processes and building iterations, while continuous development refers to the continuous delivery of software and its deployment to the production environment~\cite{redhat_cicd}.
 
 \nonzeroparskip A well-constructed CI/CD cycle helps developers merge new changes with the original project, as well as validate changes to ensure no new deficiencies or bugs are introduced into the product. Each functionality added to the main repository is tested both unitarily and functionally in an automated way, including these tests and allowing a quick analysis of possible conflicts before launching the new iteration of the product.
 
 \section{Template engines}
 
-\nonzeroparskip A template engine is software aimed at combining templates and data models to produce formatted output by rendering the data on the server side. The template engines transform the variables in the templates with the actual values and send them to the client~\cite{template_engines}.
+\nonzeroparskip A \textbf{template engine} is software aimed at combining templates and data models to produce formatted output by rendering the data on the server side. The template engines transform the variables in the templates with the actual values and send them to the client~\cite{template_engines}.
