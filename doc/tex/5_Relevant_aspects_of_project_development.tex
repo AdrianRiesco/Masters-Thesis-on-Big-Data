@@ -1,11 +1,5 @@
 \capitulo{5}{Relevant aspects of the project}
 
-%This section aims to collect the most interesting aspects of the development of the project, commented by its authors.
-%It must include from the exposition of the life cycle used, to the most relevant details of the analysis, design and implementation phases.
-%It is sought that it is not a mere operation of copying and pasting diagrams and extracts from the source code, but that the solution paths that have been taken are really justified, especially those that are not trivial.
-%It may be the most appropriate place to document the most interesting aspects of the design and implementation, with a greater emphasis on aspects such as the type of architecture chosen, the indexes of the database tables, normalization and denormalization, distribution in files3, business rules within databases (EDVHV GH GDWRV DFWLYDV), development aspects related to the WWW...
-%This section must become the summary of the practical experience of the project, and by itself justifies that the report becomes a useful document, a reference source for authors, tutors and future students.
-
 \section{Analysis}
 
 \nonzeroparskip The first step of the project was to assess the feasibility and viability analysis of the concept devised. The author was looking to use two data sources with:
@@ -47,7 +41,7 @@
 	\begin{itemize}
 		\item Apache Airflow containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower. Airflow setup required a custom image with the following packages installed via PyPI as additional requirements: ``apache-airflow-providers-apache-spark'', ``requests'', ``pandas'', ``cqlsh''. In addition, in the Airflow Dockerfile, the Java SDK 11 was installed and the \texttt{JAVA\_HOME} variable set. The image used as base image was the official Airflow image (version 2.3.0) found on DockerHub\footnote{\url{https://hub.docker.com/r/apache/airflow}}, as well as the Docker Compose base file\footnote{\url{https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html\#docker-compose-yaml}}.
 		\item Apache Spark containers were configured for data processing: master and three workers. Spark setup required a custom image with the following packages installed via PyPI as additional requirements: ``requests'', ``pandas'', ``cqlsh''. The image used as base image was the Bitnami Spark image (version 3.1.2) obtained from DocherHub\footnote{\url{https://hub.docker.com/r/bitnami/spark}}.
-		\item An Apache Cassandra container was configured for data storage, using an additional container to set up the database configuration. The image used was the official Cassandra (version 4.0) image found on DockerHub \footnote{\url{https://hub.docker.com/_/cassandra}} and no additional requirements were needed.
+		\item An Apache Cassandra container was configured for data storage, using an additional container to set up the database configuration. The image used was the official Cassandra (version 4.0) image found on DockerHub\footnote{\url{https://hub.docker.com/_/cassandra}} and no additional requirements were needed.
 		\item A Linux container was configured for the web application. The container required a custom image with the following packages installed via PyPI as additional requirements: flask (version 2.1.2), cassandra-driver(version 3.25.0), flask-cqlalchemy (version 2.0.0), redis, Cmake, cryptography. The image used as base image was the official Python image (version ``3.8-slim-buster'') found on DockerHub\footnote{\url{https://hub.docker.com/_/python}}.
 	\end{itemize}
 	\item A Python script (PySpark, Python API for Apache Spark) was created to collect, join, transform and store the data from the Twitter and Spotify APIs to a .csv file.
