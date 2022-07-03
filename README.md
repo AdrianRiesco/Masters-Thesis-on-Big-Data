@@ -27,7 +27,7 @@ The project has been built using **Docker** and **Docker Compose** to run the fo
  - Python v3.8.10.
  - Twitter and Spotify APIs developer keys added in a file .env following the format of the .env.example file
 
- > The operation of the project with different versions is not guaranteed.
+ > The correct operation of the project with different versions is not guaranteed.
 
 ## Usage
 Clone the project and execute docker-compose in the command console.
@@ -40,11 +40,17 @@ $ sudo docker-compose up
 
 Once the project is deployed, three visual interfaces can be accessed that can help the user to better understand the process:
  1. **Apache Airflow user interface.** It is accessible through port 8080 (http://localhost:8080, user "airflow", password "airflow") and allows access, among other things, to the Airflow configuration and the list of configured DAGs, being able to observe their instances and obtain metrics such as execution times.
+    ![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/airflow-ui.jpg "Airflow UI")
  2. **Apache Spark user interface.** It is accessible through port 8181 (http://localhost:8181) and allows to observe the master node and the three workers, as well as their last tasks performed.
+    ![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/spark-ui.jpg "Spark UI")
  3. **Front-end user interface.** It is accessible through port 8000 (http://localhost:8000) and contains three views:
     1. **Home.** It shows a brief introduction of the project and the same animated gif that can be viewed in this page to illustrate the implemented data flow.
+       ![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/front-home.jpg "Home view")
     2. **Data.** It displays a table with all the data extracted. The table has been made with Datatables and allows the user to search and sort the data, as well as hide and show columns at will.
+       ![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/front-data.jpg "Data view")
     3. **Visuals.** It displays a chart with two data selectors, a multi-select to add data as a bar and a single-select to add data as a line. A script was added that does not allow both selectors to have the same column in their data, so when a column that is present in one of them is selected in the other, it is removed from the previous one. It also has a selector to choose the amount of data to display (values of 5, 10, 15 and 20, to avoid saturating the graph), as well as an order selector that allows the user to sort by any of the columns in ascending or descending order.
+       ![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/front-visuals.jpg "Visuals view")
+    
 
 After the services are running, access to the Airflow UI and activate the DAG "spark_main". After all the tasks are executed correctly, the . If not paused, the DAG will be executed every 30 minutes.
 
