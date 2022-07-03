@@ -71,8 +71,8 @@
 \begin{enumerate}
 	\item Ensure that the folders \texttt{spark/resources/history}, \texttt{airflow/logs} and \texttt{airflow/plugins} have the necessary permissions by executing the command \texttt{sudo chmod -R 777 folder\_to\_set\_permissions}. 
 	\item Open a \texttt{command prompt} and move to the \texttt{docker} folder.
-	\item Launch the environment with ``\texttt{sudo docker-compose up}''. It can be launched in the background by adding the flag \texttt{-b}: ``\texttt{sudo docker-compose up -b}''.
-	\item Wait until all the services have started and are in a healthy state. It usually is achieved when the \texttt{airflow\_webserver\_container} is continuously displaying a status message, if the flag \texttt{-b} was not included. Otherwise, a list of the services can be displayed with the command ``\texttt{sudo docker ps}''.
+	\item Launch the environment with ``\texttt{sudo docker-compose up --build}'' (\texttt{--build} ensures that all the images are built during the deployment). It can be launched in the background by adding the flag \texttt{-d}: ``\texttt{sudo docker-compose up -d}''.
+	\item Wait until all the services have started and are in a healthy state. It usually is achieved when the \texttt{airflow\_webserver\_container} is continuously displaying a status message. If the flag \texttt{-d} was included, the logs can be accessed with the command ``\texttt{sudo docker-compose logs}''. A list of the services can be displayed with the command ``\texttt{sudo docker ps}''.
 	\item Access to the Airflow UI (\url{http://localhost:8080}, user ``\texttt{airflow}'' and password ``\texttt{airflow}'') and start the DAG ``\texttt{spark\_main}'' as shown in the figure~\ref{start-dag}.
 	\item Access to the web application (\url{http://localhost:8000}) and check that the ``\texttt{Data}'' and ``\texttt{Visuals}'' views contain the captured data.
 	\item To stop the containers, the command ``\texttt{sudo docker-compose down}'' can be used. To remove the networks and docker volumes, ``\texttt{sudo docker-compose down -v}'' must be used. The process can also be stopped by pausing the DAG as explained in step 5.
