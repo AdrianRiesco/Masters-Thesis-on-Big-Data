@@ -11,31 +11,90 @@
 	\item Ability to obtain data in real time.
 	\item Combine at least two different data sources.
 	\item Potential to scale in both technology and data volume.
-	\item Involve various technologies from the world of Big Data.
-	\item Mostly open source tools.
+	\item Involve various technologies from the field of Big Data.
+	\item Open source tools.
 \end{itemize}
 
 \section{Catalog of requirements}
 
+\subsection{Functional requirements}
+
 \nonzeroparskip The functional requirements (FR) that the project had to meet were:
 \begin{itemize}
 	\item \textbf{FR1}. The data must be obtained from the Twitter hashtag \texttt{\textit{\#NowPlaying}} every 30 minutes, taking care of API rate limits.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: The Apache Airflow DAG was configured with a run frequency of 30 minutes. The script used to collect the data has a maximum of 100 tweets collected per run to comply with API rate limits.
+	\end{itemize}
 	\item \textbf{FR2}. There must be at least two different visualizations and one of them must provide the ability to view all of the stored data.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: There are two visualizations in the web application, ``Data'' and ``Visuals'', and the first one displays all the stored data.
+	\end{itemize}
 	\item \textbf{FR3}. At least one of the visualizations must show last songs name, artist and audio features.
-	\item \textbf{FR4}. At least one of the visualization must have a link to the source tweet.
-	\item \textbf{FR5}. At least one of the visualization must have the ability to compare different metrics.
-	\item \textbf{FR6}. At least one of the visualization must combine two different types of visualization.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: The ``Data'' view of the web application displays all required fields.
+	\end{itemize}
+	\item \textbf{FR4}. At least one of the visualizations must have a link to the source tweet.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: The ``Data'' view of the web application contains a link to the source tweet.
+	\end{itemize}
+	\item \textbf{FR5}. At least one of the visualizations must have the ability to compare different metrics.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: The ``Visuals'' view of the web application provides the ability to visually compare metrics.
+	\end{itemize}
+	\item \textbf{FR6}. At least one of the visualizations must combine two different types of visualizations.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: The ``Visuals'' view of the web application combines bar and line formats in the same chart.
+	\end{itemize}
 	\item \textbf{FR7}. Both visualizations must provide sorting capabilities.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: Both ``Data'' and ``Visuals'' views of the web application provides provides the ability to sort by metric.
+	\end{itemize}
 	\item \textbf{FR8}. Both visualizations must be responsive to different screen sizes.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: The web application was developed using Bootstrap as the CSS framework to facilitate scaling and resizing on different screens.
+	\end{itemize}
 \end{itemize}
 
-\nonzeroparskip The technical requirements(TR) that the project had to meet were:
+\subsection{Technical requirements}
+
+\nonzeroparskip The technical requirements (TR) that the project had to meet were:
 \begin{itemize}
 	\item \textbf{TR1}. The development must have the ability to be deployed in different environments with minimum effort.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: The services were developed using multiple containers managed via Docker Compose.
+	\end{itemize}
 	\item \textbf{TR2}. The data flow must be automated, with the entire process orchestrated by a single tool.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: All data flow is orchestrated by Apache Airflow.
+	\end{itemize}
 	\item \textbf{TR3}. The execution of the ETL process must be done with a tool that can scale and run in distributed environments.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: Data extraction, transformation and loading (into a .csv file) is processed by Apache Spark, and data loading to Cassandra is performed by a Cassandra Query Language shell (cqlsh) command.
+	\end{itemize}
 	\item \textbf{TR4}. The data warehouse must have the ability to escalate in terms of a Big Data problem.
-	\item \textbf{TR5}. The back and front end must be designed with widely recognized tools.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: Apache Cassandra is the Data Warehouse used.
+	\end{itemize}
+	\item \textbf{TR5}. The web application must be designed with widely recognized tools.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: The web application was designed with Flask and Bootstrap, and the visualizations with Chart.js and Datatables.
+	\end{itemize}
+	\item \textbf{TR6}. All the tools used must be open source.
+	\begin{itemize}
+		\item \textbf{Status}: Met.
+		\item \textbf{Rationale}: All the tools used to develop the project are open source.
+	\end{itemize}
 \end{itemize}
-
-\section{Requirements specification}
