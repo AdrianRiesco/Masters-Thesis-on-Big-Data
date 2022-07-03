@@ -2,16 +2,18 @@
 ## Master's Degree in Business Intelligence and Big Data in Secure Environments
 This project corresponds to the Master's Thesis in Big Data and uses the social network **Twitter** to obtain information about the latest music listened to by users (by searching the #NowPlaying hashtag) and then query the track and artist data involved that **Spotify**, a music-as-a-service based platform, has. The entire process is managed using recognized tools within the field of Big Data.
 
-The project can be downloaded and executed locally or accessed via [Data Engineer Project](http://adrianriesco.com:8000/).
+The project can be downloaded and executed locally or accessed via [Data Engineer Project](http://adrianriesco.com:8000).
 
 > :warning: If you face any kind of problem or the web is running slowly, I encourage you to run the project in your local environment.
 
+> :information_source: For more detail, please refer to the project report located in the [doc folder](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/memoria.pdf).
+
 ## Description
 This project implements a **ETL process** to collect data from Twitter. The steps of the process are:
- 1. The **Twitter API** is consulted to gather the tweets with the hashtag #NowPlaying.
- 2. The **tweet** is cleaned up, stopwords and other hashtags are removed, and the track name and artist are made as isolated as possible.
- 3. The **Spotify API** is queried to collect the identified track information.
- 4. The data is formatted and stored in a **.csv file**.
+ 1. The **Twitter API** is consulted to gather the tweets with the hashtag #NowPlaying. The name of the endpoint queried is _recent search_.
+ 2. The **tweet** is cleaned up, stopwords and other hashtags are removed, and the remaining text (which usually corresponds to the track name and artist) is isolated.
+ 3. The **Spotify API** is queried with the previously cleaned up text to collect the identified track information. The names of the endpoints queried are _search for item_ and _get tracks' audio features_.
+ 4. The data is formatted and stored in a **.csv** file.
  5. The data is uploaded to **Cassandra** and the .csv is stored as a history file.
  6. The data served from Cassandra is requested by the **back-end** and served on the **front-end**.
  7. The data is displayed to the **user** on the front-end.
