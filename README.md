@@ -41,7 +41,9 @@ The project has been built using **Docker** and **Docker Compose** to run the fo
 $ git clone https://github.com/AdrianRiesco/Data-Engineer-project.git
 ...
 $ cd Data-Engineer-project/docker
-$ sudo docker-compose up
+$ sudo docker-compose up --build -d
+...
+# Use "sudo docker-compose logs" to access the containers' logs.
 ```
 
 Once the project is deployed, three visual interfaces can be accessed that can help the user to better understand the process:
