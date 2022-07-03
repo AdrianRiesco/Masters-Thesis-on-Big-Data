@@ -6,7 +6,7 @@ The project can be downloaded and executed locally or accessed via [Data Enginee
 
 > :warning: If you face any kind of problem or the web is running slowly, I encourage you to run the project in your local environment.
 
-> :information_source: For more detail, please refer to the project report located in the [doc folder](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/memoria.pdf).
+> :information_source: For more detail, please refer to the project report located [here](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/memoria.pdf).
 
 ## Description
 This project implements a **ETL process** to collect data from Twitter. The steps of the process are:
