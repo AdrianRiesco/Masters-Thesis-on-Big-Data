@@ -28,9 +28,9 @@ The project has been built using **Docker** and **Docker Compose** to run the fo
 
 ## Prerequisites
  - **Git**
- - **Docker** v20.10.12.
- - **Docker-compose** v1.29.2.
- - **Python** v3.8.10.
+ - **Docker** v20.10
+ - **Docker-compose** v1.29
+ - **Python** v3.8
  - Twitter and Spotify APIs **developer keys** added in a file **.env** following the format of the .env.example file and located in the same folder.
 
  > The correct operation of the project with different versions is not guaranteed.
