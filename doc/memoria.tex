@@ -494,12 +494,12 @@ Palabras separadas por comas que identifiquen el contenido del proyecto Ej: serv
 % Abstract en inglés
 \renewcommand*\abstractname{Abstract}
 \begin{abstract}
-This project consists of the development of an \textbf{Extraction, Transformation and Loading} process to capture data from \textbf{Twitter} and \textbf{Spotify} APIs using software tools from the Big Data field, ensuring its scalability. Data from both sources ha been combined, processed and stored in a Data Warehouse to be served to the user in a customized front-end. All services have been encapsulated in containers within the same network.
+This project consists of the development of an Extraction, Transformation and Loading process to capture data from \textbf{Twitter} and \textbf{Spotify} APIs using software tools from the Big Data domain and with a life cycle driven by agile methodologies. The ETL process consists of collecting from the Twitter API the tweets with the hashtag \texttt{\#NowPlaying}, cleaning the text and isolating the track and artist names (removing characters outside the Latin alphabet, hashtags, urls and mentions), querying the Spotify API to collect the track data, combining both data, sending it to the Data Warehouse, querying it from the back-end of the web application and, finally, serving it to the end user in a custom front-end. Two visualizations have been designed to serve the data in the front-end, one consisting of a \textbf{table} that allows filtering, sorting and hiding/showing columns, and the other consisting of a combination of a \textbf{bar} chart and a \textbf{line} chart, with a selector for each format and allowing the user to sort by any column and change the amount of data displayed. The tools used are \textbf{Apache Airflow} as flow orchestrator, \textbf{Apache Spark} as ETL process executor, \textbf{Apache} Cassandra as Data Warehouse, and a combination of \textbf{Flask} and \textbf{Bootstrap}, together with \textbf{Chart.js} and \textbf{Datatables}, to create the custom web application. All services have been encapsulated in containers within the same network using \textbf{Docker Compose} as the orchestrator.
 \end{abstract}
 
 \renewcommand*\abstractname{Keywords}
 \begin{abstract}
-Airflow, Apache, BigData, Bootstrap, Cassandra, Chart.js, Datatables, Docker, Docker Compose, ETL, Flask, Spark, Spotify, Twitter.
+Airflow, Apache, API, Big Data, Bootstrap, Cassandra, Chart.js, Datatables, Docker, Docker Compose, ETL, Flask, Spark, Spotify, Twitter.
 \end{abstract}
 
 \clearpage
