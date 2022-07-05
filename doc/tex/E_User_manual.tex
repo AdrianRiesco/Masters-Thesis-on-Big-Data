@@ -23,5 +23,35 @@
 	\item Use the command ``\texttt{sudo docker-compose down}'' to stop the process.
 \end{enumerate}
 
-\section{User's manual}
-\nonzeroparskip The usage of the project is simple. After installing and running the project, including the activation of the Airflow DAG, all data results are presented to the user in the web application (\url{http://localhost:8000}).
+\section{User's manual} \label{usermanual}
+
+\nonzeroparskip The usage of the project is simple. After installing and running the project, including the activation of the Airflow DAG, all data results are presented to the user in the web application (\url{http://localhost:8000}), containing three views.
+\begin{itemize}
+	 \item \textbf{Home.} It shows a brief introduction of the project and an animated gif to illustrate the implemented data flow, along with a link to the repository on GitHub. The ``Home'' view and its components are referenced in figure \ref{front-home-described}.
+	 \item \textbf{Data.} It displays a table with all the data extracted. The table has been made with Datatables and allows the user to:
+	 \begin{itemize}
+	 	\item \textbf{Column selector}. Allows to select the columns to be hidden or shown. The default view is shown with all columns hidden except ``Popularity'', ``Danceability'', ``Energy'' and ``Duration(s)''. The hidden columns are grayed out.
+	 	\item \textbf{Size selector}. Allows to select the amount of data to be displayed, limited to 10 (default), 25, 50 and 100.
+	 	\item \textbf{Search bar}. Allows to search the entire dataset, regardless of page or hidden columns.
+	 	\item \textbf{Page selector}. Allows to select the page to be displayed (first by default).
+	 	\item \textbf{Number of entries}. Shows the range of rows displayed on the page and the total number of entries in the dataset.
+	 	\item \textbf{Data displayed}. The displayed data can be sorted by clicking on the column headers. The default sorting is by date from most recent to least recent.
+	 \end{itemize}
+	 The ``Data'' view and its components are referenced in figure \ref{front-data-described}.
+	 \item \textbf{Visuals.} It displays a chart composed by 
+	 with two data selectors, a multi-select to add data as a bar and a single-select to add data as a line. A script was added that does not allow both selectors to have the same column in their data, so when a column that is present in one of them is selected in the other, it is removed from the previous one. It also has a selector to choose the amount of data to display (values of 5, 10, 15 and 20, to avoid saturating the graph), as well as an order selector that allows the user to sort by any of the columns in ascending or descending order.
+	 \begin{itemize}
+	 	\item \textbf{Quantity selector}. Allows to select the amount of data to be displayed, limited to 5, 10 (default), 15 and 20.
+	 	\item \textbf{Order selector}. Allows to select the data sorting, with a drop-down to select the column and a switch to select the direction (ascending or descending). The default sorting is by date from most recent to least recent.
+	 	\item \textbf{Column selector for the bars}. Allows to select the columns to hide or show in the bar format. The default view displays only the ``Popularity'' column.
+	 	\item \textbf{Column selector for the line}. Allows to select the columns to hide or show in the line format. The default view does not display any columns (selected).
+	 	\item \textbf{Data displayed}. The displayed data can be hidden by clicking on the labels shown at the top.
+	 \end{itemize}
+	 The ``Visuals'' view and its components are referenced in figure \ref{front-visuals-described}.
+\end{itemize}
+
+\figuraNormalSinMarco{0.25}{img/front-home-described}{Front-end home view}{front-home-described}{}
+
+\figuraNormalSinMarco{0.25}{img/front-data-described}{Front-end data view}{front-data-described}{}
+
+\figuraNormalSinMarco{0.23}{img/front-visuals-described}{Front-end graph view}{front-visuals-described}{}
