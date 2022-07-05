@@ -9,7 +9,7 @@
 \begin{itemize}
 	\item \textbf{\texttt{airflow}}. It contains the created DAG and the folders that Airflow needs to function properly.
 	\item \textbf{\texttt{cassandra}}. I contains the database schema required.
-	\item \textbf{\texttt{doc}}. It contains the project report and the \LaTeX files used to generate it.
+	\item \textbf{\texttt{doc}}. It contains the project report and the \LaTeX{} files used to generate it.
 	\item \textbf{\texttt{docker}}. It contains the Docker Compose file required to deploy the project and the Airflow, Spark and Flask folders used for building custom images.
 	\item \textbf{\texttt{spark}}. It contains the script used to collect the API data, the necessary libraries and the history files.
 \end{itemize}
@@ -22,7 +22,7 @@
 
 \subsection{Analysis}
 
-\nonzeroparskip During the analysis phase, the author inspected the output of Twitter and Spotify APIs using Postman. In the first place, relying on the Twitter documentation, the author inspected the Twitter API by following the next steps:
+\nonzeroparskip During the analysis phase, the author inspected the output of Twitter and Spotify APIs using Postman. In the first place, relying on the Twitter documentation, the author examined the Twitter API by following the next steps:
 \begin{enumerate}
 	\item Get access to the Twitter Developer Portal.
 	\item Get the credentials needed to consult the different endpoints of the API.
@@ -49,9 +49,9 @@
 \begin{enumerate}
 	\item Get access to the Spotify Developer Portal.
 	\item Enter in the developers console and select the ``Search for Item'' endpoint.
-	\item Specify the parameters of the search. We can specify the type ``track'' and add a limit of one to only receive the first song found.
-	\item After click on get the bearer token, we can use that token by clicking on Try Me or just copy the resulting query in our Linux console to check the output.
-	\item The result of this query is the first result of the search containing information of the artist, the song and the album. With the artist and song ids we can consult other endpoints to get an audio analysis, the audio features and the artist information, between others.
+	\item Specify the parameters of the search. The type ``track'' can be specified and a limit of one can be added to receive only the first song found.
+	\item After clicking get carrier token, that token can be used by clicking Try Me or by copying the resulting query into a Linux console to test the output.
+	\item The result of this query is the first search result containing artist, song and album information. With the artist and song ids, other endpoints can be queried to obtain audio analysis, audio characteristics and artist information, among others.
 \end{enumerate}
 
 \subsection{Development} \label{programmer_development}
