@@ -70,6 +70,8 @@
 	 \end{itemize}
 \end{itemize}
 
+\nonzeroparskip More details on user interfaces are provided in section \ref{usermanual}.
+
 \figuraNormalSinMarco{0.27}{img/airflow-ui}{Airflow User Interface}{airflow-ui}{}
 
 \figuraNormalSinMarco{0.27}{img/spark-ui}{Spark User Interface}{spark-ui}{}
@@ -83,7 +85,7 @@
 \nonzeroparskip The most relevant aspects and issues faced by the author during the development are:
 \begin{itemize}
 	\item \textbf{Developer keys.} Both Twitter and Spotify required to obtain developer keys in order to use their APIs. For obvious reasons, the \textit{.env} file provided in GitHub does not have the developers keys added.
-	\item \textbf{Rate limits of the APIs.} The Twitter API allows the developer to collect up to 500,000 tweets per month, what forced the author to set up a limit for both the development and the production phases.
+	\item \textbf{Rate limits of the APIs.} The Twitter API allows the developer to collect up to 500\,000 tweets per month, what forced the author to set up a limit for both the development and the production phases.
 	\item \textbf{Airflow operators.} Airflow does not have an operator for Cassandra that manage data loading from a .csv to the database. In addition, the command \texttt{COPY FROM}, usually used to send data from a file to Cassandra, was not designed to be used inside a Python script. The author had to use the \texttt{\textit{BashOperator}} to connect to Cassandra from the Airflow Webserver container and run the \texttt{COPY FROM} command, instead of the \texttt{\textit{PythonOperator}} or any external Cassandra operator.
 	\item \textbf{Airflow and Spark connection.} To avoid the user having to manually create the connection between Airflow and Spark using the Airflow UI, the author used an environment variable to define the connection so that it can be created during the Docker Compose deployment. As a quirk, according to the Airflow documentation, ``Connections defined in environment variables will not show up in the Airflow UI or using airflow connections list''\footnote{\url{https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html\#storing-a-connection-in-environment-variables}}.
 	\item \textbf{Database schema configuration at launch.} Apache Cassandra required some external resources to build the database schema. Rather than using a script and build a custom image, the author found an interesting solution consisting on the deployment of a temporary container (``cassandra-init'' service in the Docker Compose file) that waits for the Cassandra container to be healthy and then creates the schema via cqlsh command. The solution was found on Stackoverflow\footnote{\url{https://stackoverflow.com/questions/40443617/init-script-for-cassandra-with-docker-compose}} and it referenced one of the Netflix's repositories\footnote{\url{https://github.com/Netflix/osstracker/blob/master/docker-compose.yml}}, where a service named ``cassandra-load-keyspace'' was performing the same task.
