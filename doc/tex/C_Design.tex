@@ -264,11 +264,22 @@
 \end{itemize}
 
 \section{Architectural design}
-\nonzeroparskip The component diagram is shown in the figure~\ref{component-diagram}.
+\nonzeroparskip The component diagram is shown in the figure~\ref{component-diagram}. Each block represents a service deployed in one or more containers, except for data sources, which are external APIs.
 
 \figuraNormalSinMarco{0.22}{img/component-diagram}{Component diagram}{component-diagram}{}
 
 \section{Procedural design}
 \nonzeroparskip The flow diagram is shown in the figure~\ref{flow-diagram}.
+\begin{enumerate}
+	\item Get tweets with the hashtag \texttt{\#NowPlaying}.
+	\item Search the track information and audio features.
+	\item Get the track information and audio features.
+	\item Load the data into the Data Warehouse.
+	\item Request the data from the web application.
+\end{enumerate}
 
 \figuraNormalSinMarco{0.20}{img/flow-diagram}{Flow diagram}{flow-diagram}{}
+
+\nonzeroparskip The sequence diagram is depicted in figure~\ref{sequence-diagram-flowchart}. The loop represents the ``spark\_main'' DAG, executed every 30 minutes and composed of three API calls, an Apache Cassandra load and the creation of the history file. The section outside the loop represents the user accessing the web application.
+
+\figuraNormalSinMarco{0.46}{img/sequence-diagram-flowchart}{Sequence diagram}{sequence-diagram-flowchart}{}
