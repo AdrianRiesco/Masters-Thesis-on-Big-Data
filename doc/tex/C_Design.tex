@@ -264,9 +264,11 @@
 \end{itemize}
 
 \section{Architectural design}
-\nonzeroparskip The component diagram is shown in the figure~\ref{component-diagram}. Each block represents a service deployed in one or more containers, except for data sources, which are external APIs.
+\nonzeroparskip The component diagram is shown in the figure~\ref{component-diagram}. Each block represents a service deployed in one or more containers, except for data sources, which are external APIs. The UML format is referenced in the figure~\ref{component-diagram-flowchart}.
 
 \figuraNormalSinMarco{0.22}{img/component-diagram}{Component diagram}{component-diagram}{}
+
+\figuraNormalSinMarco{0.21}{img/component-diagram-flowchart}{UML component diagram}{component-diagram-flowchart}{}
 
 \section{Procedural design}
 \nonzeroparskip The flow diagram is shown in the figure~\ref{flow-diagram}.
@@ -278,8 +280,8 @@
 	\item Request the data from the web application.
 \end{enumerate}
 
-\figuraNormalSinMarco{0.20}{img/flow-diagram}{Flow diagram}{flow-diagram}{}
+\figuraNormalSinMarco{0.19}{img/flow-diagram}{Flow diagram}{flow-diagram}{}
 
 \nonzeroparskip The sequence diagram is depicted in figure~\ref{sequence-diagram-flowchart}. The loop represents the ``spark\_main'' DAG, executed every 30 minutes and composed of three API calls, an Apache Cassandra load and the creation of the history file. The section outside the loop represents the user accessing the web application.
 
-\figuraNormalSinMarco{0.46}{img/sequence-diagram-flowchart}{Sequence diagram}{sequence-diagram-flowchart}{}
+\figuraNormalSinMarco{0.46}{img/sequence-diagram-flowchart}{UML sequence diagram}{sequence-diagram-flowchart}{}
