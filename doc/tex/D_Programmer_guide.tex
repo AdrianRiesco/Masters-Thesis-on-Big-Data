@@ -69,7 +69,12 @@
 \section{Compilation, installation and execution of the project} \label{programmer_execute}
 \nonzeroparskip The steps needed to run the project are:
 \begin{enumerate}
-	\item Ensure that the folders \texttt{spark/resources/history}, \texttt{airflow/logs} and \texttt{airflow/plugins} have the necessary permissions by executing the command \texttt{sudo chmod -R 777 folder\_to\_set\_permissions}. 
+	\item Ensure that the folders \texttt{spark/resources/history}, \texttt{airflow/logs} and \texttt{airflow/plugins} have the necessary permissions by executing the command \texttt{sudo chmod -R 777 folder\_to\_set\_permissions}:
+	\begin{itemize}
+		\item \texttt{sudo chmod -R 777 spark/resources/history}
+		\item \texttt{sudo chmod -R 777 airflow/logs}
+		\item \texttt{sudo chmod -R 777 airflow/plugins}
+	\end{itemize}
 	\item Open a \texttt{command prompt} and move to the \texttt{docker} folder.
 	\item Launch the environment with ``\texttt{sudo docker-compose up --build}'' (\texttt{--build} ensures that all the images are built during the deployment). It can be launched in the background by adding the flag \texttt{-d}: ``\texttt{sudo docker-compose up -d}''.
 	\item Wait until all the services have started and are in a healthy state. It usually is achieved when the \texttt{airflow\_webserver\_container} is continuously displaying a status message. If the flag \texttt{-d} was included, the logs can be accessed with the command ``\texttt{sudo docker-compose logs}''. A list of the services can be displayed with the command ``\texttt{sudo docker ps}''.
