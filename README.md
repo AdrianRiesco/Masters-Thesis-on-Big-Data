@@ -6,7 +6,7 @@ The project can be downloaded and executed locally or accessed via [Data Enginee
 
 > :warning: If you face any kind of problem or the web is running slowly, I encourage you to run the project in your local environment.
 
-> :information_source: For more detail, please refer to the project report located [here](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/memoria.pdf).
+> :information_source: For more detail, please refer to the project report located [here](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/memoria.pdf).
 
 ## Description
 This project implements a **ETL process** to collect data from Twitter. The steps of the process are:
@@ -18,7 +18,7 @@ This project implements a **ETL process** to collect data from Twitter. The step
  6. The data served from Cassandra is requested by the **back-end** and served on the **front-end**.
  7. The data is displayed to the **user** on the front-end.
 
-![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/flask/static/images/flowchart.gif "Flow chart")
+![alt text](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/flask/static/images/flowchart.gif "Flow chart")
 
 The project has been built using **Docker** and **Docker Compose** to run the following containers:
  - **Apache Airflow** containers configured for flow orchestration: webserver, scheduler, worker, init, triggerer, redis, postgres, client, and flower. Airflow setup required a custom image with the following packages installed via PyPI as additional requirements: "apache-airflow-providers-apache-spark", "requests", "pandas", "cqlsh". In addition, in the Airflow Dockerfile, the Java SDK 11 was installed and the JAVA_HOME variable set. The image used as base image is the official Airflow image (version 2.3.0) found on DockerHub (https://hub.docker.com/r/apache/airflow), as well as the Docker Compose base file (https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html\#docker-compose-yaml).
@@ -53,21 +53,21 @@ $ sudo docker-compose up --build -d
 
 Once the project is deployed, three visual interfaces can be accessed that can help the user to better understand the process:
  1. **Apache Airflow user interface.** It is accessible through port 8080 (http://localhost:8080, user "airflow", password "airflow") and allows access, among other things, to the Airflow configuration and the list of configured DAGs, being able to observe their instances and obtain metrics such as execution times.
-    <kbd>![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/airflow-ui.jpg "Airflow UI")</kbd>
+    <kbd>![alt text](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/img/airflow-ui.jpg "Airflow UI")</kbd>
  2. **Apache Spark user interface.** It is accessible through port 8181 (http://localhost:8181) and allows to observe the master node and the three workers, as well as their last tasks performed.
-    <kbd>![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/spark-ui.jpg "Spark UI")</kbd>
+    <kbd>![alt text](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/img/spark-ui.jpg "Spark UI")</kbd>
  3. **Front-end user interface.** It is accessible through port 8000 (http://localhost:8000) and contains three views:
     1. **Home.** It shows a brief introduction of the project and the same animated gif that can be viewed in this page to illustrate the implemented data flow.
-       <kbd>![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/front-home.jpg "Home view")</kbd>
+       <kbd>![alt text](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/img/front-home.jpg "Home view")</kbd>
     2. **Data.** It displays a table with all the data extracted. The table has been made with Datatables and allows the user to search and sort the data, as well as hide and show columns at will.
-       <kbd>![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/front-data.jpg "Data view")</kbd>
+       <kbd>![alt text](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/img/front-data.jpg "Data view")</kbd>
     3. **Visuals.** It displays a chart with two data selectors, a multi-select to add data as a bar and a single-select to add data as a line. A script was added that does not allow both selectors to have the same column in their data, so when a column that is present in one of them is selected in the other, it is removed from the previous one. It also has a selector to choose the amount of data to display (values of 5, 10, 15 and 20, to avoid saturating the graph), as well as an order selector that allows the user to sort by any of the columns in ascending or descending order.
-       <kbd>![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/front-visuals.jpg "Visuals view")</kbd>
+       <kbd>![alt text](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/img/front-visuals.jpg "Visuals view")</kbd>
     
 
 After the services are running, access to the **Airflow UI** and activate the DAG "**spark_main**". After all the tasks are executed correctly, the data will be displayed in the web application views. If not paused, the DAG will be executed every 30 minutes.
 
-<kbd>![alt text](https://github.com/AdrianRiesco/Data-Engineer-project/blob/main/doc/img/start-dag.jpg "Start DAG in Airflow UI")</kbd>
+<kbd>![alt text](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/img/start-dag.jpg "Start DAG in Airflow UI")</kbd>
 
 To **stop** the project, run the following command within the docker folder:
 ```
