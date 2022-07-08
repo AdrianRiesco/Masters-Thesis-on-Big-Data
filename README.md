@@ -36,15 +36,20 @@ The project has been built using **Docker** and **Docker Compose** to run the fo
  > The correct operation of the project with different versions is not guaranteed.
 
 ## Usage
-**Clone** the project and execute **docker-compose up** in the command console:
+**Clone** the project, make sure that the "airflow/logs", "airflow/plugins" and "spark/resources/history" folders are set with the correct permissions so that Airflow can edit them, and run **docker-compose up** in the command console:
 ```
 $ git clone https://github.com/AdrianRiesco/Data-Engineer-project.git
 ...
+$ sudo chmod -R 777 airflow/logs
+$ sudo chmod -R 777 airflow/plugins
+$ sudo chmod -R 777 spark/resources/history
+
 $ cd Data-Engineer-project/docker
 $ sudo docker-compose up --build -d
 ...
 # Use "sudo docker-compose logs" to access the containers' logs.
 ```
+> :information_source: The commands described for the installation and usage of the project are oriented to Linux environments.
 
 Once the project is deployed, three visual interfaces can be accessed that can help the user to better understand the process:
  1. **Apache Airflow user interface.** It is accessible through port 8080 (http://localhost:8080, user "airflow", password "airflow") and allows access, among other things, to the Airflow configuration and the list of configured DAGs, being able to observe their instances and obtain metrics such as execution times.
