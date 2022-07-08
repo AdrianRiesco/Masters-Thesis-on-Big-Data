@@ -13,11 +13,18 @@
 
 \nonzeroparskip In addition to the technical requirements, the user must have at least a basic/intermediate knowledge level of the operating system that will be used to run the project.
 
+\fbox{\parbox{0.9\textwidth}{\textit{The commands described for the installation and usage of the project are oriented to Linux environments.}}}
+
 \section{Installation}
 \nonzeroparskip The steps that need to be followed to install the project are referenced in the section~\ref{programmer_execute}. A simpler summary is shown below:
 \begin{enumerate}
-	\item Open a \texttt{command prompt} and move to the \texttt{docker} folder.
-	\item Launch the environment with ``\texttt{sudo docker-compose up -b}''.
+	\item Open a \texttt{command prompt} and execute the following commands to set up the permissions of Airflow required folders:
+	\begin{itemize}
+		\item \texttt{sudo chmod -R 777 spark/resources/history}
+		\item \texttt{sudo chmod -R 777 airflow/logs}
+		\item \texttt{sudo chmod -R 777 airflow/plugins}
+	\end{itemize}
+	\item Move to the \texttt{docker} folder and launch the environment with ``\texttt{sudo docker-compose up --build -d}''.
 	\item Wait until all the services have started and are in a healthy state.
 	\item Access to the Airflow UI (\url{http://localhost:8080}, user ``\texttt{airflow}'' and password ``\texttt{airflow}'') and start the DAG ``\texttt{spark\_main}'' as shown in the figure~\ref{start-dag}.
 	\item Use the command ``\texttt{sudo docker-compose down}'' to stop the process.
