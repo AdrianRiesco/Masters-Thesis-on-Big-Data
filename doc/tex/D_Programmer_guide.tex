@@ -42,7 +42,7 @@
 		\item \texttt{tweet.fields} = \texttt{created\_at,entities}
 		\item \texttt{max\_results} = \texttt{10}
 	\end{itemize}
-	\item Now, the query can be sent \url{https://api.twitter.com/2/tweets/search/re cent?query=\%23NowPlaying\&max\_results=10\&tweet.fields=created\_a t,entities} to get the 10 most recent tweets with the hashtag \texttt{\textit{\#NowPlaying}} and receive their basic information (id, text) as well as the entities (hashtags, urls, annotations...) and the creation time stamps.
+	\item Now, the query can be sent \sloppy{\url{https://api.twitter.com/2/tweets/search/re cent?query=\%23NowPlaying\&max\_results=10\&tweet.fields=created\_a t,entities}} to get the 10 most recent tweets with the hashtag \texttt{\textit{\#NowPlaying}} and receive their basic information (id, text) as well as the entities (hashtags, urls, annotations...) and the creation time stamps.
 \end{enumerate}
 
 \nonzeroparskip After analyze the data gathered from the Twitter API,  the author inspected the Spotify API (more specifically the endpoint ``Search for Item''), following the next steps:
@@ -85,7 +85,7 @@
 	\item To stop the containers, the command ``\texttt{sudo docker-compose down}'' can be used. To remove the networks and docker volumes, ``\texttt{sudo docker-compose down -v}'' must be used. The process can also be stopped by pausing the DAG as explained in step 5.
 \end{enumerate}
 
-\figuraNormalSinMarco{0.25}{img/start-dag}{Pause/unpause DAG}{start-dag}{}
+\figuraNormalSinMarco{0.25}{img/start-dag}{Pause/unpause Apache Airflow DAG}{start-dag}{}
 
 \nonzeroparskip The author faced some problems during the development phase that are easily solved:
 \begin{itemize}
