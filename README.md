@@ -6,7 +6,7 @@ The project can be downloaded and executed locally or accessed via [Data Enginee
 
 > :warning: If you face any kind of problem or the web is running slowly, I encourage you to run the project in your local environment.
 
-> :information_source: For more detail, please refer to the project report located [here](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/memoria.pdf).
+> :information_source: For more detail, please refer to the [project report](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/Master's%20Thesis%20project%20report.pdf) and the [slides](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/doc/Master's%20Thesis%20defense%20slides.pdf) used for project defense on July 20, 2022.
 
 ## Description
 This project implements a **ETL process** to collect data from Twitter. The steps of the process are:
@@ -79,4 +79,5 @@ To completely **reset** the project, run the following command within the docker
 $ sudo docker-compose down -v
 ```
 
+[LICENSE](https://github.com/AdrianRiesco/Masters-Thesis-on-Big-Data/blob/main/LICENSE)
  > Adrian Riesco Valbuena.
