@@ -2,7 +2,7 @@
 ## Master's Degree in Business Intelligence and Big Data in Secure Environments
 This project corresponds to the Master's Thesis in Big Data and uses the social network **Twitter** to obtain information about the latest music listened to by users (by searching the #NowPlaying hashtag) and then query the track and artist data involved that **Spotify**, a music-as-a-service based platform, has. The entire process is managed using widely recognized tools within the field of Big Data.
 
-The project can be downloaded and executed locally or accessed via [Data Engineer Project](http://adrianriesco.com:8000).
+The project can be downloaded and executed locally or accessed via [Data Engineer Project](http://adrianriesco.com:8000). *[Update August 08, 2022] The live example deployed in Google Cloud Platform has been paused to save costs.*
 
 > :warning: If you face any kind of problem or the web is running slowly, I encourage you to run the project in your local environment.
 
